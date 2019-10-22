@@ -1,0 +1,19 @@
+#sell {
+  height: 100%;
+}
+
+#sell h1 {
+  height: 10%;
+  margin: 0;
+}
+
+#sell .content {
+  width: 100%;
+  height: 90%;
+}
+
+#sell .content .summary {
+  width: 20%;
+  height: 100%;
+  background-color: #cc0000;
+}

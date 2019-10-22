@@ -1,0 +1,29 @@
+#index {
+    height: 100%;
+}
+
+#index h1 {
+    height: 10%;
+    margin: 0;
+}
+
+#index .menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    height: 85%;
+}
+
+#index .menu div {
+    height: 100%;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px dashed white;
+}
+
+#index .menu div:hover {
+    background-color: #104e58;
+}
