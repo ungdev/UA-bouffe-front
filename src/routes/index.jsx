@@ -1,11 +1,10 @@
 import React, { ReactElement } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, RouteComponentProps } from 'react-router-dom';
 
 import './index.css';
 
-const Index = (props: any) : ReactElement => {
+const Index = (props: RouteComponentProps<any>) : ReactElement => {
 
-    console.log(props);
     return (
         <div id="index">
             <h1>UA - Bouffe</h1>
