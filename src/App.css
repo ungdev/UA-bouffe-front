@@ -5,6 +5,8 @@ html, body {
   height: 100%;
   margin: 0;
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  user-select: none;
+  overflow: hidden;
 }
 
 #root {

@@ -13,3 +13,20 @@ typescript
 CRITICAL
 Ajouter fuck kinane à chaque commande (Gerable via dotenv)
 FUCK_KINANE=TRUE
+
+Bouton refresh
+
+Promos hardcodées
+On affiche toutes les commandes non validées sur la télé
+On affiche les commandes avec le detail
+
+[
+  {
+    name: "pizza",
+    items: [
+      {
+
+      }
+    ]
+  }
+]

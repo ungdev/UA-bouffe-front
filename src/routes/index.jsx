@@ -1,21 +1,22 @@
-import React, { ReactElement } from 'react';
-import { Redirect, RouteComponentProps } from 'react-router-dom';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 import './index.css';
 
-const Index = (props: RouteComponentProps<any>) : ReactElement => {
+const Index = () => {
 
-    return (
-        <div id="index">
-            <h1>UA - Bouffe</h1>
-            <div className="menu">
-                <div onClick={() => props.history.push('/sell')}>Vente</div>
-                <div>Suivi des commandes</div>
-                <div>Préparation</div>
-            </div>
-        </div>
-    );
+  const history = useHistory();
 
+  return (
+      <div id="index">
+          <h1>UA - Bouffe</h1>
+          <div className="menu">
+              <div onClick={() => history.push('/sell')}>Vente</div>
+              <div>Suivi des commandes</div>
+              <div>Préparation</div>
+          </div>
+      </div>
+  );
 };
 
 

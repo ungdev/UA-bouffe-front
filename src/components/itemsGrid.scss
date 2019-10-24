@@ -2,7 +2,7 @@
 
   width: 100%;
 
-  .items-grid-header {
+  .header {
     width: 100%;
     height: 10%;
     background-color: #cc0000;
@@ -12,12 +12,28 @@
     align-items: center;
   }
 
-  .items-grid-content {
+  .header .category {
+    width: 50px;
+    height: 20px;
+    padding: 5px;
+    background-color: #333333;
+
+    &:hover {
+      background-color: #222222;
+    }
+
+    &.active {
+      background-color: #cccc00;
+    }
+  }
+
+  .content {
     width: 100%;
     height: 90%;
     background-color: #cccc00;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-content: flex-start;
   }
 }
