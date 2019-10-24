@@ -1,15 +1,21 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { Item as ItemInterface } from '../categories';
 
 import './item.scss';
+import { State } from '../reducers';
 
-const formatPrice = (price) => {
+const formatPrice = (price : number) => {
   return `${price / 100} €`;
 };
 
-const Item = ({ item }) => {
+interface PropTypes {
+  item: ItemInterface;
+}
 
-  const orgaPrice = useSelector((state) => state.orgaPrice);
+const Item = ({ item } : PropTypes) => {
+
+  const orgaPrice = useSelector((state : State) => state.orgaPrice);
 
   const displayPrice = () => {
     if(orgaPrice) {

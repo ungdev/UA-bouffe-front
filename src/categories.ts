@@ -1,3 +1,16 @@
+export interface Item {
+  key: string;
+  name: string;
+  price: number;
+  orgaPrice: number;
+  category: string;
+}
+
+export interface Category {
+  name: string;
+  items: Array<Item>;
+}
+
 const coca = {
   key        : 'coca-cola',
   name      : 'Coca Cola',
@@ -491,7 +504,7 @@ const multiprise = {
 
 
 
-const items = [
+const items : Array<Category> = [
   coca,
   sprite,
   cocaCherry,
@@ -542,9 +555,9 @@ const items = [
   cableSeptMetres,
   cableCinqMetres,
   multiprise,
-].reduce((acc, curr) => {
+].reduce((acc : any, curr: any) => {
 
-  const itemIndex = acc.findIndex((item) => item.name === curr.category);
+  const itemIndex = acc.findIndex((item : Item) => item.name === curr.category);
 
   if(itemIndex === -1) {
     acc.push({

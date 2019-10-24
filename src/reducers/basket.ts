@@ -1,10 +1,13 @@
-const initialState = [];
+import { Action } from ".";
+import { Item } from "../categories";
+
+const initialState : Array<Item> = [];
 
 export const ADD_ITEM = 'ADD_ITEM';
 export const REMOVE_ITEM = 'REMOVE_ITEM';
 export const CLEAR_BASKET = 'CLEAR_BASKET';
 
-export default (state = initialState, action) => {
+export default (state = initialState, action: Action) => {
 
   switch (action.type) {
 

@@ -1,9 +1,11 @@
+import { Action } from ".";
+
 const initialState = false;
 
 export const TOOGLE_ORGA_PRICE = 'TOOGLE_ORGA_PRICE';
 export const SET_NORMAL_PRICE = 'SET_NORMAL_PRICE';
 
-export default (state = initialState, action) => {
+export default (state = initialState, action: Action) => {
 
   switch (action.type) {
     case TOOGLE_ORGA_PRICE:

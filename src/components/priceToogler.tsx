@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { toogleOrgaPrice } from '../reducers/orgaPrice';
+import { State } from '../reducers';
 
 const PriceToogler = () => {
 
-  const orgaPrice = useSelector((state) => state.orgaPrice);
+  const orgaPrice = useSelector((state : State) => state.orgaPrice);
   const dispatch = useDispatch();
 
   return (

@@ -3,7 +3,12 @@ import { useHistory } from 'react-router-dom';
 
 import './navbar.scss';
 
-const Navbar = ({ back, children }) => {
+interface PropTypes {
+  back: string;
+  children: React.ReactNode;
+}
+
+const Navbar = ({ back, children } : PropTypes) => {
 
   const history = useHistory();
 
