@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './sell.css';
+import ItemsGrid from '../components/itemsGrid';
 
 const Sell = () => {
   return (
@@ -10,7 +11,6 @@ const Sell = () => {
       </div>
       <div className="content">
         <div className="summary">
-          rez
           <div className="bill">
 
           </div>
@@ -18,10 +18,7 @@ const Sell = () => {
 
           </div>
         </div>
-        <div className="items">
-          <nav></nav>
-          <div></div>
-        </div>
+        <ItemsGrid/>
       </div>
     </div>
   );
