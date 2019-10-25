@@ -1,0 +1,31 @@
+.confirmation-modal {
+  position: absolute;
+  --modal-size: 25%;
+  top: var(--modal-size);
+  left: var(--modal-size);
+  right: var(--modal-size);
+  bottom: var(--modal-size);
+  background-color: cyan;
+  display: flex;
+  flex-direction: column;
+
+  .content {
+
+    div {
+      height: 60px;
+    }
+
+    .card {
+      background-color: blue;
+    }
+
+    .cash {
+      background-color: yellowgreen;
+    }
+
+    .cancel {
+      background-color: red;
+    }
+  }
+
+}

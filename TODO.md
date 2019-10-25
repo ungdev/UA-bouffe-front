@@ -1,3 +1,5 @@
+FAIRE DES ITEMS POUR BORNE BOUFFE ET GOODIES /sell?only=goodies
+
 menus calculés à la fin
 
 désactiver prix orga à la fin de la commande

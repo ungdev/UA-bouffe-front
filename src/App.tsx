@@ -10,14 +10,14 @@ import Sell from './routes/sell';
 import store from './store';
 
 const App = () => {
-    return (
-        <Provider store={store}>
-            <Router>
-                <Route exact path="/" component={Index} />
-                <Route path="/sell" component={Sell} />
-            </Router>
-        </Provider>
-    );
+  return (
+    <Provider store={store}>
+      <Router>
+        <Route exact path="/" component={Index} />
+        <Route path="/sell" component={Sell} />
+      </Router>
+    </Provider>
+  );
 };
 
 export default App;
