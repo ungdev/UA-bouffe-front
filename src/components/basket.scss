@@ -1,0 +1,22 @@
+.basket {
+
+  width: 200px;
+  .summary {
+    height: 80%;
+    background-color: #cc00cc;
+  }
+
+  .pay {
+    height: 20%;
+    background-color: #00cc00;
+  }
+
+  .basket-item {
+    height: 50px;
+    background-color: #333333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+  }
+}

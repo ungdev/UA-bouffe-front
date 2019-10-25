@@ -1,9 +1,10 @@
 import React from 'react';
 
-import './sell.css';
+import './sell.scss';
 import ItemsGrid from '../components/itemsGrid';
 import Navbar from '../components/navbar';
 import PriceToogler from '../components/priceToogler';
+import Basket from '../components/basket';
 
 const Sell = () => {
   return (
@@ -12,14 +13,7 @@ const Sell = () => {
         <PriceToogler/>
       </Navbar>
       <div className="content">
-        <div className="summary">
-          <div className="bill">
-
-          </div>
-          <div className="pay">
-
-          </div>
-        </div>
+        <Basket/>
         <ItemsGrid/>
       </div>
     </div>

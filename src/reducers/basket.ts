@@ -24,3 +24,8 @@ export default (state = initialState, action: Action) => {
       return state;
   }
 };
+
+export const addItem = (item : Item) => ({
+  type: ADD_ITEM,
+  payload: item
+})
