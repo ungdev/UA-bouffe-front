@@ -36,4 +36,15 @@
     flex-wrap: wrap;
     align-content: flex-start;
   }
+
+  .item {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    background-color: #555555;
+
+    &:hover {
+      background-color: #444444;
+    }
+  }
 }

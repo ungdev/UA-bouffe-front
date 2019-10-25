@@ -1,4 +1,4 @@
-import { Action } from ".";
+import { Action } from '.';
 
 const initialState = false;
 
@@ -6,17 +6,16 @@ export const TOOGLE_ORGA_PRICE = 'TOOGLE_ORGA_PRICE';
 export const SET_NORMAL_PRICE = 'SET_NORMAL_PRICE';
 
 export default (state = initialState, action: Action) => {
+    switch (action.type) {
+        case TOOGLE_ORGA_PRICE:
+            return !state;
 
-  switch (action.type) {
-    case TOOGLE_ORGA_PRICE:
-      return !state;
+        case SET_NORMAL_PRICE:
+            return false;
 
-    case SET_NORMAL_PRICE:
-      return false;
-
-    default:
-      return false;
-  }
+        default:
+            return false;
+    }
 };
 
 export const toogleOrgaPrice = () => ({

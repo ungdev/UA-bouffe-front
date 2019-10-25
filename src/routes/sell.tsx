@@ -7,18 +7,17 @@ import PriceToogler from '../components/priceToogler';
 import Basket from '../components/basket';
 
 const Sell = () => {
-  return (
-    <div id="sell">
-      <Navbar back="/">
-        <PriceToogler/>
-      </Navbar>
-      <div className="content">
-        <Basket/>
-        <ItemsGrid/>
-      </div>
-    </div>
-  );
+    return (
+        <div id="sell">
+            <Navbar back="/">
+                <PriceToogler />
+            </Navbar>
+            <div className="content">
+                <Basket />
+                <ItemsGrid />
+            </div>
+        </div>
+    );
 };
-
 
 export default Sell;
