@@ -5,10 +5,7 @@ import { Item as ItemInterface } from '../categories';
 import './item.scss';
 import { State } from '../reducers';
 import { addItem } from '../reducers/basket';
-
-const formatPrice = (price : number) => {
-  return `${price / 100} €`;
-};
+import formatPrice from '../utils/formatPrice';
 
 interface PropTypes {
   item: ItemInterface;
