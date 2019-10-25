@@ -1,9 +1,14 @@
 .navbar {
+  height: 50px;
   margin: 0;
   font-size: 2rem;
-  background-color: cyan;
-  padding: 10px 20px;
+  padding-left: 20px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+
+  *:hover {
+    filter: brightness(0.9);
+  }
 
 }

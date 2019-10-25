@@ -1,0 +1,9 @@
+.price-toogler {
+  width: 200px;
+  height: 100%;
+  line-height: 50px;
+
+  &.active {
+    background-color: var(--accent);
+  }
+}

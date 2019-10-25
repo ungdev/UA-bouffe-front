@@ -72,7 +72,7 @@ const ItemsGrid = () => {
   return (
     <div className="items-grid">
       <nav className="header">
-        <span>{displayCategories()}</span>
+        {displayCategories()}
       </nav>
       <div className="content">
         {currentCategory.items.map((item) => (

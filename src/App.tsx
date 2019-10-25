@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 
-import './App.css';
+import './app.scss';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 
 import Index from './routes';

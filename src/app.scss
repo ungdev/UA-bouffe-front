@@ -1,0 +1,22 @@
+html, body {
+  background-color: var(--primary-dark);
+  color: var(--light);
+  text-align: center;
+  height: 100%;
+  margin: 0;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  user-select: none;
+  overflow: hidden;
+}
+
+#root {
+  height: 100%;
+}
+
+:root {
+  --accent: #00adb5;
+  --light: #eeeeee;
+  --primary-dark: #222831;
+  --primary: #393e46;
+  --primary-light: #4a505b;
+}
