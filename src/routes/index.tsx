@@ -10,7 +10,8 @@ const Index = () => {
     <div id="index">
       <h1>UA - Bouffe</h1>
       <div className="menu">
-        <div onClick={() => history.push('/sell')}>Vente</div>
+        <div onClick={() => history.push('/sell?only=food')}>Vente de bouffe</div>
+        <div onClick={() => history.push('/sell?only=goodies')}>Vente de goodies</div>
         <div>Suivi des commandes</div>
         <div>Préparation</div>
       </div>
