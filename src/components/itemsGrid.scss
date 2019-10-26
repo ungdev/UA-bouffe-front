@@ -34,8 +34,8 @@
     align-content: flex-start;
 
     .item {
-      width: 100px;
-      height: 100px;
+      width: 150px;
+      height: 150px;
       margin: 10px;
       background-color: var(--primary-light);
       display: flex;
@@ -44,6 +44,10 @@
 
       &:hover {
         filter: brightness(0.9);
+      }
+
+      .name {
+        font-size: 1.3em;
       }
     }
   }

@@ -1,6 +1,12 @@
 {
   "parser": "@typescript-eslint/parser",
-  "extends": ["plugin:react/recommended", "plugin:@typescript-eslint/recommended"],
+  "extends": [
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript"
+  ],
   "plugins": ["@typescript-eslint", "react-hooks"],
   "parserOptions": {
     "ecmaVersion": 2018,
@@ -24,7 +30,8 @@
     "comma-dangle": ["warn", "always-multiline"],
     "object-curly-spacing": ["warn", "always"],
     "arrow-parens": ["error", "always"],
-    "eol-last": ["warn", "never"]
+    "eol-last": ["warn", "always"],
+    "import/default": "off"
   },
   "settings": {
     "react": {

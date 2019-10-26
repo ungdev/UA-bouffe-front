@@ -1,8 +1,8 @@
-import { combineReducers } from 'redux';
 
+import { combineReducers } from 'redux';
+import { Item } from '../categories';
 import basket from './basket';
 import orgaPrice from './orgaPrice';
-import { Item } from '../categories';
 
 const app = combineReducers({ basket, orgaPrice });
 

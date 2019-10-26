@@ -5,25 +5,41 @@
   left: var(--modal-size);
   right: var(--modal-size);
   bottom: var(--modal-size);
-  background-color: cyan;
+  background-color: var(--light);
   display: flex;
   flex-direction: column;
+  padding: 20px;
+  color: var(--primary);
+  font-size: 2em;
+
+  // Disable focus border
+  &:focus {
+    outline: 0;
+  }
 
   .content {
-    div {
+    .button {
       height: 60px;
+      line-height: 60px;
+      margin: 10px 0px;
+      color: var(--light);
+      position: relative;
+
+      &:hover {
+        filter: brightness(0.9);
+      }
     }
 
-    .card {
-      background-color: blue;
+    .button.accent {
+      background-color: var(--accent);
     }
 
-    .cash {
-      background-color: yellowgreen;
+    .button.success {
+      background-color: var(--success);
     }
 
-    .cancel {
-      background-color: red;
+    .button.cancel {
+      background-color: var(--danger);
     }
   }
 }

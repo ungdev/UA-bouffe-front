@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router';
+import queryString from 'query-string';
 
 import _categories, { Item as ItemTypes } from '../categories';
-import './itemsGrid.scss';
-import { useSelector, useDispatch } from 'react-redux';
 import formatPrice from '../utils/formatPrice';
 import { addItem } from '../reducers/basket';
 import { State } from '../reducers';
-import { useLocation } from 'react-router';
-import queryString from 'query-string';
+import './itemsGrid.scss';
 
 interface ItemPropTypes {
   item: ItemTypes;
@@ -31,8 +31,8 @@ const Item = ({ item }: ItemPropTypes) => {
 
   return (
     <div className="item" onClick={() => addToBasket()}>
-      <span>{item.name}</span>
-      <span>{displayPrice()}</span>
+      <span className="name">{item.name}</span>
+      <span className="price">{displayPrice()}</span>
     </div>
   );
 };

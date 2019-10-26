@@ -1,6 +1,6 @@
-import React from 'react';
 
 import './sell.scss';
+import React from 'react';
 import ItemsGrid from '../components/itemsGrid';
 import Navbar from '../components/navbar';
 import PriceToogler from '../components/priceToogler';

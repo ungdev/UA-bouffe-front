@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import FontAwesome from 'react-fontawesome';
 
 import './basket.scss';
+import { useDispatch, useSelector } from 'react-redux';
 import { State } from '../reducers';
 import { Item } from '../categories';
-import { useSelector, useDispatch } from 'react-redux';
 import formatPrice from '../utils/formatPrice';
-import { removeItem, clearBasket } from '../reducers/basket';
+import { clearBasket, removeItem } from '../reducers/basket';
 import ConfirmationModal from './confirmationModal';
 
 export enum PaymentMethod {
@@ -48,7 +48,7 @@ const Basket = () => {
   };
 
   const openConfirm = () => {
-    setModalOpened(true);
+    if (basket.length !== 0) setModalOpened(true);
   };
 
   const closeConfirm = () => {
@@ -69,7 +69,7 @@ const Basket = () => {
         ))}
       </div>
       <div className="pay" onClick={() => openConfirm()}>
-        {calculateTotal()}
+        <span>{calculateTotal()}</span>
         <FontAwesome name="check" />
       </div>
     </div>

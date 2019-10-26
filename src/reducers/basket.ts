@@ -1,5 +1,5 @@
-import { Action } from '.';
 import { Item } from '../categories';
+import { Action } from '.';
 
 const initialState: Array<Item> = [];
 
