@@ -12,7 +12,6 @@ import Basket from '../components/basket';
  */
 
 const Sell = () => {
-
   return (
     <div id="sell">
       <Navbar back="/">

@@ -6,12 +6,11 @@ import './navbar.scss';
 import formatDate from '../utils/formatDate';
 
 interface PropTypes {
-  back: string;
-  children: React.ReactNode;
+  back?: string;
+  children?: React.ReactNode;
 }
 
 const Navbar = ({ back, children }: PropTypes) => {
-
   const history = useHistory();
   const [time, setTime] = useState(formatDate(new Date()));
 
@@ -23,14 +22,18 @@ const Navbar = ({ back, children }: PropTypes) => {
 
   return (
     <nav className="navbar">
-      <div className="back" onClick={() => (back ? history.push(back) : false)}>
-        {back ? <FontAwesome name="chevron-left"/> : ''}
-      </div>
-      <div>
-        <span onClick={() => window.location.reload()}>TurboBouffe - { time }</span>
-      </div>
+      {back ? (
+        <div className="back" onClick={() => (back ? history.push(back) : false)}>
+          <FontAwesome name="chevron-left" />
+        </div>
+      ) : (
+        ''
+      )}
+      <span className="title" onClick={() => window.location.reload()}>
+        TurboBouffe - {time}
+      </span>
 
-      {children}
+      {children ? children : ''}
     </nav>
   );
 };

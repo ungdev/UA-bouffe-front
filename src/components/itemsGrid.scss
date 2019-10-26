@@ -2,7 +2,6 @@
 
   width: 100%;
   background-color: var(--primary);
-
   .header {
     width: 100%;
     display: flex;
@@ -34,16 +33,19 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-content: flex-start;
-  }
 
-  .item {
-    width: 100px;
-    height: 100px;
-    margin: 10px;
-    background-color: var(--primary-light);
+    .item {
+      width: 100px;
+      height: 100px;
+      margin: 10px;
+      background-color: var(--primary-light);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
 
-    &:hover {
-      filter: brightness(0.9);
+      &:hover {
+        filter: brightness(0.9);
+      }
     }
   }
 }

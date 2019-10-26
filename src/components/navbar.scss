@@ -7,6 +7,10 @@
   justify-content: space-between;
   align-items: center;
 
+  .title {
+    width: 100%;
+  }
+
   *:hover {
     filter: brightness(0.9);
   }

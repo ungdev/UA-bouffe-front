@@ -31,38 +31,38 @@ const Item = ({ item }: ItemPropTypes) => {
 
   return (
     <div className="item" onClick={() => addToBasket()}>
-      {item.name} - <br /> {displayPrice()}
+      <span>{item.name}</span>
+      <span>{displayPrice()}</span>
     </div>
   );
 };
 
 const ItemsGrid = () => {
-
   let categories = _categories;
 
   const location = useLocation();
   const queryParams = queryString.parse(location.search);
 
-  switch(queryParams.only) {
+  switch (queryParams.only) {
     case 'food':
       categories = categories.filter((category) => category.name !== process.env.REACT_APP_GOODIES_CATEGORY_NAME);
       break;
 
     case 'goodies':
-        categories = categories.filter((category) => category.name === process.env.REACT_APP_GOODIES_CATEGORY_NAME);
-        break;
+      categories = categories.filter((category) => category.name === process.env.REACT_APP_GOODIES_CATEGORY_NAME);
+      break;
   }
 
   const [currentCategory, setCurrentCategory] = useState(categories[0]);
 
   const displayCategories = () => {
-    return categories
-    .map((category, index) => {
+    return categories.map((category, index) => {
       return (
         <span
           key={index}
           className={`category ${category.name === currentCategory.name ? 'active' : ''}`}
-          onClick={() => setCurrentCategory(category)}>
+          onClick={() => setCurrentCategory(category)}
+        >
           {category.name}
         </span>
       );
@@ -71,9 +71,7 @@ const ItemsGrid = () => {
 
   return (
     <div className="items-grid">
-      <nav className="header">
-        {displayCategories()}
-      </nav>
+      <nav className="header">{displayCategories()}</nav>
       <div className="content">
         {currentCategory.items.map((item) => (
           <Item key={item.key} item={item} />

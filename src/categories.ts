@@ -561,22 +561,10 @@ const items: Array<Category> = [
       name: curr.category,
       items: [curr],
     });
-  }
- else {
+  } else {
     acc[itemIndex].items.push(curr);
   }
 
   return acc;
 }, []);
 export default items;
-
-/*
-[
-  {
-    name: Crepeete
-    items: [
-
-    ]
-  }
-]
-*/

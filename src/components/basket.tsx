@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import FontAwesome from 'react-fontawesome';
 
 import './basket.scss';
 import { State } from '../reducers';
@@ -9,8 +10,9 @@ import { removeItem, clearBasket } from '../reducers/basket';
 import ConfirmationModal from './confirmationModal';
 
 export enum PaymentMethod {
-  Card = "card", Cash = "cash"
-};
+  Card = 'card',
+  Cash = 'cash',
+}
 
 interface BasketItemPropTypes {
   item: Item;
@@ -27,9 +29,7 @@ const BasketItem = ({ item, index }: BasketItemPropTypes) => {
   return (
     <div className="basket-item">
       <span className="item-name">{item.name}</span>
-      <div className="delete" onClick={() => removeBasketItem()}>
-        X
-      </div>
+      <FontAwesome name="times" className="remove" onClick={() => removeBasketItem()} />
     </div>
   );
 };
@@ -62,10 +62,7 @@ const Basket = () => {
 
   return (
     <div className="basket">
-      <ConfirmationModal
-        isOpen={modalOpened}
-        onPay={(method) => pay(method)}
-        onCancel={() => closeConfirm()}/>
+      <ConfirmationModal isOpen={modalOpened} onPay={(method) => pay(method)} onCancel={() => closeConfirm()} />
       <div className="summary">
         {basket.map((item, index) => (
           <BasketItem item={item} key={index} index={index} />
@@ -73,6 +70,7 @@ const Basket = () => {
       </div>
       <div className="pay" onClick={() => openConfirm()}>
         {calculateTotal()}
+        <FontAwesome name="check" />
       </div>
     </div>
   );

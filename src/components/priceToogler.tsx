@@ -10,9 +10,11 @@ const PriceToogler = () => {
   const orgaPrice = useSelector((state: State) => state.orgaPrice);
   const dispatch = useDispatch();
 
-  return <div
-  className={`price-toogler ${orgaPrice ? 'active' : ''}`}
-  onClick={() => dispatch(toogleOrgaPrice())}>{orgaPrice ? 'Prix orga' : 'Prix normal'}</div>;
+  return (
+    <div className={`price-toogler ${orgaPrice ? 'active' : ''}`} onClick={() => dispatch(toogleOrgaPrice())}>
+      {orgaPrice ? 'Prix orga' : 'Prix normal'}
+    </div>
+  );
 };
 
 export default PriceToogler;

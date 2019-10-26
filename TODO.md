@@ -1,5 +1,11 @@
-FAIRE DES ITEMS POUR BORNE BOUFFE ET GOODIES /sell?only=goodies
+change le font awesome vers le cdn (finalement non), mais le raccourcir
 
+Changer les couleurs vers du bootstrap
+
+Revoir le design des items
+
+
+afficher le numero de la commande pour le bénévole
 menus calculés à la fin
 
 désactiver prix orga à la fin de la commande
