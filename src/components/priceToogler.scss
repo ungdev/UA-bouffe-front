@@ -2,6 +2,8 @@
   width: 200px;
   height: 100%;
   line-height: 50px;
+  text-align: left;
+  padding-left: 10px;
 
   &.active {
     background-color: var(--accent);

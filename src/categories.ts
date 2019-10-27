@@ -4,6 +4,7 @@ export interface Item {
   price: number;
   orgaPrice: number;
   category: string;
+  isAvailable: boolean;
 }
 
 export interface Category {
@@ -561,8 +562,7 @@ const items: Array<Category> = [
       name: curr.category,
       items: [curr],
     });
-  }
- else {
+  } else {
     acc[itemIndex].items.push(curr);
   }
 

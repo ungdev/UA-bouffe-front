@@ -30,6 +30,11 @@
     justify-content: space-between;
     align-items: center;
     padding-left: 10px;
+    text-align: left;
+
+    .item-name {
+      width: 75%;
+    }
 
     .remove {
       height: 100%;

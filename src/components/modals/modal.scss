@@ -1,4 +1,4 @@
-.confirmation-modal {
+.modal {
   position: absolute;
   --modal-size: 25%;
   top: var(--modal-size);
@@ -17,28 +17,26 @@
     outline: 0;
   }
 
-  .content {
-    .button {
-      height: 60px;
-      line-height: 60px;
-      margin: 10px 0px;
-      color: var(--light);
-      position: relative;
+  .content .button {
+    height: 60px;
+    line-height: 60px;
+    margin: 10px 0px;
+    color: var(--light);
+    position: relative;
 
-      &:hover {
-        filter: brightness(0.9);
-      }
+    &:hover {
+      filter: brightness(0.9);
     }
 
-    .button.accent {
+    &.accent {
       background-color: var(--accent);
     }
 
-    .button.success {
+    &.success {
       background-color: var(--success);
     }
 
-    .button.cancel {
+    &.cancel {
       background-color: var(--danger);
     }
   }

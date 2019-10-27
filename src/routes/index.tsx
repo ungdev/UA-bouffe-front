@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
-import './index.css';
+import './index.scss';
 import Navbar from '../components/navbar';
 
 const Index = () => {

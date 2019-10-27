@@ -1,4 +1,3 @@
-
 import { combineReducers } from 'redux';
 import { Item } from '../categories';
 import basket from './basket';

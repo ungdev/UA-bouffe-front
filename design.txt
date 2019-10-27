@@ -1,0 +1,19 @@
+SOCKET IO
+
+
+Client: connect (possible de passer en requetes ajax)
+
+onFetchItems <-
+order ->
+
+
+
+Server: onConnection
+
+
+
+Pourquoi supprimer le gsheet ? Si qq1 change les prix, la recette totale est eronnée
+Du coup, ne jamais changer les onItems
+
+
+Il faut que sur la db, les commandes soient ecrites en dur.

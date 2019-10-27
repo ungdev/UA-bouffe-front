@@ -1,9 +1,11 @@
 change le font awesome vers le cdn (finalement non), mais le raccourcir
+passer vers momentjs
 
 Changer les couleurs vers du bootstrap
 
 Revoir le design des items
 
+implement scroll à la main
 
 afficher le numero de la commande pour le bénévole
 menus calculés à la fin
@@ -29,12 +31,13 @@ On affiche toutes les commandes non validées sur la télé
 On affiche les commandes avec le detail
 
 [
-  {
-    name: "pizza",
-    items: [
-      {
+{
+name: "pizza",
+items: [
+{
 
       }
     ]
-  }
+
+}
 ]

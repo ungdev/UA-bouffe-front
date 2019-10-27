@@ -7,7 +7,9 @@ import { State } from '../reducers';
 import { Item } from '../categories';
 import formatPrice from '../utils/formatPrice';
 import { clearBasket, removeItem } from '../reducers/basket';
-import ConfirmationModal from './confirmationModal';
+import PaymentMethodModal from './modals/paymentMethod';
+import ConfirmOrderModal from './modals/confirmOrder';
+import { setNormalPrice } from '../reducers/orgaPrice';
 
 export enum PaymentMethod {
   Card = 'card',
@@ -39,7 +41,9 @@ const Basket = () => {
   const orgaPrice = useSelector((state: State) => state.orgaPrice);
   const basket = useSelector((state: State) => state.basket);
 
-  const [modalOpened, setModalOpened] = useState(false);
+  const [paymentOpened, setPaymentOpened] = useState(false);
+  const [confirmOpened, setConfirmOpened] = useState(false);
+  const [orderName, setOrderName] = useState('');
 
   const calculateTotal = () => {
     const total = basket.reduce((acc, curr) => acc + (orgaPrice ? curr.orgaPrice : curr.price), 0);
@@ -47,28 +51,33 @@ const Basket = () => {
     return formatPrice(total);
   };
 
-  const openConfirm = () => {
-    if (basket.length !== 0) setModalOpened(true);
+  const openPaymentModal = () => {
+    if (basket.length !== 0) setPaymentOpened(true);
   };
 
-  const closeConfirm = () => {
-    setModalOpened(false);
-  };
-
-  const pay = (method: PaymentMethod) => {
+  const onPay = (method: PaymentMethod) => {
     dispatch(clearBasket());
-    closeConfirm();
+    dispatch(setNormalPrice());
+    setPaymentOpened(false);
+
+    setOrderName("ESP_41 (en fait c'est sur fake ^^)");
+    setConfirmOpened(true);
   };
 
   return (
     <div className="basket">
-      <ConfirmationModal isOpen={modalOpened} onPay={(method) => pay(method)} onCancel={() => closeConfirm()} />
+      <PaymentMethodModal
+        isOpen={paymentOpened}
+        onPay={(method) => onPay(method)}
+        onCancel={() => setPaymentOpened(false)}
+      />
+      <ConfirmOrderModal isOpen={confirmOpened} onClose={() => setConfirmOpened(false)} orderName={orderName} />
       <div className="summary">
         {basket.map((item, index) => (
           <BasketItem item={item} key={index} index={index} />
         ))}
       </div>
-      <div className="pay" onClick={() => openConfirm()}>
+      <div className="pay" onClick={() => openPaymentModal()}>
         <span>{calculateTotal()}</span>
         <FontAwesome name="check" />
       </div>

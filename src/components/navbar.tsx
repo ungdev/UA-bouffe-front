@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import FontAwesome from 'react-fontawesome';
+import moment from 'moment';
 import { useHistory } from 'react-router-dom';
 
 import './navbar.scss';
-import formatDate from '../utils/formatDate';
 
 interface PropTypes {
   back?: string;
   children?: React.ReactNode;
 }
 
-const Navbar = ({ back, children }: PropTypes) => {
+const Navbar = ({ back, children: children }: PropTypes) => {
   const history = useHistory();
-  const [time, setTime] = useState(formatDate(new Date()));
+  const [time, setTime] = useState(moment().format('H[h]mm'));
 
   useEffect(() => {
     setInterval(() => {
-      setTime(formatDate(new Date()));
+      setTime(moment().format('H[h]mm'));
     }, 1000 * 60);
   }, []);
 
