@@ -8,6 +8,7 @@ import Index from './routes';
 import Sell from './routes/sell';
 
 import store from './store';
+import Tv from './routes/tv';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
       <Router>
         <Route exact path="/" component={Index} />
         <Route path="/sell" component={Sell} />
+        <Route path="/tv" component={Tv} />
       </Router>
     </Provider>
   );

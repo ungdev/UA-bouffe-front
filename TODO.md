@@ -1,6 +1,10 @@
 change le font awesome vers le cdn (finalement non), mais le raccourcir
 passer vers momentjs
 
+Supprimer node_modules
+
+Refaire un tri dans les types
+
 Changer les couleurs vers du bootstrap
 
 Revoir le design des items

@@ -13,7 +13,7 @@ const Index = () => {
       <div className="menu">
         <div onClick={() => history.push('/sell?only=food')}>Vente de bouffe</div>
         <div onClick={() => history.push('/sell?only=goodies')}>Vente de goodies</div>
-        <div>Suivi des commandes</div>
+        <div onClick={() => history.push('/tv')}>Suivi des commandes</div>
         <div>Préparation</div>
       </div>
     </div>
