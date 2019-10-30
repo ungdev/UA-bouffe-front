@@ -4,10 +4,15 @@ passer à react router connected (redux push)
 
 revoir comment gerer les types dispatch :/
 
+deconnexion padding right
+icons
+
+faire un tri dans les dependences
 Refaire un tri dans les types
 
 Changer les couleurs vers du bootstrap
 
+remplacer character login
 Revoir le design des items
 
 implement scroll à la main

@@ -10,7 +10,7 @@ interface PropTypes {
   children?: React.ReactNode;
 }
 
-const Navbar = ({ back, children: children }: PropTypes) => {
+const Navbar = ({ back, children }: PropTypes) => {
   const history = useHistory();
   const [time, setTime] = useState(moment().format('H[h]mm'));
 

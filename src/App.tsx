@@ -4,7 +4,7 @@ import { toast, Flip } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import './app.scss';
-import { Route, BrowserRouter as Router } from 'react-router-dom';
+import { Route, BrowserRouter as Router, useHistory } from 'react-router-dom';
 
 import Index from './routes';
 import Sell from './routes/sell';
@@ -12,6 +12,7 @@ import Sell from './routes/sell';
 import store from './store';
 import Tv from './routes/tv';
 import Login from './routes/login';
+import { autoLogin } from './reducers/login';
 
 toast.configure({
   autoClose: 3000,
@@ -20,14 +21,27 @@ toast.configure({
   hideProgressBar: true,
 });
 
+const AutoLogin = ({ children }: { children: React.ReactNode }) => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  dispatch(autoLogin(history));
+
+  return <>{children}</>;
+};
+
 const App = () => {
   return (
     <Provider store={store}>
       <Router>
-        <Route exact path="/" component={Index} />
-        <Route path="/login" component={Login} />
-        <Route path="/sell" component={Sell} />
-        <Route path="/tv" component={Tv} />
+        <AutoLogin>
+          <>
+            <Route exact path="/" component={Index} />
+            <Route path="/login" component={Login} />
+            <Route path="/sell" component={Sell} />
+            <Route path="/tv" component={Tv} />
+          </>
+        </AutoLogin>
       </Router>
     </Provider>
   );

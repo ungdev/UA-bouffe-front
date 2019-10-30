@@ -5,10 +5,12 @@ import './login.scss';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { tryLogin } from '../reducers/login';
+import { useHistory } from 'react-router';
 
 const Login = () => {
   const digits = [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9'], ['x', '0', 'GO !']];
 
+  const history = useHistory();
   const dispatch = useDispatch();
   const [pin, setPin] = useState('');
 
@@ -19,7 +21,7 @@ const Login = () => {
         break;
 
       case digits[3][2]:
-        dispatch(tryLogin(pin));
+        dispatch(tryLogin(pin, history));
         setPin('');
         break;
 
@@ -31,7 +33,7 @@ const Login = () => {
   return (
     <div id="login">
       <Navbar back="/" />
-      <div className="field">{pin}</div>
+      <div className="field">{pin.replace(/./g, '^')}</div>
       <div className="digits">
         {digits.map((digitsRow, index) => (
           <div className="digits-row" key={index}>
