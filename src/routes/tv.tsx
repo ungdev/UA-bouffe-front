@@ -8,12 +8,12 @@ import { Item } from '../categories';
 
 export enum Status {
   PENDING = 'pending',
-  PREPARATION = 'preparation',
+  PREPARING = 'preparing',
   READY = 'ready',
 }
 
 export interface Order {
-  name: string;
+  id: number;
   method: PaymentMethod;
   status: Status;
   orderItems: Array<Item>;
@@ -22,13 +22,11 @@ export interface Order {
 const Order = ({ order }: { order: Order }) => {
   return (
     <div className="order">
-      <span>
-        {order.name} - {order.status}{' '}
-      </span>
+      <span>{order.id} -</span>
       <div className="status">
-        <div className="item pending active">Attente</div>
-        <div className="item preparing">Préparation</div>
-        <div className="item ready">Prêt</div>
+        <div className={`item pending ${order.status === Status.PENDING ? 'active' : ''}`}>Attente</div>
+        <div className={`item preparing ${order.status === Status.PREPARING ? 'active' : ''}`}>Préparation</div>
+        <div className={`item ready ${order.status === Status.READY ? 'active' : ''}`}>Prêt</div>
       </div>
     </div>
   );

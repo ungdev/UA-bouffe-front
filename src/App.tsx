@@ -1,5 +1,7 @@
 import React from 'react';
-import { Provider } from 'react-redux';
+import { Provider, useDispatch } from 'react-redux';
+import { toast, Flip } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import './app.scss';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
@@ -9,12 +11,21 @@ import Sell from './routes/sell';
 
 import store from './store';
 import Tv from './routes/tv';
+import Login from './routes/login';
+
+toast.configure({
+  autoClose: 3000,
+  pauseOnHover: true,
+  transition: Flip,
+  hideProgressBar: true,
+});
 
 const App = () => {
   return (
     <Provider store={store}>
       <Router>
         <Route exact path="/" component={Index} />
+        <Route path="/login" component={Login} />
         <Route path="/sell" component={Sell} />
         <Route path="/tv" component={Tv} />
       </Router>

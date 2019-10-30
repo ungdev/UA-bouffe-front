@@ -1,0 +1,35 @@
+#login {
+  .field {
+    width: 10%;
+    height: 30px;
+    line-height: 30px;
+    background-color: var(--primary-light);
+    border-radius: 20px;
+    margin: 20px auto;
+  }
+
+  .digits {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: auto;
+    width: 50%;
+  }
+
+  .digits .digits-row {
+    display: flex;
+    justify-content: center;
+
+    .digit {
+      width: 30%;
+      height: 100px;
+      line-height: 100px;
+      margin: 10px;
+      background-color: var(--primary-light);
+
+      &:hover {
+        filter: brightness(0.9);
+      }
+    }
+  }
+}

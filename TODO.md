@@ -1,7 +1,8 @@
 change le font awesome vers le cdn (finalement non), mais le raccourcir
-passer vers momentjs
 
-Supprimer node_modules
+passer à react router connected (redux push)
+
+revoir comment gerer les types dispatch :/
 
 Refaire un tri dans les types
 
@@ -22,6 +23,7 @@ poste pizza: peut voir /prepare/pizza
 télé: /view
 admin:
 
+AUTO LOGIN
 typescript
 
 CRITICAL

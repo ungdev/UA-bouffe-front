@@ -1,26 +1,19 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import errorToString from './errorToString';
 
-let axiosAPI = axios.create({
-  baseURL: process.env.ARENA_API_URI,
-  headers: { 'X-Token': '' },
+const axiosAPI = axios.create({
+  baseURL: process.env.REACT_APP_API_URI,
 });
 
-const setTokenAPI = (token: string) => {
-  axiosAPI = axios.create({
-    baseURL: process.env.ARENA_API_URI,
-    headers: { 'X-Token': token },
-  });
-};
-
-const API = {
+export const API = {
   get: (route: string) =>
     new Promise((resolve, reject) => {
       axiosAPI
         .get(route)
         .then((res) => resolve(res))
         .catch((err) => {
-          toast.error('Erreur :/');
+          toast.error(errorToString(err.response ? err.response.data : 'UNKNOWN'));
           reject(err);
         });
     }),
@@ -30,7 +23,7 @@ const API = {
         .post(route, body)
         .then((res) => resolve(res))
         .catch((err) => {
-          toast.error('Erreur :/');
+          toast.error(errorToString(err.response ? err.response.data : 'UNKNOWN'));
           reject(err);
         });
     }),
@@ -40,7 +33,7 @@ const API = {
         .put(route, body)
         .then((res) => resolve(res))
         .catch((err) => {
-          toast.error('Erreur :/');
+          toast.error(errorToString(err.response ? err.response.data : 'UNKNOWN'));
           reject(err);
         });
     }),
@@ -50,7 +43,7 @@ const API = {
         .delete(route, body)
         .then((res) => resolve(res))
         .catch((err) => {
-          toast.error('Erreur :/');
+          toast.error(errorToString(err.response ? err.response.data : 'UNKNOWN'));
           reject(err);
         });
     }),
