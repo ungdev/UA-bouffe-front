@@ -1,11 +1,8 @@
 #tv {
-  .orders {
-    display: flex;
-    flex-direction: column;
-    font-size: 2em;
-  }
-
-  .orders .order {
+  display: flex;
+  flex-direction: column;
+  font-size: 2em;
+  .order {
     margin: 10px 20px;
     padding: 10px 20px;
     display: flex;
@@ -16,7 +13,7 @@
     border-radius: 10px;
   }
 
-  .orders .order .status {
+  .order .status {
     display: flex;
     height: 50px;
     line-height: 50px;

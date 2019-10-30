@@ -4,6 +4,8 @@ passer à react router connected (redux push)
 
 revoir comment gerer les types dispatch :/
 
+WARNING: DANS LA DB PROD, ITEMS VIDES DANS LA TABLE USERS ET TEAMS
+
 deconnexion padding right
 icons
 
@@ -12,6 +14,7 @@ Refaire un tri dans les types
 
 Changer les couleurs vers du bootstrap
 
+Faire de la redondance sur la navbar
 remplacer character login
 Revoir le design des items
 
@@ -28,8 +31,7 @@ poste pizza: peut voir /prepare/pizza
 télé: /view
 admin:
 
-AUTO LOGIN
-typescript
+Ameillorer AUTO LOGIN
 
 CRITICAL
 Ajouter fuck kinane à chaque commande (Gerable via dotenv)
@@ -52,3 +54,7 @@ items: [
 
 }
 ]
+
+Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.
+in Navbar (at preparation.tsx:28)
+in Preparation (created by Context.Consumer)

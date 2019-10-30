@@ -1,4 +1,3 @@
-
 import './sell.scss';
 import React from 'react';
 import ItemsGrid from '../components/itemsGrid';
@@ -13,15 +12,15 @@ import Basket from '../components/basket';
 
 const Sell = () => {
   return (
-    <div id="sell">
+    <>
       <Navbar back="/">
         <PriceToogler />
       </Navbar>
-      <div className="content">
+      <div id="sell">
         <Basket />
         <ItemsGrid />
       </div>
-    </div>
+    </>
   );
 };
 

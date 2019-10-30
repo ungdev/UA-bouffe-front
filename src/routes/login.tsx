@@ -31,21 +31,23 @@ const Login = () => {
   };
 
   return (
-    <div id="login">
+    <>
       <Navbar back="/" />
-      <div className="field">{pin.replace(/./g, '^')}</div>
-      <div className="digits">
-        {digits.map((digitsRow, index) => (
-          <div className="digits-row" key={index}>
-            {digitsRow.map((digit) => (
-              <div className="digit" key={digit} onClick={() => onClick(digit)}>
-                {digit}
-              </div>
-            ))}
-          </div>
-        ))}
+      <div id="login">
+        <div className="field">{pin.replace(/./g, '^')}</div>
+        <div className="digits">
+          {digits.map((digitsRow, index) => (
+            <div className="digits-row" key={index}>
+              {digitsRow.map((digit) => (
+                <div className="digit" key={digit} onClick={() => onClick(digit)}>
+                  {digit}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -32,6 +32,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-content: flex-start;
+    overflow: auto;
 
     .item {
       width: 150px;

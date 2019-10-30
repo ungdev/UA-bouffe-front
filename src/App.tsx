@@ -1,5 +1,5 @@
-import React from 'react';
-import { Provider, useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import { Provider, useDispatch, useSelector } from 'react-redux';
 import { toast, Flip } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -13,6 +13,9 @@ import store from './store';
 import Tv from './routes/tv';
 import Login from './routes/login';
 import { autoLogin } from './reducers/login';
+import Preparation from './routes/preparation';
+import { State } from './reducers';
+import { setHistory } from './reducers/history';
 
 toast.configure({
   autoClose: 3000,
@@ -39,6 +42,7 @@ const App = () => {
             <Route exact path="/" component={Index} />
             <Route path="/login" component={Login} />
             <Route path="/sell" component={Sell} />
+            <Route path="/preparation" component={Preparation} />
             <Route path="/tv" component={Tv} />
           </>
         </AutoLogin>
