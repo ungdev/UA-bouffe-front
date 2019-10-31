@@ -1,35 +1,64 @@
 import { Action } from '.';
 import { API } from '../utils/api';
 import { toast } from 'react-toastify';
+import { Socket } from '../utils/socket';
+import { clearOrders } from './orders';
+import { clearBasket } from './basket';
 
-const initialState = null;
+export interface LoginState {
+  token: string;
+  loading: boolean;
+}
+
+const initialState = {
+  token: null,
+  loading: false,
+};
 
 const BOUFFE_TOKEN = 'bouffe-token';
+
+const SET_LOADING = 'SET_LOADING';
 const SET_TOKEN = 'SET_TOKEN';
 
 export default (state = initialState, action: Action) => {
   switch (action.type) {
     case SET_TOKEN:
-      return action.payload;
+      return {
+        ...state,
+        token: action.payload,
+      };
+
+    case SET_LOADING:
+      return {
+        ...state,
+        loading: action.payload,
+      };
   }
 
   return state;
 };
 
-export const setToken = (token: string) => ({
+export const setToken = (token: string | null) => ({
   type: SET_TOKEN,
   payload: token,
 });
 
-export const logout = (history: any) => (dispatch: any) => {
-  localStorage.removeItem(BOUFFE_TOKEN);
-  toast('Vous avez été déconnecté');
-  dispatch(setToken(''));
+export const setLoading = (loading: boolean) => ({
+  type: SET_LOADING,
+  payload: loading,
+});
 
-  history.push('/login');
+export const logout = () => (dispatch: any) => {
+  localStorage.removeItem(BOUFFE_TOKEN);
+  Socket.disconnect();
+  dispatch(clearOrders());
+  dispatch(clearBasket());
+  toast('Vous avez été déconnecté');
+  return setToken(null);
 };
 
-export const autoLogin = (history: any) => async (dispatch: any) => {
+export const autoLogin = () => async (dispatch: any) => {
+  dispatch(setLoading(true));
   if (localStorage.hasOwnProperty(BOUFFE_TOKEN)) {
     const oldToken = localStorage.getItem(BOUFFE_TOKEN) as string;
 
@@ -40,16 +69,17 @@ export const autoLogin = (history: any) => async (dispatch: any) => {
       localStorage.setItem(BOUFFE_TOKEN, token);
       dispatch(setToken(token));
     } catch (err) {
-      dispatch(logout(history));
+      dispatch(logout());
     }
   }
+  dispatch(setLoading(false));
 };
 
-export const tryLogin = (pin: string, history: any) => async (dispatch: any) => {
+export const tryLogin = (pin: string) => async (dispatch: any) => {
   const res = (await API.post(`/login`, { pin })) as any;
   const token = res.data.token;
   toast.success('Connexion validée');
   localStorage.setItem(BOUFFE_TOKEN, token);
+
   dispatch(setToken(token));
-  history.push('/');
 };

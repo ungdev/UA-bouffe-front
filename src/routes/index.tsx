@@ -1,21 +1,18 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 
 import './index.scss';
 import Navbar from '../components/navbar';
 import { useDispatch } from 'react-redux';
-import { autoLogin, logout } from '../reducers/login';
+import { logout } from '../reducers/login';
+
+import { history } from '../components/loginRouter';
 
 const Index = () => {
-  const history = useHistory();
   const dispatch = useDispatch();
-
-  dispatch(autoLogin(history));
-
   return (
     <>
       <Navbar>
-        <div className="logout" onClick={() => dispatch(logout(history))}>
+        <div className="logout" onClick={() => dispatch(logout())}>
           Déconnexion
         </div>
       </Navbar>

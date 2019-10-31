@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 
 import './tv.scss';
 import Navbar from '../components/navbar';
-import { addOrdersUpdateListener, refreshOrders, subscribeOrderUpdates } from '../utils/socket';
 import { PaymentMethod } from '../components/basket';
 import { Item } from '../categories';
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { setOrders } from '../reducers/orders';
 import { State } from '../reducers';
+
+import { history } from '../components/loginRouter';
 
 export enum Status {
   PENDING = 'pending',
@@ -38,16 +39,7 @@ const Order = ({ order }: { order: Order }) => {
 
 const View = () => {
   const orders = useSelector((state: State) => state.orders);
-  const history = useHistory();
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    refreshOrders().then((orders) => {
-      dispatch(setOrders(orders as Array<Order>));
-    });
-
-    dispatch(subscribeOrderUpdates());
-  }, []);
   return (
     <div id="tv" onClick={() => history.push('/')}>
       {orders.map((order, index) => (

@@ -1,11 +1,12 @@
 #login {
   .field {
-    width: 10%;
-    height: 30px;
-    line-height: 30px;
+    width: 200px;
+    height: 50px;
+    line-height: 50px;
     background-color: var(--primary-light);
     border-radius: 20px;
     margin: 20px auto;
+    font-size: 4em;
   }
 
   .digits {

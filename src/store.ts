@@ -4,6 +4,6 @@ import thunk from 'redux-thunk';
 import reducers from './reducers';
 
 const logger = createLogger({ collapsed: true });
-const store = createStore(reducers, applyMiddleware(logger, thunk));
+const store = createStore(reducers, applyMiddleware(thunk, logger));
 
 export default store;

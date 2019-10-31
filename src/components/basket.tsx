@@ -10,7 +10,7 @@ import { clearBasket, removeItem } from '../reducers/basket';
 import PaymentMethodModal from './modals/paymentMethod';
 import ConfirmOrderModal from './modals/confirmOrder';
 import { setNormalPrice } from '../reducers/orgaPrice';
-import socket, { newOrder } from '../utils/socket';
+import { Socket } from '../utils/socket';
 
 export enum PaymentMethod {
   Card = 'card',
@@ -60,7 +60,7 @@ const Basket = () => {
     dispatch(setNormalPrice());
     setPaymentOpened(false);
 
-    newOrder('ESP_41', basket, method, orgaPrice);
+    Socket.newOrder('ESP_41', basket, method, orgaPrice);
     setOrderName("ESP_41 (en fait c'est sur fake ^^)");
     setConfirmOpened(true);
   };

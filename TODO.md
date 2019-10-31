@@ -6,6 +6,7 @@ revoir comment gerer les types dispatch :/
 
 WARNING: DANS LA DB PROD, ITEMS VIDES DANS LA TABLE USERS ET TEAMS
 
+supprimer react-router-dom
 deconnexion padding right
 icons
 
