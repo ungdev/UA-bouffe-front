@@ -67,9 +67,12 @@ export const autoLogin = () => async (dispatch: any) => {
       const res = (await API.post('/refreshToken', { token: oldToken })) as any;
       const token = res.data.token;
 
+      console.log("bbbbbb")
       localStorage.setItem(BOUFFE_TOKEN, token);
       dispatch(setToken(token));
-    } catch (err) {
+    }
+    catch (err) {
+      console.log("aaaaa");
       dispatch(logout());
     }
   }

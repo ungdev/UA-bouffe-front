@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import errorToString from './errorToString';
 
 const requestAPI = <T>(method: Method, route: string, body?: object) => {
-  return new Promise<AxiosResponse<T>>((resolve) => {
+  return new Promise<AxiosResponse<T>>((resolve, reject) => {
     axios
       .request<T>({
         baseURL: process.env.REACT_APP_API_URI,
@@ -14,6 +14,7 @@ const requestAPI = <T>(method: Method, route: string, body?: object) => {
       .then((res) => resolve(res))
       .catch((err) => {
         toast.error(errorToString(err.response ? err.response.data : 'UNKNOWN'));
+        reject();
       });
   });
 };
