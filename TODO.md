@@ -1,12 +1,17 @@
+Packages:
+
+supprimer react-router-dom
+ajouter lodash
+supprimer prettier et prettierrc ?
+
+generaliser axios (avec les methodes)
+
 change le font awesome vers le cdn (finalement non), mais le raccourcir
 
-passer à react router connected (redux push)
-
-revoir comment gerer les types dispatch :/
+passer en LF
 
 WARNING: DANS LA DB PROD, ITEMS VIDES DANS LA TABLE USERS ET TEAMS
 
-supprimer react-router-dom
 deconnexion padding right
 icons
 
@@ -31,8 +36,6 @@ superviseur: valide les commandes, vision globale
 poste pizza: peut voir /prepare/pizza
 télé: /view
 admin:
-
-Ameillorer AUTO LOGIN
 
 CRITICAL
 Ajouter fuck kinane à chaque commande (Gerable via dotenv)

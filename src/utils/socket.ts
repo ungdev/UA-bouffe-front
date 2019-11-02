@@ -1,11 +1,12 @@
 import io from 'socket.io-client';
 import { Item } from '../categories';
 import { PaymentMethod } from '../components/basket';
-import { Order } from '../routes/tv';
+import { Order, Status } from '../routes/tv';
 import { setOrders } from '../reducers/orders';
 import { toast } from 'react-toastify';
+import { logout } from '../reducers/login';
 
-let socket = null as any;
+let socket: SocketIOClientStatic['Socket'] | undefined = undefined;
 
 export const Socket = {
   connect: () => (dispatch: any) => {
@@ -15,6 +16,8 @@ export const Socket = {
     socket.on('ordersUpdate', (orders: Array<Order>) => {
       dispatch(setOrders(orders));
     });
+
+    socket.on('disconnect', () => dispatch(logout()));
   },
 
   checkConnect: () => {
@@ -26,11 +29,11 @@ export const Socket = {
   },
 
   disconnect: () => {
-    if (socket !== null) socket.disconnect();
-    socket = null;
+    if (socket) socket.disconnect();
+    socket = undefined;
   },
 
-  newOrder: (name: string, _items: Array<Item>, method: PaymentMethod, orgaPrice: boolean) => {
+  addOrder: (name: string, _items: Array<Item>, method: PaymentMethod, orgaPrice: boolean) => {
     if (Socket.checkConnect()) {
       const items = _items.map((item) => ({
         name: item.name,
@@ -38,7 +41,16 @@ export const Socket = {
         category: item.category,
         price: orgaPrice ? item.orgaPrice : item.price,
       }));
-      socket.emit('newOrder', { name, items, method });
+      socket.emit('addOrder', { name, items, method });
+    }
+  },
+
+  upgradeOrder: (order: Order) => {
+    if (Socket.checkConnect()) {
+      const status = [Status.PENDING, Status.PREPARING, Status.READY, Status.FINISHED];
+      order.status = status[status.indexOf(order.status) + 1];
+
+      socket.emit('setOrderStatus', order);
     }
   },
 };

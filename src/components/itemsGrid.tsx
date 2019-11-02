@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
-import queryString from 'query-string';
+import { parse } from 'query-string';
 
 import _categories, { Item as ItemTypes } from '../categories';
 import formatPrice from '../utils/formatPrice';
@@ -41,7 +41,7 @@ const ItemsGrid = () => {
   let categories = _categories;
 
   const location = useLocation();
-  const queryParams = queryString.parse(location.search);
+  const queryParams = parse(location.search);
 
   switch (queryParams.only) {
     case 'food':

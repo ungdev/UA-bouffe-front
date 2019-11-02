@@ -1,11 +1,9 @@
 import React, { useState, ReactNode } from 'react';
 
 import './login.scss';
-import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
-import { tryLogin, setToken } from '../reducers/login';
+import { tryLogin } from '../reducers/login';
 import FontAwesome from 'react-fontawesome';
-import { API } from '../utils/api';
 
 const Login = () => {
   const digits = [

@@ -1,3 +1,5 @@
+// Axios renvoie un any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default (res: any) => {
   switch (res.error) {
     case 'INVALID_FORM':

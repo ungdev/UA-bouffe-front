@@ -12,7 +12,7 @@ import store from './store';
 import Tv from './routes/tv';
 import Preparation from './routes/preparation';
 import LoginRouter from './components/loginRouter';
-import { Route, Redirect } from 'react-router';
+import { Route } from 'react-router';
 
 toast.configure({
   autoClose: 3000,
@@ -29,7 +29,6 @@ const App = () => {
         <Route path="/sell" component={Sell} />
         <Route path="/preparation" component={Preparation} />
         <Route path="/tv" component={Tv} />
-        <Redirect to="/" />
       </LoginRouter>
     </Provider>
   );

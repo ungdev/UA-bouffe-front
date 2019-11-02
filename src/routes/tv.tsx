@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import './tv.scss';
-import Navbar from '../components/navbar';
 import { PaymentMethod } from '../components/basket';
 import { Item } from '../categories';
-import { useHistory } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
-import { setOrders } from '../reducers/orders';
+import { useSelector } from 'react-redux';
 import { State } from '../reducers';
 
 import { history } from '../components/loginRouter';
@@ -15,6 +12,7 @@ export enum Status {
   PENDING = 'pending',
   PREPARING = 'preparing',
   READY = 'ready',
+  FINISHED = 'finished',
 }
 
 export interface Order {

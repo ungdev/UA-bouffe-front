@@ -60,7 +60,7 @@ const Basket = () => {
     dispatch(setNormalPrice());
     setPaymentOpened(false);
 
-    Socket.newOrder('ESP_41', basket, method, orgaPrice);
+    Socket.addOrder('ESP_41', basket, method, orgaPrice);
     setOrderName("ESP_41 (en fait c'est sur fake ^^)");
     setConfirmOpened(true);
   };

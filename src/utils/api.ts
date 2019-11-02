@@ -1,50 +1,26 @@
-import axios from 'axios';
+import axios, { Method, AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
 import errorToString from './errorToString';
 
-const axiosAPI = axios.create({
-  baseURL: process.env.REACT_APP_API_URI,
-});
+const requestAPI = <T>(method: Method, route: string, body?: object) => {
+  return new Promise<AxiosResponse<T>>((resolve) => {
+    axios
+      .request<T>({
+        baseURL: process.env.REACT_APP_API_URI,
+        method,
+        url: route,
+        data: body,
+      })
+      .then((res) => resolve(res))
+      .catch((err) => {
+        toast.error(errorToString(err.response ? err.response.data : 'UNKNOWN'));
+      });
+  });
+};
 
 export const API = {
-  get: (route: string) =>
-    new Promise((resolve, reject) => {
-      axiosAPI
-        .get(route)
-        .then((res) => resolve(res))
-        .catch((err) => {
-          toast.error(errorToString(err.response ? err.response.data : 'UNKNOWN'));
-          reject(err);
-        });
-    }),
-  post: (route: string, body: object) =>
-    new Promise((resolve, reject) => {
-      axiosAPI
-        .post(route, body)
-        .then((res) => resolve(res))
-        .catch((err) => {
-          toast.error(errorToString(err.response ? err.response.data : 'UNKNOWN'));
-          reject(err);
-        });
-    }),
-  put: (route: string, body: object) =>
-    new Promise((resolve, reject) => {
-      axiosAPI
-        .put(route, body)
-        .then((res) => resolve(res))
-        .catch((err) => {
-          toast.error(errorToString(err.response ? err.response.data : 'UNKNOWN'));
-          reject(err);
-        });
-    }),
-  delete: (route: string, body: object) =>
-    new Promise((resolve, reject) => {
-      axiosAPI
-        .delete(route, body)
-        .then((res) => resolve(res))
-        .catch((err) => {
-          toast.error(errorToString(err.response ? err.response.data : 'UNKNOWN'));
-          reject(err);
-        });
-    }),
+  get: <T>(route: string) => requestAPI<T>('GET', route),
+  post: <T>(route: string, body: object) => requestAPI<T>('POST', route, body),
+  put: <T>(route: string, body: object) => requestAPI<T>('PUT', route, body),
+  delete: <T>(route: string) => requestAPI<T>('DELETE', route),
 };

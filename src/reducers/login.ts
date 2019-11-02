@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import { Socket } from '../utils/socket';
 import { clearOrders } from './orders';
 import { clearBasket } from './basket';
+import { Dispatch } from 'redux';
 
 export interface LoginState {
   token: string;
@@ -48,13 +49,13 @@ export const setLoading = (loading: boolean) => ({
   payload: loading,
 });
 
-export const logout = () => (dispatch: any) => {
+export const logout = () => (dispatch: Dispatch) => {
   localStorage.removeItem(BOUFFE_TOKEN);
   Socket.disconnect();
   dispatch(clearOrders());
   dispatch(clearBasket());
   toast('Vous avez été déconnecté');
-  return setToken(null);
+  dispatch(setToken(null));
 };
 
 export const autoLogin = () => async (dispatch: any) => {
@@ -68,7 +69,8 @@ export const autoLogin = () => async (dispatch: any) => {
 
       localStorage.setItem(BOUFFE_TOKEN, token);
       dispatch(setToken(token));
-    } catch (err) {
+    }
+ catch (err) {
       dispatch(logout());
     }
   }
@@ -76,7 +78,7 @@ export const autoLogin = () => async (dispatch: any) => {
 };
 
 export const tryLogin = (pin: string) => async (dispatch: any) => {
-  const res = (await API.post(`/login`, { pin })) as any;
+  const res = await API.post<{ token: string }>(`/login`, { pin });
   const token = res.data.token;
   toast.success('Connexion validée');
   localStorage.setItem(BOUFFE_TOKEN, token);
