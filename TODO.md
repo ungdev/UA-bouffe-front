@@ -2,9 +2,6 @@ Packages:
 
 supprimer react-router-dom
 ajouter lodash
-supprimer prettier et prettierrc ?
-
-generaliser axios (avec les methodes)
 
 change le font awesome vers le cdn (finalement non), mais le raccourcir
 

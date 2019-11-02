@@ -11,7 +11,7 @@ export interface LoginState {
   loading: boolean;
 }
 
-const initialState = {
+const initialState: LoginState = {
   token: null,
   loading: false,
 };
@@ -26,13 +26,13 @@ export default (state = initialState, action: Action) => {
     case SET_TOKEN:
       return {
         ...state,
-        token: action.payload,
+        token: action.payload
       };
 
     case SET_LOADING:
       return {
         ...state,
-        loading: action.payload,
+        loading: action.payload
       };
   }
 
@@ -41,12 +41,12 @@ export default (state = initialState, action: Action) => {
 
 export const setToken = (token: string | null) => ({
   type: SET_TOKEN,
-  payload: token,
+  payload: token
 });
 
 export const setLoading = (loading: boolean) => ({
   type: SET_LOADING,
-  payload: loading,
+  payload: loading
 });
 
 export const logout = () => (dispatch: Dispatch) => {
@@ -69,8 +69,7 @@ export const autoLogin = () => async (dispatch: any) => {
 
       localStorage.setItem(BOUFFE_TOKEN, token);
       dispatch(setToken(token));
-    }
- catch (err) {
+    } catch (err) {
       dispatch(logout());
     }
   }

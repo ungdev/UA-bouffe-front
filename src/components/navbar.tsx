@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import FontAwesome from 'react-fontawesome';
 import moment from 'moment';
-import { useHistory } from 'react-router-dom';
 
+import { history } from '../components/loginRouter';
 import './navbar.scss';
 
 interface PropTypes {
@@ -11,7 +11,6 @@ interface PropTypes {
 }
 
 const Navbar = ({ back, children }: PropTypes) => {
-  const history = useHistory();
   const [time, setTime] = useState(moment().format('H[h]mm'));
 
   useEffect(() => {
