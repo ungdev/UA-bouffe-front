@@ -1,24 +1,8 @@
 Packages:
 
-supprimer react-router-dom
-ajouter lodash
-
-change le font awesome vers le cdn (finalement non), mais le raccourcir
-
-passer en LF
-
 WARNING: DANS LA DB PROD, ITEMS VIDES DANS LA TABLE USERS ET TEAMS
 
-deconnexion padding right
-icons
-
-faire un tri dans les dependences
-Refaire un tri dans les types
-
-Changer les couleurs vers du bootstrap
-
 Faire de la redondance sur la navbar
-remplacer character login
 Revoir le design des items
 
 implement scroll à la main
@@ -38,7 +22,6 @@ CRITICAL
 Ajouter fuck kinane à chaque commande (Gerable via dotenv)
 FUCK_KINANE=TRUE
 
-Bouton refresh
 
 Promos hardcodées
 On affiche toutes les commandes non validées sur la télé
