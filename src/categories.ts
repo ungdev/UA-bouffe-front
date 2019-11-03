@@ -1,16 +1,4 @@
-export interface Item {
-  key: string;
-  name: string;
-  price: number;
-  orgaPrice: number;
-  category: string;
-  isAvailable: boolean;
-}
-
-export interface Category {
-  name: string;
-  items: Array<Item>;
-}
+import { Item, Category } from "./types";
 
 const coca = {
   key: 'coca-cola',
@@ -563,7 +551,7 @@ const items: Array<Category> = [
       items: [curr],
     });
   }
- else {
+  else {
     acc[itemIndex].items.push(curr);
   }
 

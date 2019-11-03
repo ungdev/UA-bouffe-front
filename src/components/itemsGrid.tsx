@@ -3,14 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
 import { parse } from 'query-string';
 
-import _categories, { Item as ItemTypes } from '../categories';
 import formatPrice from '../utils/formatPrice';
 import { addItem } from '../reducers/basket';
-import { State } from '../reducers';
 import './itemsGrid.scss';
+import { State, Item as ItemType } from '../types';
+import _categories from '../categories';
 
 interface ItemPropTypes {
-  item: ItemTypes;
+  item: ItemType;
 }
 
 const Item = ({ item }: ItemPropTypes) => {

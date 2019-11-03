@@ -1,28 +1,12 @@
 import React from 'react';
 
 import './tv.scss';
-import { PaymentMethod } from '../components/basket';
-import { Item } from '../categories';
 import { useSelector } from 'react-redux';
-import { State } from '../reducers';
 
 import { history } from '../components/loginRouter';
+import { Status, State, Order as OrderType } from '../types';
 
-export enum Status {
-  PENDING = 'pending',
-  PREPARING = 'preparing',
-  READY = 'ready',
-  FINISHED = 'finished',
-}
-
-export interface Order {
-  id: number;
-  method: PaymentMethod;
-  status: Status;
-  orderItems: Array<Item>;
-}
-
-const Order = ({ order }: { order: Order }) => {
+const Order = ({ order }: { order: OrderType }) => {
   return (
     <div className="order">
       <span>{order.id} -</span>

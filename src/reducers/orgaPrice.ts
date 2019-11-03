@@ -1,4 +1,4 @@
-import { Action } from '.';
+import { Action } from '../types';
 
 const initialState = false;
 

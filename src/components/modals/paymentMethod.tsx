@@ -1,8 +1,8 @@
 import React from 'react';
 import Modal from './modal';
-import { PaymentMethod } from '../basket';
+import { PaymentMethod } from '../../types';
 
-export interface ModalProps {
+interface ModalProps {
   isOpen: boolean;
   onPay: (method: PaymentMethod) => void; // Returns the command name
   onCancel: () => void;

@@ -1,11 +1,11 @@
 import React, { ReactNode, useEffect } from 'react';
 import { Router } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
-import { State } from '../reducers';
 import Login from '../routes/login';
 import { createBrowserHistory } from 'history';
 import { autoLogin } from '../reducers/login';
 import { Socket } from '../utils/socket';
+import { State } from '../types';
 
 export const history = createBrowserHistory();
 

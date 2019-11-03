@@ -4,9 +4,8 @@ import './preparation.scss';
 import Navbar from '../components/navbar';
 import FontAwesome from 'react-fontawesome';
 import { useSelector } from 'react-redux';
-import { State } from '../reducers';
-import { Order, Status } from './tv';
 import { Socket } from '../utils/socket';
+import { State, Order, Status } from '../types';
 
 const Preparation = () => {
   const orders = useSelector((state: State) => state.orders);

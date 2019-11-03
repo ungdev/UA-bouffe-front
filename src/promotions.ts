@@ -1,4 +1,4 @@
-import { Item } from './categories';
+import { Item } from "./types";
 
 interface Promotion {
   name: string;

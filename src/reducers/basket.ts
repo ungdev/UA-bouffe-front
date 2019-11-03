@@ -1,5 +1,4 @@
-import { Item } from '../categories';
-import { Action } from '.';
+import { Action, Item } from "../types";
 
 const initialState: Array<Item> = [];
 

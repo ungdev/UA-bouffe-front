@@ -1,16 +1,14 @@
 import io from 'socket.io-client';
-import { Item } from '../categories';
-import { PaymentMethod } from '../components/basket';
-import { Order, Status } from '../routes/tv';
 import { setOrders } from '../reducers/orders';
 import { toast } from 'react-toastify';
 import { logout } from '../reducers/login';
+import { Order, Item, PaymentMethod, Status } from '../types';
 
 let socket: SocketIOClientStatic['Socket'] | undefined = undefined;
 
 export const Socket = {
   connect: () => (dispatch: any) => {
-    socket = io.connect(process.env.REACT_APP_API_URI as string);
+    socket = io.connect(process.env.REACT_APP_API_URI);
     socket.emit('refreshOrders');
 
     socket.on('ordersUpdate', (orders: Array<Order>) => {

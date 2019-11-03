@@ -7,7 +7,10 @@
     "plugin:import/warnings",
     "plugin:import/typescript"
   ],
-  "plugins": ["@typescript-eslint", "react-hooks"],
+  "plugins": [
+    "@typescript-eslint",
+    "react-hooks"
+  ],
   "parserOptions": {
     "ecmaVersion": 2018,
     "sourceType": "module",
@@ -20,17 +23,35 @@
     "@typescript-eslint/no-explicit-any": "error",
     "no-console": "error",
     "no-alert": "error",
-    "brace-style": ["warn", "stroustrup"],
-    "linebreak-style": ["warn", "windows"],
+    "brace-style": [
+      "warn",
+      "stroustrup"
+    ],
+    "linebreak-style": [
+      "warn",
+      "windows"
+    ],
     "react/require-default-props": "error",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "off",
     "react/no-unescaped-entities": "off",
     "semi": "error",
-    "comma-dangle": ["warn", "always-multiline"],
-    "object-curly-spacing": ["warn", "always"],
-    "arrow-parens": ["error", "always"],
-    "eol-last": ["warn", "always"],
+    "comma-dangle": [
+      "warn",
+      "always-multiline"
+    ],
+    "object-curly-spacing": [
+      "warn",
+      "always"
+    ],
+    "arrow-parens": [
+      "error",
+      "always"
+    ],
+    "eol-last": [
+      "warn",
+      "always"
+    ],
     "import/default": "off"
   },
   "settings": {

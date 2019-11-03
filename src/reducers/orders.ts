@@ -1,5 +1,4 @@
-import { Order } from '../routes/tv';
-import { Action } from '.';
+import { Order, Action } from "../types";
 
 const initialState = [] as Array<Order>;
 

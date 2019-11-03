@@ -1,15 +1,10 @@
-import { Action } from '.';
 import { API } from '../utils/api';
 import { toast } from 'react-toastify';
 import { Socket } from '../utils/socket';
 import { clearOrders } from './orders';
 import { clearBasket } from './basket';
 import { Dispatch } from 'redux';
-
-export interface LoginState {
-  token: string;
-  loading: boolean;
-}
+import { LoginState, Action } from '../types';
 
 const initialState: LoginState = {
   token: null,

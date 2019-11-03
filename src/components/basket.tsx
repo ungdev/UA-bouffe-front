@@ -3,19 +3,13 @@ import FontAwesome from 'react-fontawesome';
 
 import './basket.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { State } from '../reducers';
-import { Item } from '../categories';
 import formatPrice from '../utils/formatPrice';
 import { clearBasket, removeItem } from '../reducers/basket';
 import PaymentMethodModal from './modals/paymentMethod';
 import ConfirmOrderModal from './modals/confirmOrder';
 import { setNormalPrice } from '../reducers/orgaPrice';
 import { Socket } from '../utils/socket';
-
-export enum PaymentMethod {
-  Card = 'card',
-  Cash = 'cash',
-}
+import { Item, State, PaymentMethod } from '../types';
 
 interface BasketItemPropTypes {
   item: Item;
