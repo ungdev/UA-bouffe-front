@@ -59,15 +59,13 @@ export const autoLogin = () => async (dispatch: any) => {
     const oldToken = localStorage.getItem(BOUFFE_TOKEN) as string;
 
     try {
-      const res = (await API.post('/refreshToken', { token: oldToken })) as any;
+      const res = (await API.post('/auth/refreshToken', { token: oldToken })) as any;
       const token = res.data.token;
 
-      console.log("bbbbbb")
       localStorage.setItem(BOUFFE_TOKEN, token);
       dispatch(setToken(token));
     }
     catch (err) {
-      console.log("aaaaa");
       dispatch(logout());
     }
   }
@@ -75,7 +73,7 @@ export const autoLogin = () => async (dispatch: any) => {
 };
 
 export const tryLogin = (pin: string) => async (dispatch: any) => {
-  const res = await API.post<{ token: string }>(`/login`, { pin });
+  const res = await API.post<{ token: string }>(`/auth/login`, { pin });
   const token = res.data.token;
   toast.success('Connexion validée');
   localStorage.setItem(BOUFFE_TOKEN, token);
