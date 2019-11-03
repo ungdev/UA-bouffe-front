@@ -23,5 +23,6 @@ export const API = {
   get: <T>(route: string) => requestAPI<T>('GET', route),
   post: <T>(route: string, body: object) => requestAPI<T>('POST', route, body),
   put: <T>(route: string, body: object) => requestAPI<T>('PUT', route, body),
+  patch: <T>(route: string, body: object) => requestAPI<T>('PATCH', route, body),
   delete: <T>(route: string) => requestAPI<T>('DELETE', route),
 };

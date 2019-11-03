@@ -3,13 +3,16 @@ import { setOrders } from '../reducers/orders';
 import { toast } from 'react-toastify';
 import { logout } from '../reducers/login';
 import { Order, Item, PaymentMethod, Status } from '../types';
+import { getOrders } from './orders';
 
 let socket: SocketIOClientStatic['Socket'] | undefined = undefined;
 
 export const Socket = {
-  connect: () => (dispatch: any) => {
+  connect: () => async (dispatch: any) => {
     socket = io.connect(process.env.REACT_APP_API_URI);
-    socket.emit('refreshOrders');
+
+    const orders = await getOrders();
+    dispatch(setOrders(orders));
 
     socket.on('ordersUpdate', (orders: Array<Order>) => {
       dispatch(setOrders(orders));
