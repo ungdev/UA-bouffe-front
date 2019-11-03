@@ -10,6 +10,8 @@ import ConfirmOrderModal from './modals/confirmOrder';
 import { setNormalPrice } from '../reducers/orgaPrice';
 import { Socket } from '../utils/socket';
 import { Item, State, PaymentMethod } from '../types';
+import { API } from '../utils/api';
+import { addOrder } from '../utils/orders';
 
 interface BasketItemPropTypes {
   item: Item;
@@ -49,13 +51,14 @@ const Basket = () => {
     if (basket.length !== 0) setPaymentOpened(true);
   };
 
-  const onPay = (method: PaymentMethod) => {
+  const onPay = async (method: PaymentMethod) => {
     dispatch(clearBasket());
     dispatch(setNormalPrice());
-    setPaymentOpened(false);
 
-    Socket.addOrder('ESP_41', basket, method, orgaPrice);
+    await addOrder(basket, method, orgaPrice);
+
     setOrderName("ESP_41 (en fait c'est sur fake ^^)");
+    setPaymentOpened(false);
     setConfirmOpened(true);
   };
 

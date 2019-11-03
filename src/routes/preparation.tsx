@@ -6,6 +6,9 @@ import FontAwesome from 'react-fontawesome';
 import { useSelector } from 'react-redux';
 import { Socket } from '../utils/socket';
 import { State, Order, Status } from '../types';
+import { API } from '../utils/api';
+import { upgradeOrder } from '../utils/orders';
+
 
 const Preparation = () => {
   const orders = useSelector((state: State) => state.orders);
@@ -18,7 +21,7 @@ const Preparation = () => {
           <li>1 crocs</li>
           <li>1 pizza</li>
         </ul>
-        <FontAwesome name="arrow-right" className="next" onClick={() => Socket.upgradeOrder(order)} />
+        <FontAwesome name="arrow-right" className="next" onClick={() => upgradeOrder(order)} />
       </div>
     ));
   };
