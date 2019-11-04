@@ -15,22 +15,48 @@
     .title {
       font-size: 1.5em;
     }
+
+    &.pending {
+      background-color: var(--danger-dark);
+    }
+
+    &.preparing {
+      background-color: var(--warning-dark);
+    }
+
+    &.ready {
+      background-color: var(--success-dark);
+    }
   }
 
-  .status .orders {
-    .order {
-      background: var(--primary-light);
-      padding: 0 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+  .status .orders .order {
+    background: var(--primary-light);
+    padding-left: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100px;
 
-      .next {
-        background-color: var(--success);
+    .items {
+      text-align: left;
+    }
 
-        &:hover {
-          filter: brightness(0.9);
-        }
+    .next {
+      background-color: var(--success);
+      height: 100px;
+      width: 20%;
+      font-size: 2em;
+      position: relative;
+
+      &:before {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      &:hover {
+        filter: brightness(0.9);
       }
     }
   }

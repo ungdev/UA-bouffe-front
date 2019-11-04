@@ -1,4 +1,4 @@
-import { Order, Item, PaymentMethod, Status } from "../types"
+import { Order, Item, PaymentMethod, Status } from "../types";
 import { API } from "./api";
 
 export const getOrders = async () => {

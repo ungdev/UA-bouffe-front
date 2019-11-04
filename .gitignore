@@ -22,3 +22,5 @@ yarn-error.log*
 
 # CRA Typescript file generated
 src/*.d.ts
+
+TODO.txt

@@ -20,11 +20,18 @@ export enum Status {
   FINISHED = 'finished',
 }
 
+export interface OrderItem {
+  id: number;
+  name: string;
+  key: string;
+  category: string;
+}
+
 export interface Order {
   id: number;
   method: PaymentMethod;
   status: Status;
-  orderItems: Array<Item>;
+  orderItems: Array<OrderItem>;
 }
 
 export enum PaymentMethod {

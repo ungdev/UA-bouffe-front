@@ -13,13 +13,13 @@ import { upgradeOrder } from '../utils/orders';
 const Preparation = () => {
   const orders = useSelector((state: State) => state.orders);
 
+  console.log(orders);
   const displayOrders = (orders: Array<Order>) => {
     return orders.map((order) => (
       <div className="order" key={order.id}>
         <div>#{order.id}</div>
-        <ul>
-          <li>1 crocs</li>
-          <li>1 pizza</li>
+        <ul className="items">
+          {order.orderItems.map(((item, index) => <li key={index}>{item.name}</li>))}
         </ul>
         <FontAwesome name="arrow-right" className="next" onClick={() => upgradeOrder(order)} />
       </div>

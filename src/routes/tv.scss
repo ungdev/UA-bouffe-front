@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   font-size: 2em;
+  height: 100%;
   .order {
     margin: 10px 20px;
     padding: 10px 20px;
@@ -11,6 +12,10 @@
     background-color: var(--primary);
     border: 1px solid var(--light);
     border-radius: 10px;
+  }
+
+  .order .items {
+    align-self: flex-start;
   }
 
   .order .status {
