@@ -25,7 +25,7 @@ const Order = ({ order }: { order: OrderType }) => {
         {
           order.orderItems.map((item) => {
             // @ts-ignore
-            return <FontAwesome key={item.id} name={icons[item.category]} />
+            return <FontAwesome key={item.id} name={icons[item.category]} />;
           })
         }
       </div>

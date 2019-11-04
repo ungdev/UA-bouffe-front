@@ -5,7 +5,7 @@ import './basket.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import formatPrice from '../utils/formatPrice';
 import { clearBasket, removeItem } from '../reducers/basket';
-import PaymentMethodModal from './modals/paymentMethod';
+import PaymentModal from './modals/payment';
 import ConfirmOrderModal from './modals/confirmOrder';
 import { setNormalPrice } from '../reducers/orgaPrice';
 import { Socket } from '../utils/socket';
@@ -38,7 +38,7 @@ const Basket = () => {
   const orgaPrice = useSelector((state: State) => state.orgaPrice);
   const basket = useSelector((state: State) => state.basket);
 
-  const [paymentOpened, setPaymentOpened] = useState(false);
+  const [paymentOpened, setPaymentOpened] = useState(true);
   const [confirmOpened, setConfirmOpened] = useState(false);
   const [orderName, setOrderName] = useState('');
 
@@ -64,7 +64,7 @@ const Basket = () => {
 
   return (
     <div className="basket">
-      <PaymentMethodModal
+      <PaymentModal
         isOpen={paymentOpened}
         onPay={(method) => onPay(method)}
         onCancel={() => setPaymentOpened(false)}
