@@ -24,3 +24,4 @@ yarn-error.log*
 src/*.d.ts
 
 TODO.txt
+bouffe-captures/
