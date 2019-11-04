@@ -9,17 +9,18 @@ import { State, Order, Status } from '../types';
 import { API } from '../utils/api';
 import { upgradeOrder } from '../utils/orders';
 
-
 const Preparation = () => {
   const orders = useSelector((state: State) => state.orders);
 
   console.log(orders);
   const displayOrders = (orders: Array<Order>) => {
     return orders.map((order) => (
-      <div className="order" key={order.id}>
-        <div>#{order.id}</div>
+      <div className="order" key={order.place}>
+        <div>#{order.place}</div>
         <ul className="items">
-          {order.orderItems.map(((item, index) => <li key={index}>{item.name}</li>))}
+          {order.orderItems.map((item, index) => (
+            <li key={index}>{item.name}</li>
+          ))}
         </ul>
         <FontAwesome name="arrow-right" className="next" onClick={() => upgradeOrder(order)} />
       </div>

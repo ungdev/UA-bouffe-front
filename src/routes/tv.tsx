@@ -20,14 +20,14 @@ const icons = {
 const Order = ({ order }: { order: OrderType }) => {
   return (
     <div className="order">
-      <span>{order.id} - <FontAwesome name={order.method === PaymentMethod.Card ? 'credit-card' : 'coins'} /></span>
+      <span>
+        {order.place} - <FontAwesome name={order.method === PaymentMethod.Card ? 'credit-card' : 'coins'} />
+      </span>
       <div className="items">
-        {
-          order.orderItems.map((item) => {
-            // @ts-ignore
-            return <FontAwesome key={item.id} name={icons[item.category]} />;
-          })
-        }
+        {order.orderItems.map((item) => {
+          // @ts-ignore
+          return <FontAwesome key={item.id} name={icons[item.category]} />;
+        })}
       </div>
       <div className="status">
         <div className={`item pending ${order.status === Status.PENDING ? 'active' : ''}`}>Attente</div>

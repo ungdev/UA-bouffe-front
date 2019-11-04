@@ -4,6 +4,7 @@ import { PaymentMethod } from '../../types';
 import FontAwesome from 'react-fontawesome';
 
 import './payment.scss';
+import { formatMethod } from '../../utils/format';
 
 const letters = [
   ['A', 'B', 'C', 'D', 'E', 'F'],
@@ -21,7 +22,7 @@ const digits = [
 
 interface ModalProps {
   isOpen: boolean;
-  onPay: (method: PaymentMethod) => void; // Returns the command name
+  onPay: (place: string, method: PaymentMethod) => void;
   onCancel: () => void;
 }
 
@@ -43,7 +44,10 @@ const PaymentMethodModal = ({ isOpen, onPay, onCancel }: ModalProps) => {
 
   const onPayClick = (method: PaymentMethod) => {
     if (currentLetter && currentDigit) {
-      alert('yes');
+      const place = `${currentLetter}${currentDigit}`;
+      setCurrentDigit('');
+      setCurrentLetter('');
+      onPay(place, method);
     }
   };
 
@@ -86,11 +90,11 @@ const PaymentMethodModal = ({ isOpen, onPay, onCancel }: ModalProps) => {
         </div>
         <div className="buttons">
           <div className="button accent" onClick={() => onPayClick(PaymentMethod.Card)}>
-            Carte Bleue
+            {formatMethod(PaymentMethod.Card)}
           </div>
 
           <div className="button success" onClick={() => onPayClick(PaymentMethod.Cash)}>
-            Espèces
+            {formatMethod(PaymentMethod.Cash)}
           </div>
         </div>
       </div>

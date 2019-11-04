@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
 import { parse } from 'query-string';
 
-import formatPrice from '../utils/formatPrice';
 import { addItem } from '../reducers/basket';
 import './itemsGrid.scss';
 import { State, Item as ItemType } from '../types';
 import _categories from '../categories';
+import { formatPrice } from '../utils/format';
 
 interface ItemPropTypes {
   item: ItemType;
@@ -61,8 +61,7 @@ const ItemsGrid = () => {
         <span
           key={index}
           className={`category ${category.name === currentCategory.name ? 'active' : ''}`}
-          onClick={() => setCurrentCategory(category)}
-        >
+          onClick={() => setCurrentCategory(category)}>
           {category.name}
         </span>
       );

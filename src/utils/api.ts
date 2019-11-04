@@ -14,10 +14,8 @@ const requestAPI = <T>(method: Method, route: string, body?: object) => {
       })
       .then((res) => resolve(res))
       .catch((err) => {
-        if (err.code === 'ECONNABORTED')
-          toast.error('Connexion au serveur impossible...');
-        else
-          toast.error(errorToString(err.response ? err.response.data : 'UNKNOWN'));
+        if (err.code === 'ECONNABORTED') toast.error('Connexion au serveur impossible...');
+        else toast.error(errorToString(err.response ? err.response.data.error : 'UNKNOWN'));
         reject();
       });
   });

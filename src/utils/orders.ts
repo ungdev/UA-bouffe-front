@@ -1,5 +1,5 @@
-import { Order, Item, PaymentMethod, Status } from "../types";
-import { API } from "./api";
+import { Order, Item, PaymentMethod, Status } from '../types';
+import { API } from './api';
 
 export const getOrders = async () => {
   const request = await API.get<Array<Order>>('/orders');
@@ -8,7 +8,7 @@ export const getOrders = async () => {
   return orders;
 };
 
-export const addOrder = async (_items: Array<Item>, method: PaymentMethod, orgaPrice: boolean) => {
+export const addOrder = async (_items: Array<Item>, place: string, method: PaymentMethod, orgaPrice: boolean) => {
   const items = _items.map((item) => ({
     name: item.name,
     key: item.key,
@@ -17,7 +17,9 @@ export const addOrder = async (_items: Array<Item>, method: PaymentMethod, orgaP
   }));
 
   await API.post('/orders', {
-    method, items,
+    method,
+    place,
+    items,
   });
 };
 

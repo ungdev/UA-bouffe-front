@@ -3,15 +3,13 @@ import FontAwesome from 'react-fontawesome';
 
 import './basket.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import formatPrice from '../utils/formatPrice';
 import { clearBasket, removeItem } from '../reducers/basket';
 import PaymentModal from './modals/payment';
 import ConfirmOrderModal from './modals/confirmOrder';
 import { setNormalPrice } from '../reducers/orgaPrice';
-import { Socket } from '../utils/socket';
 import { Item, State, PaymentMethod } from '../types';
-import { API } from '../utils/api';
 import { addOrder } from '../utils/orders';
+import { formatPrice } from '../utils/format';
 
 interface BasketItemPropTypes {
   item: Item;
@@ -38,7 +36,7 @@ const Basket = () => {
   const orgaPrice = useSelector((state: State) => state.orgaPrice);
   const basket = useSelector((state: State) => state.basket);
 
-  const [paymentOpened, setPaymentOpened] = useState(true);
+  const [paymentOpened, setPaymentOpened] = useState(false);
   const [confirmOpened, setConfirmOpened] = useState(false);
   const [orderName, setOrderName] = useState('');
 
@@ -51,13 +49,13 @@ const Basket = () => {
     if (basket.length !== 0) setPaymentOpened(true);
   };
 
-  const onPay = async (method: PaymentMethod) => {
+  const onPay = async (place: string, method: PaymentMethod) => {
     dispatch(clearBasket());
     dispatch(setNormalPrice());
 
-    await addOrder(basket, method, orgaPrice);
+    await addOrder(basket, place, method, orgaPrice);
 
-    setOrderName("ESP_41 (en fait c'est sur fake ^^)");
+    setOrderName(`${place} ${method}`);
     setPaymentOpened(false);
     setConfirmOpened(true);
   };
@@ -66,7 +64,7 @@ const Basket = () => {
     <div className="basket">
       <PaymentModal
         isOpen={paymentOpened}
-        onPay={(method) => onPay(method)}
+        onPay={(place, method) => onPay(place, method)}
         onCancel={() => setPaymentOpened(false)}
       />
       <ConfirmOrderModal isOpen={confirmOpened} onClose={() => setConfirmOpened(false)} orderName={orderName} />
