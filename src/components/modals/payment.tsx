@@ -1,16 +1,17 @@
-import React, { useState, ReactNode } from 'react';
+import React, { useState, ReactNode, useEffect } from 'react';
 import Modal from './modal';
-import { PaymentMethod } from '../../types';
+import { PaymentMethod, State } from '../../types';
 import FontAwesome from 'react-fontawesome';
 
 import './payment.scss';
 import { formatMethod } from '../../utils/format';
+import { useSelector } from 'react-redux';
 
 const letters = [
-  ['A', 'B', 'C', 'D', 'E', 'F'],
-  ['G', 'H', 'I', 'J', 'K', 'L'],
-  ['M', 'N', 'O', 'P', 'Q', 'R'],
-  ['S', 'T', 'U', 'V', 'W', 'X'],
+  ['A', 'B', 'C', 'D', 'E'],
+  ['F', 'G', 'H', 'I', 'J'],
+  ['K', 'L', 'M', 'N', 'O'],
+  ['P', 'Q', 'R', 'S', 'T'],
 ];
 
 const digits = [
@@ -27,8 +28,13 @@ interface ModalProps {
 }
 
 const PaymentMethodModal = ({ isOpen, onPay, onCancel }: ModalProps) => {
+  const orgaPrice = useSelector((state: State) => state.orgaPrice);
   const [currentLetter, setCurrentLetter] = useState('');
   const [currentDigit, setCurrentDigit] = useState('');
+
+  useEffect(() => {
+    setCurrentLetter(orgaPrice ? process.env.REACT_APP_ORGA_LETTER : '');
+  }, [isOpen]);
 
   const onDigitClick = (digit: string | ReactNode) => {
     switch (digit) {
@@ -38,7 +44,7 @@ const PaymentMethodModal = ({ isOpen, onPay, onCancel }: ModalProps) => {
         break;
 
       default:
-        setCurrentDigit(currentDigit.length < 2 ? `${currentDigit}${digit}` : currentDigit);
+        setCurrentDigit(currentDigit.length < 3 ? `${currentDigit}${digit}` : currentDigit);
     }
   };
 
@@ -62,26 +68,36 @@ const PaymentMethodModal = ({ isOpen, onPay, onCancel }: ModalProps) => {
       </span>
       <div className="content">
         <div className="keyboard">
-          <div className="grid">
-            {letters.map((row, index) => (
-              <div className="row" key={index}>
-                {row.map((letter) => (
-                  <div
-                    className={`card ${letter === currentLetter ? 'active' : ''}`}
-                    key={letter}
-                    onClick={() => setCurrentLetter(letter)}
-                  >
-                    {letter}
-                  </div>
-                ))}
-              </div>
-            ))}
+          <div className="letter-grid">
+            <div className="grid">
+              {letters.map((row, index) => (
+                <div className="row" key={index}>
+                  {row.map((letter) => (
+                    <div
+                      className={`card ${letter === currentLetter ? 'active' : ''} ${!orgaPrice ? 'hover' : ''}`}
+                      key={letter}
+                      onClick={() => setCurrentLetter(!orgaPrice ? letter : currentLetter)}>
+                      {letter}
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+            <div
+              className={`visitor-card card ${currentLetter === process.env.REACT_APP_VISITOR_LETTER ? 'active' : ''} ${
+                !orgaPrice ? 'hover' : ''
+              }`}
+              onClick={() => setCurrentLetter(!orgaPrice ? process.env.REACT_APP_VISITOR_LETTER : currentLetter)}>
+              <span>Visiteur</span>
+              <span>Sponsor</span>
+              <span>Caster</span>
+            </div>
           </div>
           <div className="grid">
             {digits.map((row, rowIndex) => (
               <div className="row" key={rowIndex}>
                 {row.map((digit, index) => (
-                  <div className="card" key={index} onClick={() => onDigitClick(digit)}>
+                  <div className="card hover" key={index} onClick={() => onDigitClick(digit)}>
                     {digit}
                   </div>
                 ))}

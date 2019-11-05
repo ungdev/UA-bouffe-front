@@ -43,7 +43,7 @@ const Basket = () => {
   const orgaPrice = useSelector((state: State) => state.orgaPrice);
   const basket = useSelector((state: State) => state.basket);
 
-  const [paymentOpened, setPaymentOpened] = useState(false);
+  const [paymentOpened, setPaymentOpened] = useState(true);
   const [confirmOpened, setConfirmOpened] = useState(false);
   const [orderName, setOrderName] = useState('');
 
