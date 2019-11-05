@@ -69,7 +69,8 @@ const PaymentMethodModal = ({ isOpen, onPay, onCancel }: ModalProps) => {
                   <div
                     className={`card ${letter === currentLetter ? 'active' : ''}`}
                     key={letter}
-                    onClick={() => setCurrentLetter(letter)}>
+                    onClick={() => setCurrentLetter(letter)}
+                  >
                     {letter}
                   </div>
                 ))}

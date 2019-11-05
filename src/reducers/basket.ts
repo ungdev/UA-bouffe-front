@@ -1,4 +1,4 @@
-import { Action, Item } from "../types";
+import { Action, Item } from '../types';
 
 const initialState: Array<Item> = [];
 

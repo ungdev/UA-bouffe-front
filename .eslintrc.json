@@ -5,12 +5,10 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
-    "plugin:import/typescript"
+    "plugin:import/typescript",
+    "prettier"
   ],
-  "plugins": [
-    "@typescript-eslint",
-    "react-hooks"
-  ],
+  "plugins": ["@typescript-eslint", "react-hooks", "prettier"],
   "parserOptions": {
     "ecmaVersion": 2018,
     "sourceType": "module",
@@ -19,39 +17,16 @@
     }
   },
   "rules": {
+    "prettier/prettier": ["error"],
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-explicit-any": "error",
     "no-console": "error",
     "no-alert": "error",
-    "brace-style": [
-      "warn",
-      "stroustrup"
-    ],
-    "linebreak-style": [
-      "warn",
-      "windows"
-    ],
+    "linebreak-style": ["warn", "windows"],
     "react/require-default-props": "error",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "off",
     "react/no-unescaped-entities": "off",
-    "semi": "error",
-    "comma-dangle": [
-      "warn",
-      "always-multiline"
-    ],
-    "object-curly-spacing": [
-      "warn",
-      "always"
-    ],
-    "arrow-parens": [
-      "error",
-      "always"
-    ],
-    "eol-last": [
-      "warn",
-      "always"
-    ],
     "import/default": "off"
   },
   "settings": {

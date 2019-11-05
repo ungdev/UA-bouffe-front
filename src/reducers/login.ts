@@ -64,8 +64,7 @@ export const autoLogin = () => async (dispatch: any) => {
 
       localStorage.setItem(BOUFFE_TOKEN, token);
       dispatch(setToken(token));
-    }
-    catch (err) {
+    } catch (err) {
       dispatch(logout());
     }
   }

@@ -17,7 +17,7 @@ export enum Status {
   PENDING = 'pending',
   PREPARING = 'preparing',
   READY = 'ready',
-  FINISHED = 'finished'
+  FINISHED = 'finished',
 }
 
 export interface OrderItem {
@@ -37,7 +37,7 @@ export interface Order {
 
 export enum PaymentMethod {
   Card = 'card',
-  Cash = 'cash'
+  Cash = 'cash',
 }
 
 // Redux

@@ -1,4 +1,4 @@
-import { Item, Category } from "./types";
+import { Item, Category } from './types';
 
 const coca = {
   key: 'coca-cola',
@@ -550,8 +550,7 @@ const items: Array<Category> = [
       name: curr.category,
       items: [curr],
     });
-  }
-  else {
+  } else {
     acc[itemIndex].items.push(curr);
   }
 

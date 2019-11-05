@@ -61,7 +61,8 @@ const ItemsGrid = () => {
         <span
           key={index}
           className={`category ${category.name === currentCategory.name ? 'active' : ''}`}
-          onClick={() => setCurrentCategory(category)}>
+          onClick={() => setCurrentCategory(category)}
+        >
           {category.name}
         </span>
       );

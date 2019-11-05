@@ -11,22 +11,29 @@ import { Item, State, PaymentMethod } from '../types';
 import { addOrder } from '../utils/orders';
 import { formatPrice } from '../utils/format';
 
-interface BasketItemPropTypes {
-  item: Item;
-  index: number;
+interface GroupedItem {
+  name: string;
+  firstIndex: number;
+  count: number;
 }
 
-const BasketItem = ({ item, index }: BasketItemPropTypes) => {
+interface BasketItemPropTypes {
+  item: GroupedItem;
+}
+
+const BasketItem = ({ item }: BasketItemPropTypes) => {
   const dispatch = useDispatch();
 
   const removeBasketItem = () => {
-    dispatch(removeItem(index));
+    dispatch(removeItem(item.firstIndex));
   };
 
   return (
     <div className="basket-item">
-      <span className="item-name">{item.name}</span>
-      <FontAwesome name="times" className="remove" onClick={() => removeBasketItem()} />
+      <span className="item-name">
+        {item.count} {item.name}
+      </span>
+      <FontAwesome name="minus" className="remove" onClick={() => removeBasketItem()} />
     </div>
   );
 };
@@ -60,6 +67,22 @@ const Basket = () => {
     setConfirmOpened(true);
   };
 
+  const groupedBasket = basket.reduce((acc: Array<GroupedItem>, curr, index) => {
+    const groupIndex = acc.findIndex((item) => item.name === curr.name);
+
+    if (groupIndex !== -1) {
+      acc[groupIndex].count += 1;
+    } else {
+      acc.push({
+        name: curr.name,
+        firstIndex: index,
+        count: 1,
+      });
+    }
+
+    return acc;
+  }, []);
+
   return (
     <div className="basket">
       <PaymentModal
@@ -69,8 +92,8 @@ const Basket = () => {
       />
       <ConfirmOrderModal isOpen={confirmOpened} onClose={() => setConfirmOpened(false)} orderName={orderName} />
       <div className="summary">
-        {basket.map((item, index) => (
-          <BasketItem item={item} key={index} index={index} />
+        {groupedBasket.map((item, index) => (
+          <BasketItem item={item} key={index} />
         ))}
       </div>
       <div className="pay" onClick={() => openPaymentModal()}>
