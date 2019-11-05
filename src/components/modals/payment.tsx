@@ -31,6 +31,7 @@ const PaymentMethodModal = ({ isOpen, onPay, onCancel }: ModalProps) => {
   const orgaPrice = useSelector((state: State) => state.orgaPrice);
   const [currentLetter, setCurrentLetter] = useState('');
   const [currentDigit, setCurrentDigit] = useState('');
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setCurrentLetter(orgaPrice ? process.env.REACT_APP_ORGA_LETTER : '');
@@ -48,12 +49,14 @@ const PaymentMethodModal = ({ isOpen, onPay, onCancel }: ModalProps) => {
     }
   };
 
-  const onPayClick = (method: PaymentMethod) => {
-    if (currentLetter && currentDigit) {
+  const onPayClick = async (method: PaymentMethod) => {
+    if (currentLetter && currentDigit && !loading) {
+      setLoading(true);
       const place = `${currentLetter}${currentDigit}`;
+      await onPay(place, method);
       setCurrentDigit('');
       setCurrentLetter('');
-      onPay(place, method);
+      setLoading(false);
     }
   };
 

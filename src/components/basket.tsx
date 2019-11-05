@@ -5,9 +5,8 @@ import './basket.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearBasket, removeItem } from '../reducers/basket';
 import PaymentModal from './modals/payment';
-import ConfirmOrderModal from './modals/confirmOrder';
 import { setNormalPrice } from '../reducers/orgaPrice';
-import { Item, State, PaymentMethod } from '../types';
+import { State, PaymentMethod } from '../types';
 import { addOrder } from '../utils/orders';
 import { formatPrice } from '../utils/format';
 
@@ -43,9 +42,7 @@ const Basket = () => {
   const orgaPrice = useSelector((state: State) => state.orgaPrice);
   const basket = useSelector((state: State) => state.basket);
 
-  const [paymentOpened, setPaymentOpened] = useState(true);
-  const [confirmOpened, setConfirmOpened] = useState(false);
-  const [orderName, setOrderName] = useState('');
+  const [paymentOpened, setPaymentOpened] = useState(false);
 
   const calculateTotal = () => {
     const total = basket.reduce((acc, curr) => acc + (orgaPrice ? curr.orgaPrice : curr.price), 0);
@@ -57,14 +54,10 @@ const Basket = () => {
   };
 
   const onPay = async (place: string, method: PaymentMethod) => {
+    await addOrder(basket, place, method, orgaPrice);
     dispatch(clearBasket());
     dispatch(setNormalPrice());
-
-    await addOrder(basket, place, method, orgaPrice);
-
-    setOrderName(`${place} ${method}`);
     setPaymentOpened(false);
-    setConfirmOpened(true);
   };
 
   const groupedBasket = basket.reduce((acc: Array<GroupedItem>, curr, index) => {
@@ -90,7 +83,6 @@ const Basket = () => {
         onPay={(place, method) => onPay(place, method)}
         onCancel={() => setPaymentOpened(false)}
       />
-      <ConfirmOrderModal isOpen={confirmOpened} onClose={() => setConfirmOpened(false)} orderName={orderName} />
       <div className="summary">
         {groupedBasket.map((item, index) => (
           <BasketItem item={item} key={index} />
