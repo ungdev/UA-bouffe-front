@@ -1,4 +1,4 @@
-import { API } from '../utils/api';
+import { API, setAPIToken } from '../utils/api';
 import { toast } from 'react-toastify';
 import { Socket } from '../utils/socket';
 import { clearOrders } from './orders';
@@ -34,10 +34,14 @@ export default (state = initialState, action: Action) => {
   return state;
 };
 
-export const setToken = (token: string | null) => ({
-  type: SET_TOKEN,
-  payload: token,
-});
+export const setToken = (token: string | null) => {
+  setAPIToken(token);
+
+  return {
+    type: SET_TOKEN,
+    payload: token,
+  };
+};
 
 export const setLoading = (loading: boolean) => ({
   type: SET_LOADING,
@@ -53,6 +57,7 @@ export const logout = () => (dispatch: Dispatch) => {
   dispatch(setToken(null));
 };
 
+// todo: simplifier, restructure autologin et trylogin
 export const autoLogin = () => async (dispatch: any) => {
   dispatch(setLoading(true));
   if (localStorage.hasOwnProperty(BOUFFE_TOKEN)) {

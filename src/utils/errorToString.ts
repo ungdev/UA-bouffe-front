@@ -6,6 +6,8 @@ export default (error: any) => {
     case 'INVALID_PIN':
       return 'Code PIN invalide';
 
+    case 'UNAUTHENTICATED':
+      return "Vous n'êtes pas connecté";
     case 'UNAUTHORIZED':
       return "Vous n'avez pas la permission";
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { toast, Flip } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import 'moment/locale/fr';
 import './app.scss';
 
 import Index from './routes';
@@ -13,6 +13,7 @@ import Tv from './routes/tv';
 import Preparation from './routes/preparation';
 import LoginRouter from './components/loginRouter';
 import { Route } from 'react-router';
+import moment from 'moment';
 
 toast.configure({
   autoClose: 3000,
@@ -20,6 +21,8 @@ toast.configure({
   transition: Flip,
   hideProgressBar: true,
 });
+
+moment.locale('fr');
 
 const App = () => {
   return (

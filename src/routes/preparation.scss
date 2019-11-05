@@ -37,6 +37,16 @@
     align-items: center;
     min-height: 100px;
 
+    .titles {
+      display: flex;
+      flex-direction: column;
+
+      .place {
+        margin-bottom: 10px;
+        font-size: 1.75em;
+      }
+    }
+
     .items {
       text-align: left;
     }

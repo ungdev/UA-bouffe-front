@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import './preparation.scss';
 import Navbar from '../components/navbar';
+import moment from 'moment';
 import FontAwesome from 'react-fontawesome';
 import { useSelector } from 'react-redux';
 import { Socket } from '../utils/socket';
@@ -15,8 +16,11 @@ const Preparation = () => {
   console.log(orders);
   const displayOrders = (orders: Array<Order>) => {
     return orders.map((order) => (
-      <div className="order" key={order.place}>
-        <div>#{order.place}</div>
+      <div className="order" key={order.id}>
+        <div className="titles">
+          <span className="place">{order.place}</span>
+          <span>{moment(order.createdAt).fromNow()}</span>
+        </div>
         <ul className="items">
           {order.orderItems.map((item, index) => (
             <li key={index}>{item.name}</li>

@@ -33,6 +33,7 @@ export interface Order {
   method: PaymentMethod;
   status: Status;
   orderItems: Array<OrderItem>;
+  createdAt: string;
 }
 
 export enum PaymentMethod {

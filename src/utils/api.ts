@@ -2,12 +2,17 @@ import axios, { Method, AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
 import errorToString from './errorToString';
 
+let token: string | null = null;
+
 const requestAPI = <T>(method: Method, route: string, body?: object) => {
   return new Promise<AxiosResponse<T>>((resolve, reject) => {
     axios
       .request<T>({
         baseURL: process.env.REACT_APP_API_URI,
         method,
+        headers: {
+          Authorization: token ? `Bearer ${token}` : undefined,
+        },
         url: route,
         data: body,
         timeout: 3000,
@@ -19,6 +24,10 @@ const requestAPI = <T>(method: Method, route: string, body?: object) => {
         reject();
       });
   });
+};
+
+export const setAPIToken = (_token: string | null) => {
+  token = _token;
 };
 
 export const API = {
