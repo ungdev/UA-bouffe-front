@@ -10,6 +10,7 @@ export interface Item {
 
 export interface Category {
   name: string;
+  key: string;
   items: Array<Item>;
 }
 
@@ -47,6 +48,7 @@ export interface State {
   orgaPrice: boolean;
   orders: Array<Order>;
   login: LoginState;
+  categories: Array<Category>;
 }
 
 export interface Action {

@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router';
-import { parse } from 'query-string';
 
 import { addItem } from '../reducers/basket';
 import './itemsGrid.scss';
-import { State, Item as ItemType } from '../types';
-import _categories from '../categories';
+import { State, Item as ItemType, Category } from '../types';
 import { formatPrice } from '../utils/format';
 
 interface ItemPropTypes {
@@ -37,22 +34,11 @@ const Item = ({ item }: ItemPropTypes) => {
   );
 };
 
-const ItemsGrid = () => {
-  let categories = _categories;
+interface ItemsGridProps {
+  categories: Array<Category>;
+}
 
-  const location = useLocation();
-  const queryParams = parse(location.search);
-
-  switch (queryParams.only) {
-    case 'food':
-      categories = categories.filter((category) => category.name !== process.env.REACT_APP_GOODIES_CATEGORY_NAME);
-      break;
-
-    case 'goodies':
-      categories = categories.filter((category) => category.name === process.env.REACT_APP_GOODIES_CATEGORY_NAME);
-      break;
-  }
-
+const ItemsGrid = ({ categories }: ItemsGridProps) => {
   const [currentCategory, setCurrentCategory] = useState(categories[0]);
 
   const displayCategories = () => {
@@ -61,8 +47,7 @@ const ItemsGrid = () => {
         <span
           key={index}
           className={`category ${category.name === currentCategory.name ? 'active' : ''}`}
-          onClick={() => setCurrentCategory(category)}
-        >
+          onClick={() => setCurrentCategory(category)}>
           {category.name}
         </span>
       );

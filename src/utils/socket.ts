@@ -2,8 +2,10 @@ import io from 'socket.io-client';
 import { setOrders } from '../reducers/orders';
 import { toast } from 'react-toastify';
 import { logout } from '../reducers/login';
-import { Order, Item, PaymentMethod, Status } from '../types';
+import { Order, Item, PaymentMethod, Status, Category } from '../types';
 import { getOrders } from './orders';
+import { getCategories } from './categories';
+import { setCategories } from '../reducers/categories';
 
 let socket: SocketIOClientStatic['Socket'] | undefined = undefined;
 
@@ -14,8 +16,15 @@ export const Socket = {
     const orders = await getOrders();
     dispatch(setOrders(orders));
 
-    socket.on('ordersUpdate', (orders: Array<Order>) => {
+    socket.on('orderUpdate', (orders: Array<Order>) => {
       dispatch(setOrders(orders));
+    });
+
+    const categories = await getCategories();
+    dispatch(setCategories(categories));
+
+    socket.on('categoryUpdate', (categories: Array<Category>) => {
+      dispatch(setCategories(categories));
     });
 
     socket.on('disconnect', () => dispatch(logout()));

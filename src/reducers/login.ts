@@ -37,6 +37,9 @@ export default (state = initialState, action: Action) => {
 export const setToken = (token: string | null) => {
   setAPIToken(token);
 
+  if (token) localStorage.setItem(BOUFFE_TOKEN, token);
+  else localStorage.removeItem(BOUFFE_TOKEN);
+
   return {
     type: SET_TOKEN,
     payload: token,
@@ -49,15 +52,14 @@ export const setLoading = (loading: boolean) => ({
 });
 
 export const logout = () => (dispatch: Dispatch) => {
-  localStorage.removeItem(BOUFFE_TOKEN);
   Socket.disconnect();
   dispatch(clearOrders());
   dispatch(clearBasket());
+  dispatch(clearOrders());
   toast('Vous avez été déconnecté');
   dispatch(setToken(null));
 };
 
-// todo: simplifier, restructure autologin et trylogin
 export const autoLogin = () => async (dispatch: any) => {
   dispatch(setLoading(true));
   if (localStorage.hasOwnProperty(BOUFFE_TOKEN)) {
@@ -67,7 +69,6 @@ export const autoLogin = () => async (dispatch: any) => {
       const res = (await API.post('/auth/refreshToken', { token: oldToken })) as any;
       const token = res.data.token;
 
-      localStorage.setItem(BOUFFE_TOKEN, token);
       dispatch(setToken(token));
     } catch (err) {
       dispatch(logout());
@@ -80,7 +81,5 @@ export const tryLogin = (pin: string) => async (dispatch: any) => {
   const res = await API.post<{ token: string }>(`/auth/login`, { pin });
   const token = res.data.token;
   toast.success('Connexion validée');
-  localStorage.setItem(BOUFFE_TOKEN, token);
-
   dispatch(setToken(token));
 };
