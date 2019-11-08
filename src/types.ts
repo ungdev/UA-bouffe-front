@@ -5,7 +5,7 @@ export interface Item {
   name: string;
   price: number;
   orgaPrice: number;
-  category: string;
+  category: Category;
   isAvailable: boolean;
 }
 
@@ -17,7 +17,6 @@ export interface Category {
 
 export interface OrderItem {
   item: Item;
-  category: Category;
   price: number;
 }
 

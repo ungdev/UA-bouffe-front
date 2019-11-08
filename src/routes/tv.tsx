@@ -4,16 +4,44 @@ import './tv.scss';
 import { useSelector } from 'react-redux';
 
 import { history } from '../components/loginRouter';
-import { State, Order as OrderType, Status } from '../types';
+import { State, Order as OrderType, Status, Item, OrderItem } from '../types';
+
+interface GroupedCategory {
+  name: string;
+  count: number;
+}
+
+const groupOrderItems = (items: Array<OrderItem>) => {
+  return items.reduce((acc: Array<GroupedCategory>, curr) => {
+    const categoryIndex = acc.findIndex((groupedCategory) => groupedCategory.name === curr.item.category.name);
+
+    if (categoryIndex !== -1) {
+      acc[categoryIndex].count += 1;
+    } else {
+      acc.push({
+        name: curr.item.category.name,
+        count: 1,
+      });
+    }
+
+    return acc;
+  }, []);
+};
 
 const Order = ({ order }: { order: OrderType }) => {
+  const groupedOrderItems = groupOrderItems(order.orderItems);
+
   return (
     <div className="card">
       <span className="title">{order.place}</span>
       <ul className="items">
-        {order.orderItems.map((orderItem, index) => (
-          <li key={index}>{orderItem.item.name}</li>
-        ))}
+        {groupedOrderItems.map((category, index) => {
+          return (
+            <li key={index}>
+              {category.count} {category.name}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
