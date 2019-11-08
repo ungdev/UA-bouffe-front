@@ -4,36 +4,27 @@ import './tv.scss';
 import { useSelector } from 'react-redux';
 
 import { history } from '../components/loginRouter';
-import { Status, State, Order as OrderType, PaymentMethod } from '../types';
-import FontAwesome from 'react-fontawesome';
-
-// todo: gerer ça un peu mieux...
-const icons = {
-  canettes: 'mug-hot',
-  snacks: 'candy-cane',
-  crepes: 'stroopwafel',
-  croques: 'hamburger',
-  pizza: 'pizza-slice',
-  goodies: 'gifts',
-};
+import { State, Order as OrderType, Status } from '../types';
 
 const Order = ({ order }: { order: OrderType }) => {
   return (
-    <div className="order">
-      <span>
-        {order.place} - <FontAwesome name={order.method === PaymentMethod.Card ? 'credit-card' : 'coins'} />
-      </span>
-      <div className="items">
-        {order.orderItems.map((item) => {
-          // @ts-ignore
-          return <FontAwesome key={item.id} name={icons[item.category]} />;
-        })}
-      </div>
-      <div className="status">
-        <div className={`item pending ${order.status === Status.PENDING ? 'active' : ''}`}>Attente</div>
-        <div className={`item preparing ${order.status === Status.PREPARING ? 'active' : ''}`}>Préparation</div>
-        <div className={`item ready ${order.status === Status.READY ? 'active' : ''}`}>Prêt</div>
-      </div>
+    <div className="card">
+      <span className="title">{order.place}</span>
+      <ul className="items">
+        {order.orderItems.map((orderItem, index) => (
+          <li key={index}>{orderItem.item.name}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+const OrderGrid = ({ orders }: { orders: Array<OrderType> }) => {
+  return (
+    <div className="cards">
+      {orders.map((order, index) => (
+        <Order key={index} order={order} />
+      ))}
     </div>
   );
 };
@@ -41,11 +32,20 @@ const Order = ({ order }: { order: OrderType }) => {
 const View = () => {
   const orders = useSelector((state: State) => state.orders);
 
+  const pendingOrders = orders.filter((order) => order.status === Status.PENDING || order.status === Status.PREPARING);
+  const readyOrders = orders.filter((order) => order.status === Status.READY);
+
   return (
     <div id="tv" onClick={() => history.push('/')}>
-      {orders.map((order, index) => (
-        <Order order={order} key={index} />
-      ))}
+      <div className="orders">
+        <span>En attente...</span>
+        <OrderGrid orders={pendingOrders} />
+      </div>
+      <div className="separator"></div>
+      <div className="orders">
+        <span>Prêt</span>
+        <OrderGrid orders={readyOrders} />
+      </div>
     </div>
   );
 };

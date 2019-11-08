@@ -1,50 +1,41 @@
 #tv {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   font-size: 2em;
   height: 100%;
-  .order {
-    margin: 10px 20px;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--primary);
-    border: 1px solid var(--light);
-    border-radius: 10px;
+  text-align: center;
+
+  .orders {
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    .cards {
+      padding-top: 20px;
+      display: flex;
+      width: 100%;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+    }
+
+    .card {
+      width: 40%;
+      background-color: var(--primary);
+      padding: 10px 5px;
+      margin: 5px;
+
+      .title {
+      }
+
+      .items {
+        text-align: left;
+        font-size: 0.5em;
+      }
+    }
   }
 
-  .order .items {
-    align-self: flex-start;
-  }
-
-  .order .status {
-    display: flex;
-    height: 50px;
-    line-height: 50px;
-
-    --border-radius: 5px;
-
-    .item {
-      width: 200px;
-      padding: 0 10px;
-      color: #aaaaaa;
-    }
-
-    .active {
-      color: var(--light);
-    }
-
-    .pending.active {
-      background-color: var(--danger);
-    }
-
-    .preparing.active {
-      background-color: var(--warning);
-    }
-
-    .ready.active {
-      background-color: var(--success);
-    }
+  .separator {
+    height: 90%;
+    border-right: 1px solid var(--light);
+    align-self: center;
   }
 }
