@@ -11,6 +11,7 @@ import Sell from './routes/sell';
 import store from './store';
 import Tv from './routes/tv';
 import Preparation from './routes/preparation';
+import Items from './routes/items';
 import LoginRouter from './components/loginRouter';
 import { Route } from 'react-router';
 import moment from 'moment';
@@ -32,6 +33,7 @@ const App = () => {
         <Route path="/sell" component={Sell} />
         <Route path="/preparation" component={Preparation} />
         <Route path="/tv" component={Tv} />
+        <Route path="/items" component={Items} />
       </LoginRouter>
     </Provider>
   );

@@ -1,0 +1,18 @@
+.switch {
+  display: flex;
+  background-color: var(--primary-light);
+  text-align: center;
+
+  .button {
+    padding: 5px 10px;
+    width: 20px;
+  }
+
+  .o {
+    background-color: var(--danger);
+  }
+
+  .i {
+    background-color: var(--success);
+  }
+}

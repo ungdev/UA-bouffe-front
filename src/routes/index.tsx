@@ -21,6 +21,8 @@ const Index = () => {
         <div onClick={() => history.push('/sell?only=goodies')}>Vente de goodies</div>
         <div onClick={() => history.push('/preparation')}>Préparation</div>
         <div onClick={() => history.push('/tv')}>TV</div>
+        <div onClick={() => history.push('/items')}>Gestion des items</div>
+        <div onClick={() => history.push('/tv')}>Statistiques</div>
       </div>
     </>
   );

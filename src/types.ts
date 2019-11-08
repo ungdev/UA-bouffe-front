@@ -6,10 +6,11 @@ export interface Item {
   price: number;
   orgaPrice: number;
   category: Category;
-  isAvailable: boolean;
+  available: boolean;
 }
 
 export interface Category {
+  readonly id: number;
   name: string;
   key: string;
   items: Array<Item>;
@@ -52,7 +53,7 @@ export interface State {
 
 export interface Action {
   type: string;
-  payload: any;
+  payload?: any;
 }
 
 export interface LoginState {
