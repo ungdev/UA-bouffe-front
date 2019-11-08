@@ -22,8 +22,8 @@ const Preparation = () => {
           <span>{moment(order.createdAt).fromNow()}</span>
         </div>
         <ul className="items">
-          {order.orderItems.map((item, index) => (
-            <li key={index}>{item.name}</li>
+          {order.orderItems.map((orderItem, index) => (
+            <li key={index}>{orderItem.item.name}</li>
           ))}
         </ul>
         <FontAwesome name="arrow-right" className="next" onClick={() => upgradeOrder(order)} />

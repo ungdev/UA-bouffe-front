@@ -1,5 +1,6 @@
 // General
 export interface Item {
+  readonly id: number;
   key: string;
   name: string;
   price: number;
@@ -14,18 +15,10 @@ export interface Category {
   items: Array<Item>;
 }
 
-export enum Status {
-  PENDING = 'pending',
-  PREPARING = 'preparing',
-  READY = 'ready',
-  FINISHED = 'finished',
-}
-
 export interface OrderItem {
-  id: number;
-  name: string;
-  key: string;
-  category: string;
+  item: Item;
+  category: Category;
+  price: number;
 }
 
 export interface Order {
@@ -35,6 +28,13 @@ export interface Order {
   status: Status;
   orderItems: Array<OrderItem>;
   createdAt: string;
+}
+
+export enum Status {
+  PENDING = 'pending',
+  PREPARING = 'preparing',
+  READY = 'ready',
+  FINISHED = 'finished',
 }
 
 export enum PaymentMethod {

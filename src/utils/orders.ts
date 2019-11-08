@@ -8,18 +8,14 @@ export const getOrders = async () => {
   return orders;
 };
 
-export const addOrder = async (_items: Array<Item>, place: string, method: PaymentMethod, orgaPrice: boolean) => {
-  const items = _items.map((item) => ({
-    name: item.name,
-    key: item.key,
-    category: item.category,
-    price: orgaPrice ? item.orgaPrice : item.price,
-  }));
+export const addOrder = async (items: Array<Item>, place: string, method: PaymentMethod, orgaPrice: boolean) => {
+  const orders = items.map((item) => item.id);
 
   await API.post('/orders', {
     method,
     place,
-    items,
+    orgaPrice,
+    orders,
   });
 };
 
