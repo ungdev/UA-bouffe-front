@@ -24,12 +24,13 @@ export const Socket = {
     dispatch(setCategories(categories));
 
     socket.on('categoryUpdate', (categories: Array<Category>) => {
+      console.log('categoryUpdate');
       dispatch(setCategories(categories));
     });
 
     socket.on('disconnect', (reason: string) => {
       if (reason === 'transport close') {
-        toast.error('Extinction du serveur... ' + reason);
+        toast.error('Extinction du serveur... ');
         dispatch(logout());
       }
     });

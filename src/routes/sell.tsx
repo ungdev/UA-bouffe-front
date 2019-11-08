@@ -9,7 +9,6 @@ import Basket from '../components/basket';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearBasket } from '../reducers/basket';
 import { State } from '../types';
-import { setLoading } from '../reducers/login';
 /**
  * /sell
  *
@@ -29,6 +28,11 @@ const Sell = () => {
   }
 
   if (categories.length === 0) return <div>Chargement...</div>;
+
+  categories = categories.map((category) => ({
+    ...category,
+    items: category.items.filter((item) => item.available),
+  }));
 
   return (
     <>

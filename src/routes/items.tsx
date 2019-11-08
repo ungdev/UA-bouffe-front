@@ -7,13 +7,18 @@ import { useSelector, useDispatch } from 'react-redux';
 import { State, Item as ItemType, Category as CategoryType } from '../types';
 import FontAwesome from 'react-fontawesome';
 import { toogleItemAvailable } from '../reducers/categories';
-
+import { formatPrice } from '../utils/format';
 const Item = ({ item }: { item: ItemType }) => {
   const dispatch = useDispatch();
   return (
     <div className="item" onClick={() => dispatch(toogleItemAvailable(item.id))}>
-      <Switch on={item.available} />
-      <span>{item.name}</span>
+      <div className="left-side">
+        <Switch on={item.available} />
+        <span>{item.name}</span>
+      </div>
+      <div>
+        {formatPrice(item.orgaPrice)} - {formatPrice(item.price)}
+      </div>
     </div>
   );
 };

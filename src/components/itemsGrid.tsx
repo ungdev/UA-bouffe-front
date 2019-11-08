@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { addItem } from '../reducers/basket';
@@ -39,7 +39,9 @@ interface ItemsGridProps {
 }
 
 const ItemsGrid = ({ categories }: ItemsGridProps) => {
-  const [currentCategory, setCurrentCategory] = useState(categories[0]);
+  const [currentCategoryIndex, setCurrentCategoryIndex] = useState(0);
+
+  const currentCategory = categories[currentCategoryIndex];
 
   const displayCategories = () => {
     return categories.map((category, index) => {
@@ -47,7 +49,7 @@ const ItemsGrid = ({ categories }: ItemsGridProps) => {
         <span
           key={index}
           className={`category ${category.name === currentCategory.name ? 'active' : ''}`}
-          onClick={() => setCurrentCategory(category)}>
+          onClick={() => setCurrentCategoryIndex(index)}>
           {category.name}
         </span>
       );

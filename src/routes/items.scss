@@ -26,11 +26,13 @@
       }
     }
 
-    .items {
-    }
-
     .item {
       display: flex;
+      justify-content: space-between;
+
+      .left-side {
+        display: flex;
+      }
 
       .switch {
         margin-right: 10px;
