@@ -35,6 +35,7 @@ const Login = () => {
   return (
     <>
       <div id="login">
+        <span className="title">TurboBouffe</span>
         <div className="field">{pin.replace(/./g, '•')}</div>
         <div className="digits">
           {digits.map((digitsRow, index) => (

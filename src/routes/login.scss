@@ -1,4 +1,11 @@
 #login {
+  margin-top: 30px;
+  height: 100%;
+
+  .title {
+    font-size: 3em;
+  }
+
   .field {
     width: 200px;
     height: 50px;
@@ -11,22 +18,26 @@
 
   .digits {
     display: flex;
-    justify-content: center;
     flex-direction: column;
     margin: auto;
-    width: 50%;
+    width: 75%;
+    height: 100%;
   }
 
   .digits .digits-row {
     display: flex;
     justify-content: center;
+    height: 15%;
 
     .digit {
       width: 30%;
-      height: 100px;
-      line-height: 100px;
+      height: 90%;
       margin: 10px;
       background-color: var(--primary-light);
+      display: flex;
+      font-size: 2em;
+      flex-direction: column;
+      justify-content: center;
 
       &:hover {
         filter: brightness(0.9);
