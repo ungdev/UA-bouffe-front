@@ -27,7 +27,12 @@ export const Socket = {
       dispatch(setCategories(categories));
     });
 
-    socket.on('disconnect', () => dispatch(logout()));
+    socket.on('disconnect', (reason: string) => {
+      if (reason === 'transport close') {
+        toast.error('Extinction du serveur... ' + reason);
+        dispatch(logout());
+      }
+    });
   },
 
   checkConnect: () => {

@@ -52,12 +52,13 @@ export const setLoading = (loading: boolean) => ({
 });
 
 export const logout = () => (dispatch: Dispatch) => {
+  console.log(1);
   Socket.disconnect();
   dispatch(clearOrders());
   dispatch(clearBasket());
-  dispatch(clearOrders());
   toast('Vous avez été déconnecté');
   dispatch(setToken(null));
+  console.log(2);
 };
 
 export const autoLogin = () => async (dispatch: any) => {
