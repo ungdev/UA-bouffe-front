@@ -1,19 +1,38 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import './preparation.scss';
 import Navbar from '../components/navbar';
 import moment from 'moment';
 import FontAwesome from 'react-fontawesome';
 import { useSelector } from 'react-redux';
-import { Socket } from '../utils/socket';
 import { State, Order, Status } from '../types';
-import { API } from '../utils/api';
 import { upgradeOrder } from '../utils/orders';
+import { useLocation } from 'react-router';
+import { parse } from 'query-string';
 
 const Preparation = () => {
-  const orders = useSelector((state: State) => state.orders);
+  const location = useLocation();
+  const queryParams = parse(location.search);
+  let orders = useSelector((state: State) => state.orders);
 
-  console.log(orders);
+  // Renvoie les commandes contenant au moins un item dans la catégory du paramètre
+  if (queryParams.only) {
+    orders = orders.filter((order) =>
+      order.orderItems.some((orderItem) => orderItem.item.category.key === queryParams.only),
+    );
+  }
+
+  // used only to refresh the component every minute
+  const [tictac, setTicTac] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTicTac(!tictac);
+    }, 1000 * 60);
+
+    return () => clearInterval(interval);
+  });
+
   const displayOrders = (orders: Array<Order>) => {
     return orders.map((order) => (
       <div className="order" key={order.id}>

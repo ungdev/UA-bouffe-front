@@ -20,8 +20,5 @@ export const addOrder = async (items: Array<Item>, place: string, method: Paymen
 };
 
 export const upgradeOrder = async (order: Order) => {
-  const statusOrdered = [Status.PENDING, Status.PREPARING, Status.READY, Status.FINISHED];
-  const newStatus = statusOrdered[statusOrdered.indexOf(order.status) + 1];
-
-  await API.patch(`/orders/${order.id}`, { status: newStatus });
+  await API.patch(`/orders/${order.id}`, null);
 };
