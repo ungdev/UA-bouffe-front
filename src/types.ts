@@ -30,6 +30,12 @@ export interface Order {
   createdAt: string;
 }
 
+export interface User {
+  token: string;
+  name: string;
+  key: string;
+}
+
 export enum Status {
   PENDING = 'pending',
   PREPARING = 'preparing',
@@ -56,7 +62,6 @@ export interface Action {
   payload?: any;
 }
 
-export interface LoginState {
-  token: string;
+export interface LoginState extends User {
   loading: boolean;
 }

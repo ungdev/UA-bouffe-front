@@ -4,17 +4,21 @@ import { Socket } from '../utils/socket';
 import { clearOrders } from './orders';
 import { clearBasket } from './basket';
 import { Dispatch } from 'redux';
-import { LoginState, Action } from '../types';
+import { LoginState, Action, User } from '../types';
 
 const initialState: LoginState = {
   token: null,
   loading: false,
+  name: null,
+  key: null,
 };
 
 const BOUFFE_TOKEN = 'bouffe-token';
 
-const SET_LOADING = 'SET_LOADING';
+const SET_LOGIN_LOADING = 'SET_LOGIN_LOADING';
 const SET_TOKEN = 'SET_TOKEN';
+const SET_NAME = 'SET_NAME';
+const SET_USER = 'SET_USER';
 
 export default (state = initialState, action: Action) => {
   switch (action.type) {
@@ -24,41 +28,57 @@ export default (state = initialState, action: Action) => {
         token: action.payload,
       };
 
-    case SET_LOADING:
+    case SET_LOGIN_LOADING:
       return {
         ...state,
         loading: action.payload,
+      };
+
+    case SET_NAME:
+      return {
+        ...state,
+        name: action.payload,
+      };
+
+    case SET_USER:
+      return {
+        ...state,
+        ...action.payload,
       };
   }
 
   return state;
 };
 
-export const setToken = (token: string | null) => {
-  setAPIToken(token);
+export const setUser = (user: User) => {
+  setAPIToken(user.token);
 
-  if (token) localStorage.setItem(BOUFFE_TOKEN, token);
+  if (user.token) localStorage.setItem(BOUFFE_TOKEN, user.token);
   else localStorage.removeItem(BOUFFE_TOKEN);
 
   return {
-    type: SET_TOKEN,
-    payload: token,
+    type: SET_USER,
+    payload: user,
   };
 };
 
 export const setLoading = (loading: boolean) => ({
-  type: SET_LOADING,
+  type: SET_LOGIN_LOADING,
   payload: loading,
 });
 
 export const logout = () => (dispatch: Dispatch) => {
-  console.log(1);
   Socket.disconnect();
   dispatch(clearOrders());
   dispatch(clearBasket());
   toast('Vous avez été déconnecté');
-  dispatch(setToken(null));
-  console.log(2);
+  dispatch(
+    setUser({
+      token: null,
+      name: null,
+      key: null,
+    }),
+  );
 };
 
 export const autoLogin = () => async (dispatch: any) => {
@@ -67,10 +87,10 @@ export const autoLogin = () => async (dispatch: any) => {
     const oldToken = localStorage.getItem(BOUFFE_TOKEN) as string;
 
     try {
-      const res = (await API.post('/auth/refreshToken', { token: oldToken })) as any;
-      const token = res.data.token;
+      const res = (await API.post<User>('/auth/refreshToken', { token: oldToken })) as any;
+      const { token, name, key } = res.data;
 
-      dispatch(setToken(token));
+      dispatch(setUser({ token, name, key }));
     } catch (err) {
       dispatch(logout());
     }
@@ -79,8 +99,8 @@ export const autoLogin = () => async (dispatch: any) => {
 };
 
 export const tryLogin = (pin: string) => async (dispatch: any) => {
-  const res = await API.post<{ token: string }>(`/auth/login`, { pin });
-  const token = res.data.token;
+  const res = await API.post<User>(`/auth/login`, { pin });
+  const { token, name, key } = res.data;
   toast.success('Connexion validée');
-  dispatch(setToken(token));
+  dispatch(setUser({ token, name, key }));
 };

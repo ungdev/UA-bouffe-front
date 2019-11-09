@@ -4,6 +4,8 @@ import moment from 'moment';
 
 import { history } from '../components/loginRouter';
 import './navbar.scss';
+import { State } from '../types';
+import { useSelector } from 'react-redux';
 
 interface PropTypes {
   back?: string;
@@ -13,6 +15,7 @@ interface PropTypes {
 
 const Navbar = ({ back, onBack, children }: PropTypes) => {
   const [time, setTime] = useState(moment().format('H[h]mm'));
+  const name = useSelector((state: State) => state.login.name);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -42,7 +45,7 @@ const Navbar = ({ back, onBack, children }: PropTypes) => {
         ''
       )}
       <span className="title" onClick={() => window.location.reload()}>
-        TurboBouffe - {time}
+        TurboBouffe - {name} - {time}
       </span>
 
       {children ? children : ''}
