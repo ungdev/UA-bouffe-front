@@ -6,21 +6,27 @@ import { useDispatch, useSelector } from 'react-redux';
 import { clearBasket, removeItem } from '../reducers/basket';
 import PaymentModal from './modals/payment';
 import { setNormalPrice } from '../reducers/orgaPrice';
-import { State, PaymentMethod } from '../types';
+import { State, PaymentMethod, Promotion } from '../types';
 import { addOrder } from '../utils/orders';
 import { formatPrice } from '../utils/format';
+import computePromotions from '../utils/promotions';
 
 interface GroupedItem {
+  id: number;
   name: string;
   firstIndex: number;
   count: number;
 }
 
-interface BasketItemPropTypes {
+interface BasketItemProps {
   item: GroupedItem;
 }
 
-const BasketItem = ({ item }: BasketItemPropTypes) => {
+interface PromotionItemProps {
+  promotion: Promotion;
+}
+
+const BasketItem = ({ item }: BasketItemProps) => {
   const dispatch = useDispatch();
 
   const removeBasketItem = () => {
@@ -37,17 +43,21 @@ const BasketItem = ({ item }: BasketItemPropTypes) => {
   );
 };
 
+const PromotionItem = ({ promotion }: PromotionItemProps) => {
+  return (
+    <div className="basket-item">
+      <span className="item-name">{promotion.name}</span>
+    </div>
+  );
+};
+
 const Basket = () => {
   const dispatch = useDispatch();
   const orgaPrice = useSelector((state: State) => state.orgaPrice);
   const basket = useSelector((state: State) => state.basket);
+  const promotionsComputation = computePromotions(basket, orgaPrice);
 
   const [paymentOpened, setPaymentOpened] = useState(false);
-
-  const calculateTotal = () => {
-    const total = basket.reduce((acc, curr) => acc + (orgaPrice ? curr.orgaPrice : curr.price), 0);
-    return formatPrice(total);
-  };
 
   const openPaymentModal = () => {
     if (basket.length !== 0) setPaymentOpened(true);
@@ -67,6 +77,7 @@ const Basket = () => {
       acc[groupIndex].count += 1;
     } else {
       acc.push({
+        id: curr.id,
         name: curr.name,
         firstIndex: index,
         count: 1,
@@ -80,6 +91,7 @@ const Basket = () => {
     <div className="basket">
       <PaymentModal
         isOpen={paymentOpened}
+        total={promotionsComputation.total}
         onPay={(place, method) => onPay(place, method)}
         onCancel={() => setPaymentOpened(false)}
       />
@@ -87,9 +99,12 @@ const Basket = () => {
         {groupedBasket.map((item, index) => (
           <BasketItem item={item} key={index} />
         ))}
+        {promotionsComputation.promotions.map((promotion, index) => (
+          <PromotionItem promotion={promotion} key={index} />
+        ))}
       </div>
       <div className="pay" onClick={() => openPaymentModal()}>
-        <span>{calculateTotal()}</span>
+        <span>{formatPrice(promotionsComputation.total)}</span>
         <FontAwesome name="check" />
       </div>
     </div>

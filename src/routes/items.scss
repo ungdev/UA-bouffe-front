@@ -20,6 +20,10 @@
       margin-bottom: 10px;
       font-size: 1.5em;
 
+      &:hover {
+        filter: brightness(0.9);
+      }
+
       .icon {
         font-size: 0.9em;
         margin-right: 10px;
@@ -29,6 +33,10 @@
     .item {
       display: flex;
       justify-content: space-between;
+
+      &:hover {
+        filter: brightness(0.9);
+      }
 
       .left-side {
         display: flex;

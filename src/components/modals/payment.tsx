@@ -4,7 +4,7 @@ import { PaymentMethod, State } from '../../types';
 import FontAwesome from 'react-fontawesome';
 
 import './payment.scss';
-import { formatMethod } from '../../utils/format';
+import { formatMethod, formatPrice } from '../../utils/format';
 import { useSelector } from 'react-redux';
 
 const letters = [
@@ -23,11 +23,12 @@ const digits = [
 
 interface ModalProps {
   isOpen: boolean;
+  total: number;
   onPay: (place: string, method: PaymentMethod) => void;
   onCancel: () => void;
 }
 
-const PaymentMethodModal = ({ isOpen, onPay, onCancel }: ModalProps) => {
+const PaymentMethodModal = ({ isOpen, total, onPay, onCancel }: ModalProps) => {
   const orgaPrice = useSelector((state: State) => state.orgaPrice);
   const [currentLetter, setCurrentLetter] = useState('');
   const [currentDigit, setCurrentDigit] = useState('');
@@ -66,8 +67,7 @@ const PaymentMethodModal = ({ isOpen, onPay, onCancel }: ModalProps) => {
         <FontAwesome name="times" />
       </div>
       <span className="title">
-        Confirmer la commande {currentLetter}
-        {currentDigit}
+        Confirmer la commande {currentLetter} {currentDigit} ({formatPrice(total)})
       </span>
       <div className="content">
         <div className="keyboard">

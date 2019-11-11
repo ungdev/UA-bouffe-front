@@ -1,12 +1,21 @@
 // General
-export interface Item {
+export interface Price {
+  price: number;
+  orgaPrice: number;
+}
+
+export interface Item extends Price {
   readonly id: number;
   key: string;
+  promoKey: string;
   name: string;
   price: number;
   orgaPrice: number;
-  category: Category;
   available: boolean;
+}
+
+export interface ItemWithCategory extends Item {
+  category: Category;
 }
 
 export interface Category {
@@ -17,8 +26,7 @@ export interface Category {
 }
 
 export interface OrderItem {
-  item: Item;
-  price: number;
+  item: ItemWithCategory;
 }
 
 export interface Order {
@@ -34,6 +42,14 @@ export interface User {
   token: string;
   name: string;
   key: string;
+}
+
+export interface Promotion extends Price {
+  name: string;
+  key: string;
+  formula: Array<string>; // array of promo key
+  price: number;
+  orgaPrice: number;
 }
 
 export enum Status {

@@ -24,13 +24,12 @@ export const Socket = {
     dispatch(setCategories(categories));
 
     socket.on('categoryUpdate', (categories: Array<Category>) => {
-      console.log('categoryUpdate');
       dispatch(setCategories(categories));
     });
 
     socket.on('disconnect', (reason: string) => {
       if (reason === 'transport close') {
-        toast.error('Extinction du serveur... ');
+        toast.error('Extinction du serveur...');
         dispatch(logout());
       }
     });
@@ -47,27 +46,6 @@ export const Socket = {
   disconnect: () => {
     if (socket) socket.disconnect();
     socket = undefined;
-  },
-
-  addOrder: (name: string, _items: Array<Item>, method: PaymentMethod, orgaPrice: boolean) => {
-    if (Socket.checkConnect()) {
-      const items = _items.map((item) => ({
-        name: item.name,
-        key: item.key,
-        category: item.category,
-        price: orgaPrice ? item.orgaPrice : item.price,
-      }));
-      socket.emit('addOrder', { name, items, method });
-    }
-  },
-
-  upgradeOrder: (order: Order) => {
-    if (Socket.checkConnect()) {
-      const status = [Status.PENDING, Status.PREPARING, Status.READY, Status.FINISHED];
-      order.status = status[status.indexOf(order.status) + 1];
-
-      socket.emit('setOrderStatus', order);
-    }
   },
 };
 
