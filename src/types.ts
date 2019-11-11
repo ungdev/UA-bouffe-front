@@ -1,3 +1,5 @@
+import { ThunkDispatch } from 'redux-thunk';
+
 // General
 export interface Price {
   price: number;
@@ -75,8 +77,10 @@ export interface State {
 
 export interface Action {
   type: string;
-  payload?: any;
+  payload?: any; // eslint-disable-line @typescript-eslint/no-explicit-any
 }
+
+export type Dispatch = ThunkDispatch<State, void, Action>;
 
 export interface LoginState extends User {
   loading: boolean;

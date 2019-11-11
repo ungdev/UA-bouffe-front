@@ -3,8 +3,7 @@ import { toast } from 'react-toastify';
 import { Socket } from '../utils/socket';
 import { clearOrders } from './orders';
 import { clearBasket } from './basket';
-import { Dispatch } from 'redux';
-import { LoginState, Action, User } from '../types';
+import { LoginState, User, Action, Dispatch } from '../types';
 
 const initialState: LoginState = {
   token: null,
@@ -81,13 +80,13 @@ export const logout = () => (dispatch: Dispatch) => {
   );
 };
 
-export const autoLogin = () => async (dispatch: any) => {
+export const autoLogin = () => async (dispatch: Dispatch) => {
   dispatch(setLoading(true));
   if (localStorage.hasOwnProperty(BOUFFE_TOKEN)) {
     const oldToken = localStorage.getItem(BOUFFE_TOKEN) as string;
 
     try {
-      const res = (await API.post<User>('/auth/refreshToken', { token: oldToken })) as any;
+      const res = await API.post<User>('/auth/refreshToken', { token: oldToken });
       const { token, name, key } = res.data;
 
       dispatch(setUser({ token, name, key }));
@@ -98,7 +97,7 @@ export const autoLogin = () => async (dispatch: any) => {
   dispatch(setLoading(false));
 };
 
-export const tryLogin = (pin: string) => async (dispatch: any) => {
+export const tryLogin = (pin: string) => async (dispatch: Dispatch) => {
   const res = await API.post<User>(`/auth/login`, { pin });
   const { token, name, key } = res.data;
   toast.success('Connexion validée');

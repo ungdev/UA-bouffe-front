@@ -2,7 +2,7 @@ import io from 'socket.io-client';
 import { setOrders } from '../reducers/orders';
 import { toast } from 'react-toastify';
 import { logout } from '../reducers/login';
-import { Order, Item, PaymentMethod, Status, Category } from '../types';
+import { Order, Category, Dispatch } from '../types';
 import { getOrders } from './orders';
 import { getCategories } from './categories';
 import { setCategories } from '../reducers/categories';
@@ -10,7 +10,7 @@ import { setCategories } from '../reducers/categories';
 let socket: SocketIOClientStatic['Socket'] | undefined = undefined;
 
 export const Socket = {
-  connect: () => async (dispatch: any) => {
+  connect: () => async (dispatch: Dispatch) => {
     socket = io.connect(process.env.REACT_APP_API_URI);
 
     const orders = await getOrders();

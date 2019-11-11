@@ -1,4 +1,4 @@
-export default (error: any) => {
+export default (error: string) => {
   switch (error) {
     case 'INVALID_FORM':
       return 'Formulaire invalide';

@@ -27,8 +27,7 @@
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "off",
     "react/no-unescaped-entities": "off",
-    "import/default": "off",
-    "no-param-reassign": ["error", { "props": true }]
+    "import/default": "off"
   },
   "settings": {
     "react": {

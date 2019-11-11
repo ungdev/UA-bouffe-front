@@ -1,5 +1,4 @@
 import { Category, Action } from '../types';
-import { API } from '../utils/api';
 
 const initialState = [] as Array<Category>;
 
@@ -38,10 +37,6 @@ export default (state = initialState, action: Action) => {
   }
 
   return state;
-};
-
-export const toogleItemAvailable = (id: number) => async (dispatch: any) => {
-  await API.patch(`/items/${id}/availability/toogle`, {});
 };
 
 export const setCategories = (categories: Array<Category>): Action => ({

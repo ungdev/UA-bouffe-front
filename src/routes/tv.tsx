@@ -4,7 +4,7 @@ import './tv.scss';
 import { useSelector } from 'react-redux';
 
 import { history } from '../components/loginRouter';
-import { State, Order as OrderType, Status, Item, OrderItem } from '../types';
+import { State, Order as OrderType, Status, OrderItem } from '../types';
 
 interface GroupedCategory {
   name: string;
