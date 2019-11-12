@@ -55,7 +55,8 @@ const Basket = () => {
   const dispatch = useDispatch();
   const orgaPrice = useSelector((state: State) => state.orgaPrice);
   const basket = useSelector((state: State) => state.basket);
-  const promotionsComputation = computePromotions(basket, orgaPrice);
+  const promotionCatalog = useSelector((state: State) => state.promotions);
+  const promotionsComputation = computePromotions(basket, orgaPrice, promotionCatalog);
 
   const [paymentOpened, setPaymentOpened] = useState(false);
 

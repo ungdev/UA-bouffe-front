@@ -27,8 +27,6 @@ const Sell = () => {
     categories = categories.filter((category) => category.key !== queryParams.except);
   }
 
-  if (categories.length === 0) return <div>Chargement...</div>;
-
   categories = categories.map((category) => ({
     ...category,
     items: category.items.filter((item) => item.available),

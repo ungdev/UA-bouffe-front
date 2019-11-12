@@ -1,9 +1,14 @@
 import { API, setAPIToken } from '../utils/api';
 import { toast } from 'react-toastify';
 import { Socket } from '../utils/socket';
-import { clearOrders } from './orders';
+import { clearOrders, setOrders } from './orders';
 import { clearBasket } from './basket';
 import { LoginState, User, Action, Dispatch } from '../types';
+import { clearPromotions, setPromotions } from './promotions';
+import { getOrders } from '../utils/orders';
+import { getCategories } from '../utils/categories';
+import { setCategories } from './categories';
+import { getPromotions } from '../utils/promotions';
 
 const initialState: LoginState = {
   token: null,
@@ -70,6 +75,7 @@ export const logout = () => (dispatch: Dispatch) => {
   Socket.disconnect();
   dispatch(clearOrders());
   dispatch(clearBasket());
+  dispatch(clearPromotions());
   toast('Vous avez été déconnecté');
   dispatch(
     setUser({
@@ -78,6 +84,20 @@ export const logout = () => (dispatch: Dispatch) => {
       key: null,
     }),
   );
+};
+
+export const fetchData = () => async (dispatch: Dispatch) => {
+  dispatch(Socket.connect());
+  const orders = await getOrders();
+  dispatch(setOrders(orders));
+
+  const categories = await getCategories();
+  dispatch(setCategories(categories));
+
+  const promotions = await getPromotions();
+  dispatch(setPromotions(promotions));
+
+  dispatch(setLoading(false));
 };
 
 export const autoLogin = () => async (dispatch: Dispatch) => {
@@ -90,16 +110,21 @@ export const autoLogin = () => async (dispatch: Dispatch) => {
       const { token, name, key } = res.data;
 
       dispatch(setUser({ token, name, key }));
+      dispatch(fetchData());
     } catch (err) {
       dispatch(logout());
+      dispatch(setLoading(false));
     }
+  } else {
+    dispatch(setLoading(false));
   }
-  dispatch(setLoading(false));
 };
 
 export const tryLogin = (pin: string) => async (dispatch: Dispatch) => {
   const res = await API.post<User>(`/auth/login`, { pin });
   const { token, name, key } = res.data;
   toast.success('Connexion validée');
+  dispatch(setLoading(true));
   dispatch(setUser({ token, name, key }));
+  dispatch(fetchData());
 };

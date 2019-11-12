@@ -73,6 +73,7 @@ export interface State {
   orders: Array<Order>;
   login: LoginState;
   categories: Array<Category>;
+  promotions: Array<Promotion>;
 }
 
 export interface Action {
@@ -84,4 +85,7 @@ export type Dispatch = ThunkDispatch<State, void, Action>;
 
 export interface LoginState extends User {
   loading: boolean;
+  token: string;
+  name: string;
+  key: string;
 }

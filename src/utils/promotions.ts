@@ -1,31 +1,12 @@
 import { Item, Promotion, Price } from '../types';
+import { API } from './api';
 
-/**
- * Il faut juste bien orderner les promotions du plus complexe au moins complexe
- */
-const promotionCatalog: Array<Promotion> = [
-  {
-    formula: ['pizza', 'canette'],
-    orgaPrice: 400,
-    price: 500,
-    name: 'Promo pizza canette',
-    key: 'pizza-canette',
-  },
-  {
-    formula: ['croques', 'croques', 'croques', 'canette'],
-    orgaPrice: 250,
-    price: 450,
-    name: 'Promo 3 croques canette',
-    key: 'croques-canettes',
-  },
-  {
-    formula: ['croques', 'croques', 'croques'],
-    orgaPrice: 200,
-    price: 400,
-    name: 'Promo 3 croques',
-    key: 'croques',
-  },
-];
+export const getPromotions = async () => {
+  const request = await API.get<Array<Promotion>>('/promotions');
+  const promotions = request.data;
+
+  return promotions;
+};
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const arrayContainsArray = (superset: Array<any>, subset: Array<any>) => {
@@ -40,7 +21,6 @@ const removePromo = (_basket: Array<Item>, promotions: Promotion) => {
   for (const itemPromo of promotions.formula) {
     const i = basket.findIndex((e) => e.promoKey === itemPromo);
     basket.splice(i, 1);
-    //basket = basket.filter((e, index) => i !== index);
   }
 
   return basket;
@@ -72,7 +52,11 @@ const calculateTotal = (array: Array<Price>, orgaPrice: boolean) => {
   return array.reduce((acc, curr) => acc + (orgaPrice ? curr.orgaPrice : curr.price), 0);
 };
 
-const computePromotions = (_basket: Array<Item>, orgaPrice: boolean): ComputePromotionsReturn => {
+const computePromotions = (
+  _basket: Array<Item>,
+  orgaPrice: boolean,
+  promotionCatalog: Array<Promotion>,
+): ComputePromotionsReturn => {
   let basket = _basket.slice();
   let hasPromotions = true;
   const listPromotions = [];
