@@ -38,7 +38,7 @@ const Preparation = () => {
       <div className="order" key={order.id}>
         <div className="titles">
           <span className="place">{order.place}</span>
-          <span>{moment(order.createdAt).fromNow()}</span>
+          <span>{moment(order.createdAt).fromNow(true)}</span>
         </div>
         <ul className="items">
           {order.orderItems.map((orderItem, index) => (

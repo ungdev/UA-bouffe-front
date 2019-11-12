@@ -2,29 +2,30 @@
   display: flex;
   justify-content: space-between;
   font-size: 2em;
-  height: 100%;
+  height: 92%;
   text-align: center;
 
   .orders {
     padding: 20px;
     width: 100%;
     height: 100%;
+
+    .cards-grid {
+      display: flex;
+      justify-content: space-between;
+    }
+
     .cards {
       padding-top: 20px;
       display: flex;
       width: 100%;
-      flex-wrap: wrap;
-      justify-content: space-evenly;
+      flex-direction: column;
     }
 
     .card {
-      width: 40%;
       background-color: var(--primary);
       padding: 10px 5px;
       margin: 5px;
-
-      .title {
-      }
 
       .items {
         text-align: left;
@@ -34,7 +35,7 @@
   }
 
   .separator {
-    height: 90%;
+    height: 95%;
     border-right: 1px solid var(--light);
     align-self: center;
   }

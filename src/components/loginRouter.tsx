@@ -3,8 +3,7 @@ import { Router } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import Login from '../routes/login';
 import { createBrowserHistory } from 'history';
-import { autoLogin, setLoading } from '../reducers/login';
-import { Socket } from '../utils/socket';
+import { autoLogin } from '../reducers/login';
 import { State } from '../types';
 import Loading from './loading';
 

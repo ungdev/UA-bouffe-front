@@ -35,11 +35,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    min-height: 100px;
+    margin-bottom: 5px;
 
     .titles {
       display: flex;
       flex-direction: column;
+      margin: 5px 0;
 
       .place {
         margin-bottom: 10px;
@@ -53,10 +54,10 @@
 
     .next {
       background-color: var(--success);
-      height: 100px;
       width: 20%;
       font-size: 2em;
       position: relative;
+      align-self: stretch;
 
       &:before {
         position: absolute;

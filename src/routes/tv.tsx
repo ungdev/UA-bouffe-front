@@ -55,10 +55,13 @@ const Order = ({ order }: { order: OrderType }) => {
 
 const OrderGrid = ({ orders }: { orders: Array<OrderType> }) => {
   return (
-    <div className="cards">
-      {orders.map((order, index) => (
-        <Order key={index} order={order} />
-      ))}
+    <div className="cards-grid">
+      <div className="cards">
+        {orders.map((order, index) => (index % 2 === 0 ? <Order key={index} order={order} /> : ''))}
+      </div>
+      <div className="cards">
+        {orders.map((order, index) => (index % 2 === 1 ? <Order key={index} order={order} /> : ''))}
+      </div>
     </div>
   );
 };
