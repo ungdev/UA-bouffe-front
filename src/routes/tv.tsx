@@ -28,9 +28,15 @@ const groupOrderItems = (items: Array<OrderItem>) => {
   }, []);
 };
 
+// Takes plural in account
+const formatName = (name: string, count: number) => {
+  if (name.endsWith('s') && count === 1) return name.slice(0, -1);
+
+  return name;
+};
+
 const Order = ({ order }: { order: OrderType }) => {
   const groupedOrderItems = groupOrderItems(order.orderItems);
-
   return (
     <div className="card">
       <span className="title">{order.place}</span>
@@ -38,7 +44,7 @@ const Order = ({ order }: { order: OrderType }) => {
         {groupedOrderItems.map((category, index) => {
           return (
             <li key={index}>
-              {category.count} {category.name}
+              {category.count} {formatName(category.name, category.count)}
             </li>
           );
         })}
