@@ -55,13 +55,10 @@ const Order = ({ order }: { order: OrderType }) => {
 
 const OrderGrid = ({ orders }: { orders: Array<OrderType> }) => {
   return (
-    <div className="cards-grid">
-      <div className="cards">
-        {orders.map((order, index) => (index % 2 === 0 ? <Order key={index} order={order} /> : ''))}
-      </div>
-      <div className="cards">
-        {orders.map((order, index) => (index % 2 === 1 ? <Order key={index} order={order} /> : ''))}
-      </div>
+    <div className="cards">
+      {orders.map((order, index) => (
+        <Order key={index} order={order} />
+      ))}
     </div>
   );
 };
@@ -75,10 +72,13 @@ const View = () => {
   return (
     <div id="tv" onClick={() => history.push('/')}>
       <div className="orders">
-        <span>En attente...</span>
+        <span>En attente</span>
         <OrderGrid orders={pendingOrders} />
       </div>
-      <div className="separator"></div>
+      <div className="center">
+        <img className="logo" src={`${process.env.PUBLIC_URL}/ua.svg`} />
+        <div className="separator"></div>
+      </div>
       <div className="orders">
         <span>Prêt</span>
         <OrderGrid orders={readyOrders} />

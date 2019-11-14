@@ -10,33 +10,42 @@
     width: 100%;
     height: 100%;
 
-    .cards-grid {
-      display: flex;
-      justify-content: space-between;
-    }
-
     .cards {
-      padding-top: 20px;
-      display: flex;
       width: 100%;
-      flex-direction: column;
+      padding-top: 50px;
+      display: flex;
+      flex-wrap: wrap;
     }
 
     .card {
+      width: 47%;
       background-color: var(--primary);
       padding: 10px 5px;
       margin: 5px;
 
       .items {
+        flex: 1;
         text-align: left;
         font-size: 0.5em;
       }
     }
   }
 
-  .separator {
-    height: 95%;
-    border-right: 1px solid var(--light);
-    align-self: center;
+  .center {
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+
+    .logo {
+      width: 100%;
+    }
+
+    .separator {
+      margin-top: 20px;
+      height: 95%;
+      width: 2px;
+      background: var(--gradient);
+      align-self: center;
+    }
   }
 }
