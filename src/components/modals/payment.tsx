@@ -77,7 +77,7 @@ const PaymentMethodModal = ({ isOpen, total, onPay, onCancel }: ModalProps) => {
                 <div className="row" key={index}>
                   {row.map((letter) => (
                     <div
-                      className={`card ${letter === currentLetter ? 'active' : ''} ${!orgaPrice ? 'hover' : ''}`}
+                      className={`card ${letter === currentLetter ? 'active' : ''} ${orgaPrice ? 'disabled' : ''}`}
                       key={letter}
                       onClick={() => setCurrentLetter(!orgaPrice ? letter : currentLetter)}>
                       {letter}
@@ -88,7 +88,7 @@ const PaymentMethodModal = ({ isOpen, total, onPay, onCancel }: ModalProps) => {
             </div>
             <div
               className={`visitor-card card ${currentLetter === process.env.REACT_APP_VISITOR_LETTER ? 'active' : ''} ${
-                !orgaPrice ? 'hover' : ''
+                orgaPrice ? 'disabled' : ''
               }`}
               onClick={() => setCurrentLetter(!orgaPrice ? process.env.REACT_APP_VISITOR_LETTER : currentLetter)}>
               <span>Visiteur</span>
@@ -100,7 +100,7 @@ const PaymentMethodModal = ({ isOpen, total, onPay, onCancel }: ModalProps) => {
             {digits.map((row, rowIndex) => (
               <div className="row" key={rowIndex}>
                 {row.map((digit, index) => (
-                  <div className="card hover" key={index} onClick={() => onDigitClick(digit)}>
+                  <div className="card" key={index} onClick={() => onDigitClick(digit)}>
                     {digit}
                   </div>
                 ))}

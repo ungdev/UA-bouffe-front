@@ -43,9 +43,16 @@
     margin: var(--grid-inner-margin);
     background-color: var(--primary);
     color: var(--light);
-
     &:hover {
       filter: brightness(0.9);
+    }
+
+    &.disabled {
+      background-color: #cccccc;
+
+      &:hover {
+        filter: none;
+      }
     }
 
     &.active {
