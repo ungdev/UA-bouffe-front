@@ -21,6 +21,9 @@ const digits = [
   [<FontAwesome key="backspace" name="backspace" />, '0', ''],
 ];
 
+const VISITOR_LETTER = 'Y';
+const ORGA_LETTER = 'Z';
+
 interface ModalProps {
   isOpen: boolean;
   total: number;
@@ -35,7 +38,7 @@ const PaymentMethodModal = ({ isOpen, total, onPay, onCancel }: ModalProps) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setCurrentLetter(orgaPrice ? process.env.REACT_APP_ORGA_LETTER : '');
+    setCurrentLetter(orgaPrice ? ORGA_LETTER : '');
   }, [isOpen]);
 
   const onDigitClick = (digit: string | ReactNode) => {
@@ -87,10 +90,10 @@ const PaymentMethodModal = ({ isOpen, total, onPay, onCancel }: ModalProps) => {
               ))}
             </div>
             <div
-              className={`visitor-card card ${currentLetter === process.env.REACT_APP_VISITOR_LETTER ? 'active' : ''} ${
+              className={`visitor-card card ${currentLetter === VISITOR_LETTER ? 'active' : ''} ${
                 orgaPrice ? 'disabled' : ''
               }`}
-              onClick={() => setCurrentLetter(!orgaPrice ? process.env.REACT_APP_VISITOR_LETTER : currentLetter)}>
+              onClick={() => setCurrentLetter(!orgaPrice ? VISITOR_LETTER : currentLetter)}>
               <span>Visiteur</span>
               <span>Sponsor</span>
               <span>Caster</span>
