@@ -6,14 +6,16 @@ import moment from 'moment';
 import FontAwesome from 'react-fontawesome';
 import { useSelector } from 'react-redux';
 import { State, Order, Status } from '../types';
-import { upgradeOrder } from '../utils/orders';
+import { upgradeOrder as _upgradeOrder } from '../utils/orders';
 import { useLocation } from 'react-router';
 import { parse } from 'query-string';
+import Modal from '../components/modals/modal';
 
 const Preparation = () => {
   const location = useLocation();
   const queryParams = parse(location.search);
   let orders = useSelector((state: State) => state.orders);
+  const [confirmOrder, setConfirmOrder] = useState(Object);
 
   // Renvoie les commandes contenant au moins un item dans la catégory du paramètre
   if (queryParams.only) {
@@ -32,6 +34,15 @@ const Preparation = () => {
 
     return () => clearInterval(interval);
   });
+
+  const upgradeOrder = (order: Order) => {
+    if(order.status === 'ready') {
+      setConfirmOrder(order);
+    }
+    else {
+      _upgradeOrder(order);
+    }
+  };
 
   const displayOrders = (orders: Array<Order>) => {
     return orders.map((order) => (
@@ -67,6 +78,26 @@ const Preparation = () => {
           <div className="orders">{displayOrders(orders.filter((order) => order.status === Status.READY))}</div>
         </div>
       </div>
+      <Modal className="preparation-modal" isOpen={confirmOrder.place !== undefined}>
+        <p>La commande {confirmOrder.place} a bien été livrée ?</p>
+        <div className="actions">
+          <div
+            className="button cancel"
+            onClick={() => setConfirmOrder({})}
+          >
+            Annuler
+          </div>
+          <div
+            className="button confirm"
+            onClick={() => {
+              _upgradeOrder(confirmOrder);
+              setConfirmOrder({});
+            }}
+          >
+            Confirmer
+          </div>
+        </div>
+      </Modal>
     </>
   );
 };

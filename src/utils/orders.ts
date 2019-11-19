@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify';
+
 import { Order, Item, PaymentMethod } from '../types';
 import { API } from './api';
 
@@ -17,6 +19,8 @@ export const addOrder = async (items: Array<Item>, place: string, method: Paymen
     orgaPrice,
     orders,
   });
+
+  toast.success('La commande a été envoyée');
 };
 
 export const upgradeOrder = async (order: Order) => {
