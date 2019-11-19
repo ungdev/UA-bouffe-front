@@ -1,10 +1,14 @@
+.logout {
+  padding-right: 14px;
+}
+
 #index {
   display: flex;
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
   align-items: stretch;
-  height: 85%;
+  height: calc(100% - 50px);
   font-size: 3em;
 
   div {

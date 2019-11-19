@@ -38,17 +38,20 @@ const Navbar = ({ back, onBack, children }: PropTypes) => {
   return (
     <nav className="navbar">
       {back ? (
-        <div className="back" onClick={() => onBackClick()}>
+        <div className="back absolute-left" onClick={() => onBackClick()}>
           <FontAwesome name="chevron-left" />
         </div>
       ) : (
         ''
       )}
       <span className="title" onClick={() => window.location.reload()}>
+        <FontAwesome name="sync-alt" className="reload-icon" />
         TurboBouffe - {name} - {time}
       </span>
 
-      {children ? children : ''}
+      <div className="absolute-right">
+        {children ? children : ''}
+      </div>
     </nav>
   );
 };

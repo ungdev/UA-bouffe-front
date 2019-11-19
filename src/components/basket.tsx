@@ -104,7 +104,7 @@ const Basket = () => {
           <PromotionItem promotion={promotion} key={index} />
         ))}
       </div>
-      <div className="pay" onClick={() => openPaymentModal()}>
+      <div className={`pay ${promotionsComputation.total === 0 ? 'disabled' : ''}`} onClick={() => openPaymentModal()}>
         <span>{formatPrice(promotionsComputation.total)}</span>
         <FontAwesome name="check" />
       </div>
