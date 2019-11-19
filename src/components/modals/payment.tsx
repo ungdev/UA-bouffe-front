@@ -39,7 +39,7 @@ const PaymentMethodModal = ({ isOpen, total, onPay, onCancel }: ModalProps) => {
 
   useEffect(() => {
     setCurrentLetter(orgaPrice ? ORGA_LETTER : '');
-  }, [isOpen]);
+  }, [isOpen]); // eslint-disable-line
 
   const onDigitClick = (digit: string | ReactNode) => {
     switch (digit) {

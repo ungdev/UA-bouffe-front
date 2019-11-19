@@ -76,7 +76,7 @@ const View = () => {
         <OrderGrid orders={pendingOrders} />
       </div>
       <div className="center">
-        <img className="logo" src={`${process.env.PUBLIC_URL}/ua.svg`} />
+        <img className="logo" src={`${process.env.PUBLIC_URL}/ua.svg`} alt="" />
         <div className="separator"></div>
       </div>
       <div className="orders">
