@@ -10,10 +10,21 @@ export const getPromotions = async () => {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const arrayContainsArray = (superset: Array<any>, subset: Array<any>) => {
+  const supersetBis = [...superset];
   if (subset.length === 0) {
     return false;
   }
-  return subset.every((value) => superset.indexOf(value) >= 0);
+  if (subset.length > superset.length) {
+    return false;
+  }
+  for (const subItem of subset) {
+    const index = supersetBis.indexOf(subItem);
+    if (index < 0) {
+      return false;
+    }
+    supersetBis.splice(index, 1);
+  }
+  return true;
 };
 
 const removePromo = (_basket: Array<Item>, promotions: Promotion) => {
@@ -33,7 +44,10 @@ interface FindPromoReturn {
 
 const findPromo = (basket: Array<Item>, promotions: Array<Promotion>): FindPromoReturn => {
   for (const promotion of promotions) {
-    const isPromo = arrayContainsArray(basket.map((item) => item.promoKey), promotion.formula);
+    const isPromo = arrayContainsArray(
+      basket.map((item) => item.promoKey),
+      promotion.formula,
+    );
     if (isPromo) {
       const newCart = removePromo(basket, promotion);
       return { basket: newCart, promotion };

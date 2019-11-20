@@ -36,10 +36,9 @@ const Preparation = () => {
   });
 
   const upgradeOrder = (order: Order) => {
-    if(order.status === 'ready') {
+    if (order.status === 'ready') {
       setConfirmOrder(order);
-    }
-    else {
+    } else {
       _upgradeOrder(order);
     }
   };
@@ -81,10 +80,7 @@ const Preparation = () => {
       <Modal className="preparation-modal" isOpen={confirmOrder.place !== undefined}>
         <p>La commande {confirmOrder.place} a bien été livrée ?</p>
         <div className="actions">
-          <div
-            className="button cancel"
-            onClick={() => setConfirmOrder({})}
-          >
+          <div className="button cancel" onClick={() => setConfirmOrder({})}>
             Annuler
           </div>
           <div
@@ -92,8 +88,7 @@ const Preparation = () => {
             onClick={() => {
               _upgradeOrder(confirmOrder);
               setConfirmOrder({});
-            }}
-          >
+            }}>
             Confirmer
           </div>
         </div>

@@ -49,9 +49,7 @@ const Navbar = ({ back, onBack, children }: PropTypes) => {
         TurboBouffe - {name} - {time}
       </span>
 
-      <div className="absolute-right">
-        {children ? children : ''}
-      </div>
+      <div className="absolute-right">{children ? children : ''}</div>
     </nav>
   );
 };
