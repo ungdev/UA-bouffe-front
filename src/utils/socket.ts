@@ -16,7 +16,7 @@ export const Socket = {
     interval = setInterval(async () => {
       const orders = await getOrders();
       dispatch(setOrders(orders));
-    }, 5000);
+    }, parseInt(process.env.REACT_APP_HTTP_REQUEST_INTERVAL));
 
     //socket = io.connect(process.env.REACT_APP_API_URI);
     /*
