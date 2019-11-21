@@ -70,7 +70,10 @@ const PaymentMethodModal = ({ isOpen, total, onPay, onCancel }: ModalProps) => {
         <FontAwesome name="times" />
       </div>
       <span className="title">
-        Confirmer la commande {currentLetter} {currentDigit} ({formatPrice(total)})
+        Confirmer la commande{' '}
+        <span className="order">
+          {currentLetter} {currentDigit}
+        </span>
       </span>
       <div className="content">
         <div className="keyboard">

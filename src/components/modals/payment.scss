@@ -2,6 +2,11 @@
   --grid-inner-margin: 1px;
   --card-size: 100px;
 
+  .title .order {
+    font-weight: bold;
+    color: var(--danger);
+  }
+
   .cancel {
     height: 50px;
     width: 50px;
