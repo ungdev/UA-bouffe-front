@@ -4,7 +4,7 @@ import { PaymentMethod, State } from '../../types';
 import FontAwesome from 'react-fontawesome';
 
 import './payment.scss';
-import { formatMethod, formatPrice } from '../../utils/format';
+import { formatMethod } from '../../utils/format';
 import { useSelector } from 'react-redux';
 
 const letters = [
@@ -31,7 +31,7 @@ interface ModalProps {
   onCancel: () => void;
 }
 
-const PaymentMethodModal = ({ isOpen, total, onPay, onCancel }: ModalProps) => {
+const PaymentMethodModal = ({ isOpen, onPay, onCancel }: ModalProps) => {
   const orgaPrice = useSelector((state: State) => state.orgaPrice);
   const [currentLetter, setCurrentLetter] = useState('');
   const [currentDigit, setCurrentDigit] = useState('');
