@@ -1,9 +1,8 @@
 .modal {
   position: absolute;
-  --modal-size: 25%;
-  top: var(--modal-size);
-  left: var(--modal-size);
-  right: var(--modal-size);
+  top: 5%;
+  left: 5%;
+  right: 5%;
   background-color: var(--light);
   display: flex;
   flex-direction: column;
