@@ -1,12 +1,11 @@
-import io from 'socket.io-client';
+//import io from 'socket.io-client';
 import { setOrders } from '../reducers/orders';
-import { toast } from 'react-toastify';
-import { logout } from '../reducers/login';
-import { Order, Category, Dispatch } from '../types';
-import { setCategories } from '../reducers/categories';
-import { useEffect } from 'react';
+//import { toast } from 'react-toastify';
+//import { logout } from '../reducers/login';
+import { Dispatch } from '../types';
+//import { setCategories } from '../reducers/categories';
+//import { useEffect } from 'react';
 import { getOrders } from './orders';
-import { getCategories } from './categories';
 
 //let socket: SocketIOClientStatic['Socket'] | undefined = undefined;
 
