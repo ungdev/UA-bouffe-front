@@ -4,12 +4,13 @@ import './preparation.scss';
 import Navbar from '../components/navbar';
 import moment from 'moment';
 import FontAwesome from 'react-fontawesome';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { State, Order, Status } from '../types';
-import { upgradeOrder as _upgradeOrder } from '../utils/orders';
+import { upgradeOrder as _upgradeOrder, getOrders } from '../utils/orders';
 import { useLocation } from 'react-router';
 import { parse } from 'query-string';
 import Modal from '../components/modals/modal';
+import { setOrders } from '../reducers/orders';
 
 const Preparation = () => {
   const location = useLocation();
@@ -24,6 +25,8 @@ const Preparation = () => {
     );
   }
 
+  const dispatch = useDispatch();
+
   // used only to refresh the component every minute
   const [tictac, setTicTac] = useState(false);
 
@@ -35,11 +38,14 @@ const Preparation = () => {
     return () => clearInterval(interval);
   });
 
-  const upgradeOrder = (order: Order) => {
+  const upgradeOrder = async (order: Order) => {
     if (order.status === 'ready') {
       setConfirmOrder(order);
     } else {
-      _upgradeOrder(order);
+      await _upgradeOrder(order);
+      const orders = await getOrders();
+      dispatch(setOrders(orders));
+      setConfirmOrder({});
     }
   };
 
@@ -85,8 +91,10 @@ const Preparation = () => {
           </div>
           <div
             className="button confirm"
-            onClick={() => {
-              _upgradeOrder(confirmOrder);
+            onClick={async () => {
+              await _upgradeOrder(confirmOrder);
+              const orders = await getOrders();
+              dispatch(setOrders(orders));
               setConfirmOrder({});
             }}>
             Confirmer
