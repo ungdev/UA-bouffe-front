@@ -3,14 +3,16 @@ import React, { useState } from 'react';
 import './items.scss';
 import Navbar from '../components/navbar';
 import Switch from '../components/switch';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { State, Item as ItemType, Category as CategoryType } from '../types';
 import FontAwesome from 'react-fontawesome';
 import { formatPrice } from '../utils/format';
 import { toogleItemAvailable } from '../utils/items';
 const Item = ({ item }: { item: ItemType }) => {
+  const dispatch = useDispatch();
+
   return (
-    <div className="item" onClick={() => toogleItemAvailable(item.id)}>
+    <div className="item" onClick={() => dispatch(toogleItemAvailable(item.id))}>
       <div className="left-side">
         <Switch on={item.available} />
         <span>{item.name}</span>
