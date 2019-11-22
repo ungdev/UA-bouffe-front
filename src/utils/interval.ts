@@ -1,9 +1,8 @@
 import { setOrders } from '../reducers/orders';
-import { Dispatch, State, GetState, Identifiable } from '../types';
+import { Dispatch, GetState, Identifiable } from '../types';
 import { getOrders } from './orders';
 import { getCategories } from './categories';
 import { setCategories } from '../reducers/categories';
-import { useSelector } from 'react-redux';
 
 const arraysDifferent = (oldArray: Array<Identifiable>, newArray: Array<Identifiable>) => {
   if (oldArray.length !== newArray.length) return true;
