@@ -1,6 +1,6 @@
 import { API, setAPIToken } from '../utils/api';
 import { toast } from 'react-toastify';
-import { Socket } from '../utils/socket';
+import { Interval } from '../utils/interval';
 import { clearOrders, setOrders } from './orders';
 import { clearBasket } from './basket';
 import { LoginState, User, Action, Dispatch } from '../types';
@@ -72,7 +72,7 @@ export const setLoading = (loading: boolean) => ({
 });
 
 export const logout = () => (dispatch: Dispatch) => {
-  Socket.disconnect();
+  Interval.stop();
   dispatch(clearOrders());
   dispatch(clearBasket());
   dispatch(clearPromotions());
@@ -87,7 +87,7 @@ export const logout = () => (dispatch: Dispatch) => {
 };
 
 export const fetchData = () => async (dispatch: Dispatch) => {
-  dispatch(Socket.connect());
+  dispatch(Interval.start());
   const orders = await getOrders();
   dispatch(setOrders(orders));
 
