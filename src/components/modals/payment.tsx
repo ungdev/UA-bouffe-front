@@ -6,6 +6,7 @@ import FontAwesome from 'react-fontawesome';
 import './payment.scss';
 import { formatMethod } from '../../utils/format';
 import { useSelector } from 'react-redux';
+import Loader from '../loader';
 
 const letters = [
   ['A', 'B', 'C', 'D', 'E'],
@@ -116,11 +117,11 @@ const PaymentMethodModal = ({ isOpen, onPay, onCancel }: ModalProps) => {
         </div>
         <div className="buttons">
           <div className="button accent" onClick={() => onPayClick(PaymentMethod.Card)}>
-            {formatMethod(PaymentMethod.Card)}
+            {loading ? <Loader /> : formatMethod(PaymentMethod.Card)}
           </div>
 
           <div className="button success" onClick={() => onPayClick(PaymentMethod.Cash)}>
-            {formatMethod(PaymentMethod.Cash)}
+            {loading ? <Loader /> : formatMethod(PaymentMethod.Cash)}
           </div>
         </div>
       </div>

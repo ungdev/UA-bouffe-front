@@ -5,7 +5,7 @@ import Login from '../routes/login';
 import { createBrowserHistory } from 'history';
 import { autoLogin } from '../reducers/login';
 import { State } from '../types';
-import Loading from './loading';
+import Loader from './pageLoader';
 
 export const history = createBrowserHistory();
 
@@ -17,7 +17,7 @@ const LoginRouter = ({ children }: { children: ReactNode }) => {
     dispatch(autoLogin());
   }, []); // eslint-disable-line
 
-  if (state.login.loading) return <Loading />;
+  if (state.login.loading) return <Loader />;
 
   return state.login.token ? <Router history={history}>{children}</Router> : <Login />;
 };

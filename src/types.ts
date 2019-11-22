@@ -6,7 +6,11 @@ export interface Price {
   orgaPrice: number;
 }
 
-export interface Item extends Price {
+export interface Identifiable {
+  readonly id: number;
+}
+
+export interface Item extends Price, Identifiable {
   readonly id: number;
   key: string;
   promoKey: string;
@@ -20,7 +24,7 @@ export interface ItemWithCategory extends Item {
   category: Category;
 }
 
-export interface Category {
+export interface Category extends Identifiable {
   readonly id: number;
   name: string;
   key: string;
@@ -82,6 +86,7 @@ export interface Action {
 }
 
 export type Dispatch = ThunkDispatch<State, void, Action>;
+export type GetState = () => State;
 
 export interface LoginState extends User {
   loading: boolean;

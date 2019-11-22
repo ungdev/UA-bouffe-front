@@ -11,12 +11,12 @@ import { useLocation } from 'react-router';
 import { parse } from 'query-string';
 import Modal from '../components/modals/modal';
 import { setOrders } from '../reducers/orders';
+import Loader from '../components/loader';
 
 const Preparation = () => {
   const location = useLocation();
   const queryParams = parse(location.search);
   let orders = useSelector((state: State) => state.orders);
-  const [confirmOrder, setConfirmOrder] = useState(Object);
 
   // Renvoie les commandes contenant au moins un item dans la catégory du paramètre
   if (queryParams.only) {
@@ -29,6 +29,8 @@ const Preparation = () => {
 
   // used only to refresh the component every minute
   const [tictac, setTicTac] = useState(false);
+  const [loading, setLoading] = useState<Order>(null);
+  const [confirmOrder, setConfirmOrder] = useState<Order>(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -38,14 +40,18 @@ const Preparation = () => {
     return () => clearInterval(interval);
   });
 
-  const upgradeOrder = async (order: Order) => {
-    if (order.status === 'ready') {
+  const upgradeOrder = async (order: Order, confirmed = false) => {
+    if (order.status === 'ready' && !confirmed) {
       setConfirmOrder(order);
     } else {
-      await _upgradeOrder(order);
-      const orders = await getOrders();
-      dispatch(setOrders(orders));
-      setConfirmOrder({});
+      if (!loading) {
+        setLoading(order);
+        await _upgradeOrder(order);
+        const orders = await getOrders();
+        setLoading(null);
+        dispatch(setOrders(orders));
+        setConfirmOrder(null);
+      }
     }
   };
 
@@ -61,7 +67,13 @@ const Preparation = () => {
             <li key={index}>{orderItem.item.name}</li>
           ))}
         </ul>
-        <FontAwesome name="arrow-right" className="next" onClick={() => upgradeOrder(order)} />
+        {loading && loading.id === order.id ? (
+          <div className="next">
+            <Loader />
+          </div>
+        ) : (
+          <FontAwesome name="arrow-right" className="next" onClick={() => upgradeOrder(order)} />
+        )}
       </div>
     ));
   };
@@ -83,21 +95,19 @@ const Preparation = () => {
           <div className="orders">{displayOrders(orders.filter((order) => order.status === Status.READY))}</div>
         </div>
       </div>
-      <Modal className="preparation-modal" isOpen={confirmOrder.place !== undefined}>
-        <p>La commande {confirmOrder.place} a bien été livrée ?</p>
+      <Modal className="preparation-modal" isOpen={!!confirmOrder}>
+        <p>La commande {confirmOrder && confirmOrder.place} a-t-elle bien été livrée ?</p>
         <div className="actions">
-          <div className="button cancel" onClick={() => setConfirmOrder({})}>
-            Annuler
+          <div className="button cancel" onClick={() => setConfirmOrder(null)}>
+            {loading ? <Loader /> : 'Annuler'}
           </div>
           <div
             className="button confirm"
             onClick={async () => {
-              await _upgradeOrder(confirmOrder);
-              const orders = await getOrders();
-              dispatch(setOrders(orders));
-              setConfirmOrder({});
+              await upgradeOrder(confirmOrder, true);
+              setConfirmOrder(null);
             }}>
-            Confirmer
+            {loading ? <Loader /> : 'Confirmer'}
           </div>
         </div>
       </Modal>

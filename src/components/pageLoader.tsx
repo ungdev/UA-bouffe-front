@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './loading.scss';
+import './pageLoader.scss';
 
 const Loading = () => {
   return (
