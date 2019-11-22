@@ -15,11 +15,11 @@ const requestAPI = <T>(method: Method, route: string, body?: object) => {
         },
         url: route,
         data: body,
-        timeout: 3000,
+        timeout: parseInt(process.env.REACT_APP_API_TIMEOUT) || 5000,
       })
       .then((res) => resolve(res))
       .catch((err) => {
-        if (err.code === 'ECONNABORTED') toast.error('Connexion au serveur impossible...');
+        if (err.message === 'Network Error' || err.code === 'ECONNABORTED') toast.error('Connexion au serveur perdue');
         else toast.error(errorToString(err.response ? err.response.data.error : 'UNKNOWN'));
         reject();
       });

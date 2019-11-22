@@ -11,12 +11,12 @@ export const Interval = {
     orderInterval = setInterval(async () => {
       const orders = await getOrders();
       dispatch(setOrders(orders));
-    }, parseInt(process.env.REACT_APP_ORDER_INTERVAL));
+    }, parseInt(process.env.REACT_APP_ORDER_INTERVAL) || 1000);
 
     categoryInterval = setInterval(async () => {
       const categories = await getCategories();
       dispatch(setCategories(categories));
-    }, parseInt(process.env.REACT_APP_CATEGORY_INTERVAL));
+    }, parseInt(process.env.REACT_APP_CATEGORY_INTERVAL) || 5000);
   },
   stop: () => {
     if (orderInterval) {
