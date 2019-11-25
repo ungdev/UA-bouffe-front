@@ -10,7 +10,6 @@ import { upgradeOrder as _upgradeOrder } from '../utils/orders';
 import { useLocation } from 'react-router';
 import { parse } from 'query-string';
 import Modal from '../components/modals/modal';
-import { setOrders } from '../reducers/orders';
 import Loader from '../components/loader';
 
 const Preparation = () => {
