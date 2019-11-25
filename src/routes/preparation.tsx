@@ -4,9 +4,9 @@ import './preparation.scss';
 import Navbar from '../components/navbar';
 import moment from 'moment';
 import FontAwesome from 'react-fontawesome';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { State, Order, Status } from '../types';
-import { upgradeOrder as _upgradeOrder, getOrders } from '../utils/orders';
+import { upgradeOrder as _upgradeOrder } from '../utils/orders';
 import { useLocation } from 'react-router';
 import { parse } from 'query-string';
 import Modal from '../components/modals/modal';
@@ -24,8 +24,6 @@ const Preparation = () => {
       order.orderItems.some((orderItem) => orderItem.item.category.key === queryParams.only),
     );
   }
-
-  const dispatch = useDispatch();
 
   // used only to refresh the component every minute
   const [tictac, setTicTac] = useState(false);
@@ -47,9 +45,7 @@ const Preparation = () => {
       if (!loading) {
         setLoading(order);
         await _upgradeOrder(order);
-        const orders = await getOrders();
         setLoading(null);
-        dispatch(setOrders(orders));
         setConfirmOrder(null);
       }
     }
