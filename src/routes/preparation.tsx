@@ -6,7 +6,7 @@ import moment from 'moment';
 import FontAwesome from 'react-fontawesome';
 import { useSelector } from 'react-redux';
 import { State, Order, Status } from '../types';
-import { upgradeOrder as _upgradeOrder } from '../utils/orders';
+import { upgradeOrder, downgradeOrder } from '../utils/orders';
 import { useLocation } from 'react-router';
 import { parse } from 'query-string';
 import Modal from '../components/modals/modal';
@@ -28,6 +28,7 @@ const Preparation = () => {
   const [tictac, setTicTac] = useState(false);
   const [loading, setLoading] = useState<Order>(null);
   const [confirmOrder, setConfirmOrder] = useState<Order>(null);
+  const [downgradeMode, setDowngradeMode] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -37,13 +38,19 @@ const Preparation = () => {
     return () => clearInterval(interval);
   });
 
-  const upgradeOrder = async (order: Order, confirmed = false) => {
-    if (order.status === 'ready' && !confirmed) {
+  const editOrder = async (order: Order, confirmed = false) => {
+    if (order.status === Status.READY && !confirmed && !downgradeMode) {
       setConfirmOrder(order);
-    } else {
+    } else if (order.status !== Status.PENDING || !downgradeMode) {
       if (!loading) {
         setLoading(order);
-        await _upgradeOrder(order);
+        try {
+          if (!downgradeMode) {
+            await upgradeOrder(order);
+          } else {
+            await downgradeOrder(order);
+          }
+        } catch (e) {}
         setLoading(null);
         setConfirmOrder(null);
       }
@@ -67,7 +74,9 @@ const Preparation = () => {
             <Loader />
           </div>
         ) : (
-          <FontAwesome name="arrow-right" className="next" onClick={() => upgradeOrder(order)} />
+          <div className={`next ${downgradeMode ? 'downgrade' : ''}`} onClick={() => editOrder(order)}>
+            <FontAwesome name="arrow-right" />
+          </div>
         )}
       </div>
     ));
@@ -75,7 +84,13 @@ const Preparation = () => {
 
   return (
     <>
-      <Navbar back="/" />
+      <Navbar back="/">
+        <div
+          onClick={() => setDowngradeMode(!downgradeMode)}
+          className={`preparation-mode-button ${downgradeMode ? 'downgrade' : ''}`}>
+          {!downgradeMode ? 'Aller en arrière' : 'Aller en avant'}
+        </div>
+      </Navbar>
       <div id="preparation">
         <div className="status pending">
           <span className="title">En attente</span>
@@ -99,7 +114,7 @@ const Preparation = () => {
           <div
             className="button confirm"
             onClick={async () => {
-              await upgradeOrder(confirmOrder, true);
+              await editOrder(confirmOrder, true);
               setConfirmOrder(null);
             }}>
             {loading ? <Loader /> : 'Confirmer'}

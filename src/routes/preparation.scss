@@ -1,3 +1,15 @@
+.preparation-mode-button {
+  padding: 0 10px;
+  width: 210px;
+  text-align: left;
+  height: 100%;
+  line-height: 50px;
+
+  &.downgrade {
+    background-color: var(--warning-dark);
+  }
+}
+
 #preparation {
   display: flex;
   height: calc(100% - 50px);
@@ -27,6 +39,17 @@
       background: #aaa;
       width: 2px;
       height: calc(100% - 40px);
+    }
+
+    // Removes the visuals clics for pending (because you can't downgrade a pending order)
+    &.pending .orders .order .next.downgrade {
+      &:hover {
+        filter: unset;
+      }
+
+      .fa {
+        opacity: 0;
+      }
     }
   }
 
@@ -60,6 +83,22 @@
       font-size: 2em;
       position: relative;
       align-self: stretch;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transition: background-color 0.5s ease-in;
+
+      .fa {
+        transition: transform 0.5s ease-in, opacity 0.5s ease-in;
+      }
+
+      &.downgrade {
+        background-color: var(--warning-dark);
+
+        .fa {
+          transform: rotateZ(180deg);
+        }
+      }
 
       &:before {
         position: absolute;

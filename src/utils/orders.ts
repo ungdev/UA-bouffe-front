@@ -24,5 +24,9 @@ export const addOrder = async (items: Array<Item>, place: string, method: Paymen
 };
 
 export const upgradeOrder = async (order: Order) => {
-  await API.patch(`/orders/${order.id}`, null);
+  await API.patch(`/orders/${order.id}/upgrade`, null);
+};
+
+export const downgradeOrder = async (order: Order) => {
+  await API.patch(`/orders/${order.id}/downgrade`, null);
 };
