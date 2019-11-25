@@ -12,7 +12,7 @@
   font-size: 3em;
 
   div {
-    height: 30%;
+    height: calc(33% - 20px);
     width: 45%;
     display: flex;
     justify-content: center;
