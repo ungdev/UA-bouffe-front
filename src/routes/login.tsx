@@ -35,7 +35,9 @@ const Login = () => {
   return (
     <>
       <div id="login">
-        <span className="title">TurboBouffe</span>
+        <span className="title" onClick={() => window.location.reload()}>
+          TurboBouffe
+        </span>
         <div className="field">{pin.replace(/./g, '•')}</div>
         <div className="digits">
           {digits.map((digitsRow, index) => (

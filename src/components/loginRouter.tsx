@@ -20,9 +20,11 @@ const LoginRouter = ({ children }: { children: ReactNode }) => {
   if (!state.server.socketConnected) {
     return (
       <Loader>
-        Serveur déconnecté
-        <br />
-        Tentative de reconnexion en cours
+        <div onClick={() => window.location.reload()}>
+          Serveur déconnecté
+          <br />
+          Tentative de reconnexion en cours
+        </div>
       </Loader>
     );
   }
