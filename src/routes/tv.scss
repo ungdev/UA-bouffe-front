@@ -15,7 +15,7 @@
     }
 
     .container {
-      height: 85%;
+      height: calc(100% - 88px);
       overflow-y: hidden;
 
       .cards {

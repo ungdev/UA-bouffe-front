@@ -11,6 +11,7 @@ import { useLocation } from 'react-router';
 import { parse } from 'query-string';
 import Modal from '../components/modals/modal';
 import Loader from '../components/loader';
+import Scrollable from '../components/scrollable';
 
 const Preparation = () => {
   const location = useLocation();
@@ -58,29 +59,33 @@ const Preparation = () => {
     }
   };
 
-  const displayOrders = (orders: Array<Order>) => {
-    return orders.map((order) => (
-      <div className="order" key={order.id}>
-        <div className="titles">
-          <span className="place">{order.place}</span>
-          <span>{moment(order.createdAt).fromNow(true)}</span>
-        </div>
-        <ul className="items">
-          {order.orderItems.map((orderItem, index) => (
-            <li key={index}>{orderItem.item.name}</li>
-          ))}
-        </ul>
-        {loading && loading.id === order.id ? (
-          <div className="next">
-            <Loader />
+  const OrderList = ({ orders }: { orders: Array<Order> }) => {
+    return (
+      <div className="orders">
+        {orders.map((order) => (
+          <div className="order" key={order.id}>
+            <div className="titles">
+              <span className="place">{order.place}</span>
+              <span>{moment(order.createdAt).fromNow(true)}</span>
+            </div>
+            <ul className="items">
+              {order.orderItems.map((orderItem, index) => (
+                <li key={index}>{orderItem.item.name}</li>
+              ))}
+            </ul>
+            {loading && loading.id === order.id ? (
+              <div className="next">
+                <Loader />
+              </div>
+            ) : (
+              <div className={`next ${downgradeMode ? 'downgrade' : ''}`} onClick={() => editOrder(order)}>
+                <FontAwesome name="arrow-right" />
+              </div>
+            )}
           </div>
-        ) : (
-          <div className={`next ${downgradeMode ? 'downgrade' : ''}`} onClick={() => editOrder(order)}>
-            <FontAwesome name="arrow-right" />
-          </div>
-        )}
+        ))}
       </div>
-    ));
+    );
   };
 
   return (
@@ -93,18 +98,20 @@ const Preparation = () => {
         </div>
       </Navbar>
       <div id="preparation">
-        <div className="status pending">
+        <Scrollable className="status pending">
           <span className="title">En attente</span>
-          <div className="orders">{displayOrders(orders.filter((order) => order.status === Status.PENDING))}</div>
-        </div>
-        <div className="status preparing">
+          <OrderList orders={orders.filter((order) => order.status === Status.PENDING)} />
+        </Scrollable>
+        <div className="separator" />
+        <Scrollable className="status preparing">
           <span className="title">Préparation</span>
-          <div className="orders">{displayOrders(orders.filter((order) => order.status === Status.PREPARING))}</div>
-        </div>
-        <div className="status ready">
+          <OrderList orders={orders.filter((order) => order.status === Status.PREPARING)} />
+        </Scrollable>
+        <div className="separator" />
+        <Scrollable className="status ready">
           <span className="title">Prêt</span>
-          <div className="orders">{displayOrders(orders.filter((order) => order.status === Status.READY))}</div>
-        </div>
+          <OrderList orders={orders.filter((order) => order.status === Status.READY)} />
+        </Scrollable>
       </div>
       <Modal className="preparation-modal" isOpen={!!confirmOrder}>
         <p>La commande {confirmOrder && confirmOrder.place} a-t-elle bien été livrée ?</p>
