@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import './tv.scss';
 import { useSelector } from 'react-redux';
@@ -63,11 +63,33 @@ const OrderGrid = ({ orders }: { orders: Array<OrderType> }) => {
   );
 };
 
-const View = () => {
+const Tv = () => {
   const orders = useSelector((state: State) => state.orders);
 
   const pendingOrders = orders.filter((order) => order.status === Status.PENDING || order.status === Status.PREPARING);
   const readyOrders = orders.filter((order) => order.status === Status.READY);
+
+  useEffect(() => {
+    // Hides scrollbars
+    document.body.style.overflow = 'hidden';
+
+    let scrolling = 1;
+    let scroll = 0;
+
+    const interval = setInterval(() => {
+      window.scrollBy(0, scrolling);
+      if (scroll == window.scrollY) {
+        scrolling *= -1;
+      }
+
+      scroll = window.scrollY;
+    }, 50);
+
+    return () => {
+      clearInterval(interval);
+      document.body.style.overflow = 'visible';
+    };
+  });
 
   return (
     <div id="tv" onClick={() => history.push('/')}>
@@ -87,4 +109,4 @@ const View = () => {
   );
 };
 
-export default View;
+export default Tv;
