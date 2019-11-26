@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, LegacyRef } from 'react';
 
 import './tv.scss';
 import { useSelector } from 'react-redux';
@@ -53,12 +53,14 @@ const Order = ({ order }: { order: OrderType }) => {
   );
 };
 
-const OrderGrid = ({ orders }: { orders: Array<OrderType> }) => {
+const OrderGrid = ({ orders, passingRef }: { orders: Array<OrderType>; passingRef: LegacyRef<HTMLDivElement> }) => {
   return (
-    <div className="cards">
-      {orders.map((order, index) => (
-        <Order key={index} order={order} />
-      ))}
+    <div className="container" ref={passingRef}>
+      <div className="cards">
+        {orders.map((order, index) => (
+          <Order key={index} order={order} />
+        ))}
+      </div>
     </div>
   );
 };
@@ -69,41 +71,42 @@ const Tv = () => {
   const pendingOrders = orders.filter((order) => order.status === Status.PENDING || order.status === Status.PREPARING);
   const readyOrders = orders.filter((order) => order.status === Status.READY);
 
+  const refs = useRef<HTMLDivElement[]>([null, null]);
   useEffect(() => {
     // Hides scrollbars
-    document.body.style.overflow = 'hidden';
+    if (refs.current !== null) {
+      refs.current.forEach((ref) => {
+        //ref.style.overflow = 'hidden';
 
-    let scrolling = 1;
-    let scroll = 0;
+        const interval = setInterval(() => {
+          ref.scrollBy(0, 1);
+          const { clientHeight, scrollTop, scrollHeight } = ref;
+          if (clientHeight + scrollTop >= scrollHeight) {
+            ref.scrollTo(0, 0);
+          }
+        }, 50);
 
-    const interval = setInterval(() => {
-      window.scrollBy(0, scrolling);
-      if (scroll === window.scrollY) {
-        scrolling *= -1;
-      }
-
-      scroll = window.scrollY;
-    }, 50);
-
-    return () => {
-      clearInterval(interval);
-      document.body.style.overflow = 'visible';
-    };
+        return () => {
+          clearInterval(interval);
+          ref.style.overflow = 'visible';
+        };
+      });
+    }
   });
 
   return (
     <div id="tv" onClick={() => history.push('/')}>
       <div className="orders">
-        <span>En attente</span>
-        <OrderGrid orders={pendingOrders} />
+        <div className="title">En attente</div>
+        <OrderGrid orders={pendingOrders} passingRef={(el) => (refs.current[0] = el)} />
       </div>
       <div className="center">
         <img className="logo" src={`${process.env.PUBLIC_URL}/ua.svg`} alt="" />
         <div className="separator"></div>
       </div>
       <div className="orders">
-        <span>Prêt</span>
-        <OrderGrid orders={readyOrders} />
+        <div className="title">Prêt</div>
+        {<OrderGrid orders={readyOrders} passingRef={(el) => (refs.current[1] = el)} />}
       </div>
     </div>
   );
