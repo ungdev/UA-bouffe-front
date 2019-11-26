@@ -15,7 +15,7 @@ const LoginRouter = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     dispatch(autoLogin());
-  }, []);
+  }, []); // eslint-disable-line
 
   if (!state.server.socketConnected) {
     return (
