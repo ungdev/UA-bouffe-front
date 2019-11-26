@@ -29,6 +29,11 @@
       .icon {
         font-size: 0.9em;
         margin-right: 10px;
+        transition: transform 0.25s ease-in;
+
+        &.open {
+          transform: rotateZ(90deg);
+        }
       }
     }
 

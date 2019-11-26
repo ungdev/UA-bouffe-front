@@ -26,12 +26,10 @@ const Item = ({ item }: { item: ItemType }) => {
 const Category = ({ category }: { category: CategoryType }) => {
   const [isOpen, setOpen] = useState(false);
 
-  const icon = isOpen ? 'chevron-down' : 'chevron-right';
-
   return (
     <div className="category">
       <div className="title" onClick={() => setOpen(!isOpen)}>
-        <FontAwesome name={icon} className="icon" />
+        <FontAwesome name={`chevron-right ${isOpen ? 'open' : ''}`} className="icon" />
         {category.name}
       </div>
       {isOpen ? (
