@@ -78,7 +78,7 @@ const Tv = () => {
 
     const interval = setInterval(() => {
       window.scrollBy(0, scrolling);
-      if (scroll == window.scrollY) {
+      if (scroll === window.scrollY) {
         scrolling *= -1;
       }
 

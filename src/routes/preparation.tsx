@@ -48,6 +48,7 @@ const Preparation = () => {
           if (!downgradeMode) {
             await upgradeOrder(order);
           } else {
+            setDowngradeMode(false);
             await downgradeOrder(order);
           }
         } catch (e) {}
