@@ -59,7 +59,7 @@ const Preparation = () => {
     }
   };
 
-  const OrderList = ({ orders }: { orders: Array<Order> }) => {
+  const displayOrders = (orders: Array<Order>) => {
     return (
       <div className="orders">
         {orders.map((order) => (
@@ -100,17 +100,17 @@ const Preparation = () => {
       <div id="preparation">
         <Scrollable className="status pending">
           <span className="title">En attente</span>
-          <OrderList orders={orders.filter((order) => order.status === Status.PENDING)} />
+          {displayOrders(orders.filter((order) => order.status === Status.PENDING))}
         </Scrollable>
         <div className="separator" />
         <Scrollable className="status preparing">
           <span className="title">Préparation</span>
-          <OrderList orders={orders.filter((order) => order.status === Status.PREPARING)} />
+          {displayOrders(orders.filter((order) => order.status === Status.PREPARING))}
         </Scrollable>
         <div className="separator" />
         <Scrollable className="status ready">
           <span className="title">Prêt</span>
-          <OrderList orders={orders.filter((order) => order.status === Status.READY)} />
+          {displayOrders(orders.filter((order) => order.status === Status.READY))}
         </Scrollable>
       </div>
       <Modal className="preparation-modal" isOpen={!!confirmOrder}>
