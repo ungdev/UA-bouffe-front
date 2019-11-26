@@ -10,7 +10,13 @@ export const getOrders = async () => {
   return orders;
 };
 
-export const addOrder = async (items: Array<Item>, place: string, method: PaymentMethod, orgaPrice: boolean) => {
+export const addOrder = async (
+  items: Array<Item>,
+  place: string,
+  method: PaymentMethod,
+  orgaPrice: boolean,
+  total: number,
+) => {
   const orders = items.map((item) => item.id);
 
   await API.post('/orders', {
@@ -18,6 +24,7 @@ export const addOrder = async (items: Array<Item>, place: string, method: Paymen
     place,
     orgaPrice,
     orders,
+    total,
   });
 
   toast.success('La commande a été envoyée');

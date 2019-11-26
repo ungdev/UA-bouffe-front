@@ -65,7 +65,7 @@ const Basket = () => {
   };
 
   const onPay = async (place: string, method: PaymentMethod) => {
-    await addOrder(basket, place, method, orgaPrice);
+    await addOrder(basket, place, method, orgaPrice, promotionsComputation.total);
     dispatch(clearBasket());
     dispatch(setNormalPrice());
     setPaymentOpened(false);
