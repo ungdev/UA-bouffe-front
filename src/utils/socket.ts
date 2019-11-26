@@ -4,27 +4,35 @@ import { toast } from 'react-toastify';
 import { logout } from '../reducers/login';
 import { Order, Category, Dispatch } from '../types';
 import { setCategories } from '../reducers/categories';
+import { setSocketDisconnected, setSocketConnected } from '../reducers/server';
 
 let socket: SocketIOClientStatic['Socket'] | undefined = undefined;
 
 export const Socket = {
   connect: () => async (dispatch: Dispatch) => {
-    socket = io.connect(process.env.REACT_APP_API_URI);
+    if (!socket) {
+      socket = io.connect(process.env.REACT_APP_API_URI);
 
-    socket.on('orderUpdate', (orders: Array<Order>) => {
-      dispatch(setOrders(orders));
-    });
+      socket.on('connect', () => dispatch(setSocketConnected()));
 
-    socket.on('categoryUpdate', (categories: Array<Category>) => {
-      dispatch(setCategories(categories));
-    });
+      socket.on('orderUpdate', (orders: Array<Order>) => {
+        dispatch(setOrders(orders));
+      });
 
-    socket.on('disconnect', (reason: string) => {
-      if (reason === 'transport close') {
-        toast.error('Extinction du serveur...');
-        dispatch(logout());
-      }
-    });
+      socket.on('categoryUpdate', (categories: Array<Category>) => {
+        dispatch(setCategories(categories));
+      });
+
+      socket.on('disconnect', (reason: string) => {
+        if (reason === 'transport close') {
+          toast.error('Extinction du serveur...');
+
+          // Deco reco tmtc ^^
+          dispatch(Socket.disconnect());
+          dispatch(Socket.connect());
+        }
+      });
+    }
   },
 
   checkConnect: () => {
@@ -35,9 +43,10 @@ export const Socket = {
     }
   },
 
-  disconnect: () => {
+  disconnect: () => (dispatch: Dispatch) => {
     if (socket) socket.disconnect();
     socket = undefined;
+    dispatch(setSocketDisconnected());
   },
 };
 

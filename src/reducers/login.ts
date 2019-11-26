@@ -72,7 +72,6 @@ export const setLoading = (loading: boolean) => ({
 });
 
 export const logout = () => (dispatch: Dispatch) => {
-  Socket.disconnect();
   dispatch(clearOrders());
   dispatch(clearBasket());
   dispatch(clearPromotions());
@@ -87,7 +86,6 @@ export const logout = () => (dispatch: Dispatch) => {
 };
 
 export const fetchData = () => async (dispatch: Dispatch) => {
-  dispatch(Socket.connect());
   const orders = await getOrders();
   dispatch(setOrders(orders));
 
@@ -101,6 +99,7 @@ export const fetchData = () => async (dispatch: Dispatch) => {
 };
 
 export const autoLogin = () => async (dispatch: Dispatch) => {
+  dispatch(Socket.connect());
   dispatch(setLoading(true));
   if (localStorage.hasOwnProperty(BOUFFE_TOKEN)) {
     const oldToken = localStorage.getItem(BOUFFE_TOKEN) as string;

@@ -78,6 +78,7 @@ export interface State {
   login: LoginState;
   categories: Array<Category>;
   promotions: Array<Promotion>;
+  server: ServerState;
 }
 
 export interface Action {
@@ -93,4 +94,8 @@ export interface LoginState extends User {
   token: string;
   name: string;
   key: string;
+}
+
+export interface ServerState {
+  socketConnected: boolean;
 }

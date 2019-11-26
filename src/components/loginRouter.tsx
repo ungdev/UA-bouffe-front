@@ -15,11 +15,23 @@ const LoginRouter = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     dispatch(autoLogin());
-  }, []); // eslint-disable-line
+  }, []);
+
+  if (!state.server.socketConnected) {
+    return (
+      <Loader>
+        Serveur déconnecté
+        <br />
+        Tentative de reconnexion en cours
+      </Loader>
+    );
+  }
 
   if (state.login.loading) return <Loader />;
 
-  return state.login.token ? <Router history={history}>{children}</Router> : <Login />;
+  if (!state.login.token) return <Login />;
+
+  return <Router history={history}>{children}</Router>;
 };
 
 export default LoginRouter;
