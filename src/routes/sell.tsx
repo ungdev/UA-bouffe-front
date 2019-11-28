@@ -9,6 +9,7 @@ import Basket from '../components/basket';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearBasket } from '../reducers/basket';
 import { State } from '../types';
+import { setNormalPrice } from '../reducers/orgaPrice';
 /**
  * /sell
  *
@@ -32,9 +33,14 @@ const Sell = () => {
     items: category.items.filter((item) => item.available),
   }));
 
+  const onBack = () => {
+    dispatch(clearBasket());
+    dispatch(setNormalPrice());
+  };
+
   return (
     <>
-      <Navbar back="/" onBack={() => dispatch(clearBasket())}>
+      <Navbar back="/" onBack={() => onBack()}>
         <PriceToogler />
       </Navbar>
       <div id="sell">

@@ -1,20 +1,16 @@
 #items {
-  font-size: 2em;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  font-size: 1.5em;
   text-align: left;
   padding: 20px;
   height: calc(100% - 50px - 40px);
-  overflow-y: scroll;
+  overflow-y: hidden;
 
   .categories {
-    width: 90%;
+    padding: 0 25px;
   }
 
   .category {
     padding: 10px 20px;
-    width: 90%;
     background-color: var(--primary);
 
     .title {
