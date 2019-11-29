@@ -7,16 +7,16 @@
   cursor: none;
 
   .orders {
-    padding: 20px;
+    padding: 20px 20px 0 20px;
     width: 100%;
-    height: calc(100% - 40px);
+    height: calc(100% - 20px);
 
     .title {
-      padding-bottom: 50px;
+      padding-bottom: 15px;
     }
 
     .container {
-      height: calc(100% - 88px);
+      height: calc(100% - 53px);
       overflow-y: hidden;
 
       .cards {
