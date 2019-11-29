@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 
 import { history } from '../components/loginRouter';
 import { State, Order as OrderType, Status, OrderItem } from '../types';
+import Separator from '../components/UI/separator';
 
 interface GroupedCategory {
   name: string;
@@ -68,10 +69,11 @@ const OrderGrid = ({ orders, passingRef }: { orders: Array<OrderType>; passingRe
 const Tv = () => {
   const orders = useSelector((state: State) => state.orders);
 
-  const pendingOrders = orders.filter((order) => order.status === Status.PENDING || order.status === Status.PREPARING);
+  const pendingOrders = orders.filter((order) => order.status === Status.PENDING);
+  const preparingOrders = orders.filter((order) => order.status === Status.PREPARING);
   const readyOrders = orders.filter((order) => order.status === Status.READY);
 
-  const refs = useRef<HTMLDivElement[]>([null, null]);
+  const refs = useRef<HTMLDivElement[]>([null, null, null]);
   useEffect(() => {
     // Hides scrollbars
     if (refs.current !== null) {
@@ -100,13 +102,15 @@ const Tv = () => {
         <div className="title">En attente</div>
         <OrderGrid orders={pendingOrders} passingRef={(el) => (refs.current[0] = el)} />
       </div>
-      <div className="center">
-        <img className="logo" src={`${process.env.PUBLIC_URL}/ua.svg`} alt="" />
-        <div className="separator"></div>
+      <Separator />
+      <div className="orders">
+        <div className="title">Préparation</div>
+        <OrderGrid orders={preparingOrders} passingRef={(el) => (refs.current[1] = el)} />
       </div>
+      <Separator />
       <div className="orders">
         <div className="title">Prêt</div>
-        {<OrderGrid orders={readyOrders} passingRef={(el) => (refs.current[1] = el)} />}
+        {<OrderGrid orders={readyOrders} passingRef={(el) => (refs.current[2] = el)} />}
       </div>
     </div>
   );

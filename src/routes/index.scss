@@ -12,8 +12,8 @@
   font-size: 3em;
 
   div {
-    height: calc(33% - 20px);
-    width: 45%;
+    height: calc(33% - 20px - 4px);
+    width: calc(50% - 20px - 4px - 20px);
     display: flex;
     justify-content: center;
     align-items: center;

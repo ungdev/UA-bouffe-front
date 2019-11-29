@@ -4,6 +4,7 @@
   font-size: 2em;
   text-align: center;
   height: 100%;
+  cursor: none;
 
   .orders {
     padding: 20px;
@@ -25,10 +26,12 @@
       }
 
       .card {
-        width: 45%;
+        width: calc(50% - 10px - 10px - 4px);
         background-color: var(--primary);
         padding: 10px 5px;
         margin: 5px;
+        border: 2px solid;
+        border-image: var(--gradient) 1 1;
 
         .items {
           flex: 1;
@@ -36,27 +39,6 @@
           font-size: 0.5em;
         }
       }
-    }
-  }
-
-  .center {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-
-    .logo {
-      position: absolute;
-      transform: translateX(-50%);
-      width: 100px;
-    }
-
-    .separator {
-      position: relative;
-      top: 110px;
-      height: calc(100% - 140px);
-      width: 4px;
-      background: var(--gradient);
-      align-self: center;
     }
   }
 }

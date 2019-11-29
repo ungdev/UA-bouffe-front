@@ -12,6 +12,7 @@ import { parse } from 'query-string';
 import Modal from '../components/modals/modal';
 import Loader from '../components/loader';
 import Scrollable from '../components/scrollable';
+import Separator from '../components/UI/separator';
 
 const Preparation = () => {
   const location = useLocation();
@@ -102,12 +103,12 @@ const Preparation = () => {
           <span className="title">En attente</span>
           {displayOrders(orders.filter((order) => order.status === Status.PENDING))}
         </Scrollable>
-        <div className="separator" />
+        <Separator />
         <Scrollable className="status preparing">
           <span className="title">Préparation</span>
           {displayOrders(orders.filter((order) => order.status === Status.PREPARING))}
         </Scrollable>
-        <div className="separator" />
+        <Separator />
         <Scrollable className="status ready">
           <span className="title">Prêt</span>
           {displayOrders(orders.filter((order) => order.status === Status.READY))}
