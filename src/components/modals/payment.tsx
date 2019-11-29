@@ -5,8 +5,10 @@ import FontAwesome from 'react-fontawesome';
 
 import './payment.scss';
 import { formatMethod } from '../../utils/format';
-import { useSelector } from 'react-redux';
-import Loader from '../loader';
+import { useSelector, useDispatch } from 'react-redux';
+import ConfirmModal from './confirmation';
+import { clearBasket } from '../../reducers/basket';
+import { setNormalPrice } from '../../reducers/orgaPrice';
 
 const letters = [
   ['A', 'B', 'C', 'D', 'E'],
@@ -29,14 +31,19 @@ interface ModalProps {
   isOpen: boolean;
   total: number;
   onPay: (place: string, method: PaymentMethod) => void;
-  onCancel: () => void;
+  onClose: () => void;
 }
 
-const PaymentMethodModal = ({ isOpen, onPay, onCancel }: ModalProps) => {
+const PaymentMethodModal = ({ isOpen, onPay, onClose }: ModalProps) => {
   const orgaPrice = useSelector((state: State) => state.orgaPrice);
   const [currentLetter, setCurrentLetter] = useState('');
   const [currentDigit, setCurrentDigit] = useState('');
   const [loading, setLoading] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>(null);
+
+  const [confirmOpened, setConfirmOpened] = useState(false);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setCurrentLetter(orgaPrice ? ORGA_LETTER : '');
@@ -54,20 +61,42 @@ const PaymentMethodModal = ({ isOpen, onPay, onCancel }: ModalProps) => {
     }
   };
 
-  const onPayClick = async (method: PaymentMethod) => {
+  const onPayClick = (method: PaymentMethod) => {
+    setConfirmOpened(true);
+    setPaymentMethod(method);
+  };
+
+  const onConfirm = async () => {
     if (currentLetter && currentDigit && !loading) {
       setLoading(true);
       const place = `${currentLetter}${currentDigit}`;
-      await onPay(place, method);
+      await onPay(place, paymentMethod);
+      setConfirmOpened(false);
       setCurrentDigit('');
       setCurrentLetter('');
       setLoading(false);
     }
   };
 
-  return (
+  const onConfirmCancel = () => {
+    setConfirmOpened(false);
+    onClose();
+    setCurrentDigit('');
+    setCurrentLetter('');
+    dispatch(clearBasket());
+    dispatch(setNormalPrice());
+  };
+
+  return confirmOpened ? (
+    <ConfirmModal
+      isOpen={confirmOpened}
+      loading={loading}
+      onConfirm={() => onConfirm()}
+      onCancel={() => onConfirmCancel()}
+    />
+  ) : (
     <Modal isOpen={isOpen} className="payment-modal">
-      <div onClick={() => onCancel()} className="cancel">
+      <div onClick={() => onClose()} className="cancel">
         <FontAwesome name="times" />
       </div>
       <span className="title">
@@ -117,11 +146,11 @@ const PaymentMethodModal = ({ isOpen, onPay, onCancel }: ModalProps) => {
         </div>
         <div className="buttons">
           <div className="button accent" onClick={() => onPayClick(PaymentMethod.Card)}>
-            {loading ? <Loader /> : formatMethod(PaymentMethod.Card)}
+            {formatMethod(PaymentMethod.Card)}
           </div>
 
           <div className="button success" onClick={() => onPayClick(PaymentMethod.Cash)}>
-            {loading ? <Loader /> : formatMethod(PaymentMethod.Cash)}
+            {formatMethod(PaymentMethod.Cash)}
           </div>
         </div>
       </div>

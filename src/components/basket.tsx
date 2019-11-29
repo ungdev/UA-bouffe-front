@@ -94,7 +94,7 @@ const Basket = () => {
         isOpen={paymentOpened}
         total={promotionsComputation.total}
         onPay={(place, method) => onPay(place, method)}
-        onCancel={() => setPaymentOpened(false)}
+        onClose={() => setPaymentOpened(false)}
       />
       <div className="summary">
         {groupedBasket.map((item, index) => (
