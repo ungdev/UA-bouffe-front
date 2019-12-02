@@ -2,6 +2,12 @@
   display: flex;
   flex-direction: column;
 
+  .total {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+
   .important {
     font-weight: bold;
     margin-top: 20px;

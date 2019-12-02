@@ -34,7 +34,7 @@ interface ModalProps {
   onClose: () => void;
 }
 
-const PaymentMethodModal = ({ isOpen, onPay, onClose }: ModalProps) => {
+const PaymentMethodModal = ({ isOpen, onPay, onClose, total }: ModalProps) => {
   const orgaPrice = useSelector((state: State) => state.orgaPrice);
   const [currentLetter, setCurrentLetter] = useState('');
   const [currentDigit, setCurrentDigit] = useState('');
@@ -43,8 +43,6 @@ const PaymentMethodModal = ({ isOpen, onPay, onClose }: ModalProps) => {
   const [errored, setErrored] = useState(false);
 
   const [confirmOpened, setConfirmOpened] = useState(false);
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     setCurrentLetter(orgaPrice ? ORGA_LETTER : '');
@@ -91,14 +89,13 @@ const PaymentMethodModal = ({ isOpen, onPay, onClose }: ModalProps) => {
     onClose();
     setCurrentDigit('');
     setCurrentLetter('');
-    dispatch(clearBasket());
-    dispatch(setNormalPrice());
   };
 
   return confirmOpened ? (
     <ConfirmModal
       isOpen={confirmOpened}
       loading={loading}
+      total={total}
       onConfirm={() => onConfirm()}
       onCancel={() => onConfirmCancel()}
     />
