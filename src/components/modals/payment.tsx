@@ -40,6 +40,7 @@ const PaymentMethodModal = ({ isOpen, onPay, onClose }: ModalProps) => {
   const [currentDigit, setCurrentDigit] = useState('');
   const [loading, setLoading] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>(null);
+  const [errored, setErrored] = useState(false);
 
   const [confirmOpened, setConfirmOpened] = useState(false);
 
@@ -61,13 +62,20 @@ const PaymentMethodModal = ({ isOpen, onPay, onClose }: ModalProps) => {
     }
   };
 
-  const onPayClick = (method: PaymentMethod) => {
-    setConfirmOpened(true);
-    setPaymentMethod(method);
+  const onPayClick = async (method: PaymentMethod) => {
+    if (currentLetter && currentDigit) {
+      setConfirmOpened(true);
+      setPaymentMethod(method);
+    } else {
+      setErrored(true);
+      await new Promise((resolve) => setTimeout(resolve, 50));
+      setTimeout(() => setErrored(false), 100);
+      await new Promise((resolve) => setTimeout(resolve, 50));
+    }
   };
 
   const onConfirm = async () => {
-    if (currentLetter && currentDigit && !loading) {
+    if (!loading) {
       setLoading(true);
       const place = `${currentLetter}${currentDigit}`;
       await onPay(place, paymentMethod);
@@ -113,7 +121,9 @@ const PaymentMethodModal = ({ isOpen, onPay, onClose }: ModalProps) => {
                 <div className="row" key={index}>
                   {row.map((letter) => (
                     <div
-                      className={`card ${letter === currentLetter ? 'active' : ''} ${orgaPrice ? 'disabled' : ''}`}
+                      className={`card ${letter === currentLetter ? 'active' : ''} ${orgaPrice ? 'disabled' : ''} ${
+                        errored ? 'error' : ''
+                      }`}
                       key={letter}
                       onClick={() => setCurrentLetter(!orgaPrice ? letter : currentLetter)}>
                       {letter}
@@ -125,7 +135,7 @@ const PaymentMethodModal = ({ isOpen, onPay, onClose }: ModalProps) => {
             <div
               className={`visitor-card card ${currentLetter === VISITOR_LETTER ? 'active' : ''} ${
                 orgaPrice ? 'disabled' : ''
-              }`}
+              } ${errored ? 'error' : ''}`}
               onClick={() => setCurrentLetter(!orgaPrice ? VISITOR_LETTER : currentLetter)}>
               <span>Visiteur</span>
               <span>Sponsor</span>
@@ -136,7 +146,7 @@ const PaymentMethodModal = ({ isOpen, onPay, onClose }: ModalProps) => {
             {digits.map((row, rowIndex) => (
               <div className="row" key={rowIndex}>
                 {row.map((digit, index) => (
-                  <div className="card" key={index} onClick={() => onDigitClick(digit)}>
+                  <div className={`card ${errored ? 'error' : ''}`} key={index} onClick={() => onDigitClick(digit)}>
                     {digit}
                   </div>
                 ))}

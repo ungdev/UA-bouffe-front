@@ -63,6 +63,10 @@
     &.active {
       background-color: var(--accent);
     }
+
+    &.error {
+      background-color: var(--danger-dark);
+    }
   }
 
   .keyboard .grid {
