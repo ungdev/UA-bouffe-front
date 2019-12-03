@@ -5,10 +5,8 @@ import FontAwesome from 'react-fontawesome';
 
 import './payment.scss';
 import { formatMethod } from '../../utils/format';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import ConfirmModal from './confirmation';
-import { clearBasket } from '../../reducers/basket';
-import { setNormalPrice } from '../../reducers/orgaPrice';
 
 const letters = [
   ['A', 'B', 'C', 'D', 'E'],

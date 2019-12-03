@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, LegacyRef } from 'react';
+import React, { useEffect, useRef, LegacyRef, useState } from 'react';
 
 import './tv.scss';
 import { useSelector } from 'react-redux';
@@ -74,26 +74,38 @@ const Tv = () => {
   const readyOrders = orders.filter((order) => order.status === Status.READY);
 
   const refs = useRef<HTMLDivElement[]>([null, null, null]);
+
+  const speedDown = 2;
+  const speedUp = -5;
+
+  const [scrollSpeed, setScrollSpeed] = useState([speedDown, speedDown, speedDown]);
+
   useEffect(() => {
-    // Hides scrollbars
+    let interval: NodeJS.Timeout;
+
     if (refs.current !== null) {
-      refs.current.forEach((ref) => {
-        //ref.style.overflow = 'hidden';
-
-        const interval = setInterval(() => {
-          ref.scrollBy(0, 1);
+      interval = setInterval(() => {
+        refs.current.forEach((ref, i) => {
+          ref.scrollBy(0, scrollSpeed[i]);
           const { clientHeight, scrollTop, scrollHeight } = ref;
+          const _scrollSpeed = scrollSpeed;
           if (clientHeight + scrollTop >= scrollHeight) {
-            ref.scrollTo(0, 0);
+            _scrollSpeed[i] = speedUp;
+          } else if (scrollTop === 0) {
+            setTimeout(() => {
+              _scrollSpeed[i] = speedDown;
+            }, 2000);
           }
-        }, 50);
-
-        return () => {
-          clearInterval(interval);
-          ref.style.overflow = 'visible';
-        };
-      });
+          setScrollSpeed(_scrollSpeed);
+        });
+      }, 50);
     }
+
+    return () => {
+      if (interval !== null) {
+        clearInterval(interval);
+      }
+    };
   });
 
   return (
