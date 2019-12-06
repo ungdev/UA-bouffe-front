@@ -12,7 +12,7 @@ const PriceToogler = () => {
 
   return (
     <div className={`price-toogler ${orgaPrice ? 'active' : ''}`} onClick={() => dispatch(toogleOrgaPrice())}>
-      {orgaPrice ? 'Prix orga' : 'Prix normal'}
+      {orgaPrice ? 'Mode orga' : 'Mode normal'}
     </div>
   );
 };
