@@ -27,10 +27,13 @@ const Item = ({ item }: ItemPropTypes) => {
   };
 
   return (
-    <div className="item" onClick={() => addToBasket()}>
-      <span className="name">{item.name}</span>
-      <span className="price">{displayPrice()}</span>
-    </div>
+    // Supprime l'item tee shirt orga dans le cas où le prix orga n'est pas pris
+    !(item.key === 'orga-tshirt' && !orgaPrice) && (
+      <div className="item" onClick={() => addToBasket()}>
+        <span className="name">{item.name}</span>
+        <span className="price">{displayPrice()}</span>
+      </div>
+    )
   );
 };
 
@@ -40,7 +43,6 @@ interface ItemsGridProps {
 
 const ItemsGrid = ({ categories }: ItemsGridProps) => {
   const [currentCategoryIndex, setCurrentCategoryIndex] = useState(0);
-
   const currentCategory = categories[currentCategoryIndex];
 
   const displayCategories = () => {
