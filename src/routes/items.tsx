@@ -8,7 +8,6 @@ import { State, Item as ItemType, Category as CategoryType } from '../types';
 import FontAwesome from 'react-fontawesome';
 import { formatPrice } from '../utils/format';
 import { toogleItemAvailable } from '../utils/items';
-import Scrollable from '../components/scrollable';
 const Item = ({ item }: { item: ItemType }) => {
   return (
     <div className="item" onClick={() => toogleItemAvailable(item.id)}>
@@ -51,13 +50,13 @@ const Items = () => {
   return (
     <>
       <Navbar back="/" />
-      <Scrollable id="items">
+      <div id="items">
         <div className="categories">
           {categories.map((category, categoryIndex) => (
             <Category category={category} key={categoryIndex} />
           ))}
         </div>
-      </Scrollable>
+      </div>
     </>
   );
 };

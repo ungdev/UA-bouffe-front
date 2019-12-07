@@ -11,7 +11,6 @@ import { useLocation } from 'react-router';
 import { parse } from 'query-string';
 import Modal from '../components/modals/modal';
 import Loader from '../components/loader';
-import Scrollable from '../components/scrollable';
 import Separator from '../components/UI/separator';
 
 const Preparation = () => {
@@ -99,20 +98,20 @@ const Preparation = () => {
         </div>
       </Navbar>
       <div id="preparation">
-        <Scrollable className="status pending">
+        <div className="status pending">
           <span className="title">En attente</span>
           {displayOrders(orders.filter((order) => order.status === Status.PENDING))}
-        </Scrollable>
+        </div>
         <Separator />
-        <Scrollable className="status preparing">
+        <div className="status preparing">
           <span className="title">Préparation</span>
           {displayOrders(orders.filter((order) => order.status === Status.PREPARING))}
-        </Scrollable>
+        </div>
         <Separator />
-        <Scrollable className="status ready">
+        <div className="status ready">
           <span className="title">Prêt</span>
           {displayOrders(orders.filter((order) => order.status === Status.READY))}
-        </Scrollable>
+        </div>
       </div>
       <Modal className="preparation-modal" isOpen={!!confirmOrder}>
         <p>La commande {confirmOrder && confirmOrder.place} a-t-elle bien été livrée ?</p>
