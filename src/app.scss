@@ -7,6 +7,7 @@ body {
   margin: 0;
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
   user-select: none;
+  cursor: none;
 }
 
 #root {
@@ -30,4 +31,9 @@ body {
   --success-dark: #1c7430;
   --warning-dark: #b28704;
   --danger-dark: #9a2530;
+}
+
+::-webkit-scrollbar {
+  width: 0px; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
 }
