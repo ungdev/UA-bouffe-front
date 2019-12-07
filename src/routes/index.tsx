@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import './index.scss';
 import Navbar from '../components/navbar';
@@ -9,9 +9,16 @@ import { history } from '../components/loginRouter';
 
 const Index = () => {
   const dispatch = useDispatch();
+  const [cursorEnabled, setCursorEnabled] = useState(true);
+
+  document.body.style.cursor = cursorEnabled ? 'initial' : 'none';
+  const toogleCursor = () => {
+    setCursorEnabled(!cursorEnabled);
+  };
+
   return (
     <>
-      <Navbar>
+      <Navbar leftItem={<div onClick={toogleCursor}>Curseur {cursorEnabled ? 'activé' : 'désactivé'}</div>}>
         <div className="logout" onClick={() => dispatch(logout())}>
           Déconnexion
         </div>

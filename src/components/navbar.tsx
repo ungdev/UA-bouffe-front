@@ -11,9 +11,10 @@ interface PropTypes {
   back?: string;
   onBack?: () => void;
   children?: React.ReactNode;
+  leftItem?: React.ReactNode;
 }
 
-const Navbar = ({ back, onBack, children }: PropTypes) => {
+const Navbar = ({ back, onBack, children, leftItem }: PropTypes) => {
   const [time, setTime] = useState(moment().format('H[h]mm'));
   const name = useSelector((state: State) => state.login.name);
 
@@ -44,6 +45,7 @@ const Navbar = ({ back, onBack, children }: PropTypes) => {
       ) : (
         ''
       )}
+      {leftItem ? <div className="back absolute-left">{leftItem}</div> : ''}
       <span className="title" onClick={() => window.location.reload()}>
         <FontAwesome name="sync-alt" className="reload-icon" />
         TurboBouffe - {name} - {time}
