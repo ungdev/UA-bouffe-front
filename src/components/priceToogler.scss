@@ -4,6 +4,7 @@
   line-height: 50px;
   text-align: left;
   padding-left: 10px;
+  background-color: var(--success);
 
   &.active {
     background-color: var(--accent);
