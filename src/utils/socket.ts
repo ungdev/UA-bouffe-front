@@ -23,7 +23,7 @@ export const Socket = {
       });
 
       socket.on('disconnect', (reason: string) => {
-        if (reason === 'transport close') {
+        if (reason === 'transport close' || reason === 'ping timeout') {
           toast.error('Extinction du serveur...');
 
           // Deco reco tmtc ^^
