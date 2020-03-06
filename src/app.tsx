@@ -26,16 +26,6 @@ toast.configure({
 moment.locale('fr');
 
 const App = () => {
-  // Enables pointer on press key c
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  window.onkeypress = (e: any) => {
-    // If space bar is pressed
-    if (e.key === 'c') {
-      const cursor = document.body.style.cursor === 'none' ? 'initial' : 'none';
-      document.body.style.cursor = cursor;
-    }
-  };
-
   return (
     <Provider store={store}>
       <LoginRouter>
