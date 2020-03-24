@@ -1,5 +1,6 @@
 # UA Bouffe API
-![Travis](https://travis-ci.org/ungdev/UA-bouffe.svg?branch=master)
+[![Build Status](https://travis-ci.org/ungdev/UA-bouffe.svg?branch=master)](https://travis-ci.org/ungdev/UA-bouffe)
+
 Console de vente de l'UTT Arena
 
 ## Installation
