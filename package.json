@@ -5,15 +5,15 @@
   "author": "UNG",
   "license": "MIT",
   "scripts": {
-    "start": "pm2-runtime start production.js -i 1 --name UA-bouffe",
+    "start": "node start production.js",
     "dev": "react-scripts start",
     "build": "react-scripts build",
     "lint": "eslint src/ --ext .ts,.tsx",
     "lint-fix": "eslint --fix src/ --ext .ts,.tsx"
   },
   "dependencies": {
-    "@types/node": "^13.7.7",
-    "@types/react": "^16.9.23",
+    "@types/node": "^13.9.5",
+    "@types/react": "^16.9.26",
     "@types/react-dom": "^16.9.5",
     "@types/react-fontawesome": "^1.6.4",
     "@types/react-modal": "^3.10.5",
@@ -26,15 +26,14 @@
     "history": "^4.10.1",
     "moment": "^2.24.0",
     "node-sass": "^4.13.1",
-    "pm2": "^4.2.3",
     "query-string": "^6.11.1",
-    "react": "^16.13.0",
-    "react-dom": "^16.13.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "react-fontawesome": "^1.7.1",
     "react-modal": "^3.11.2",
     "react-redux": "^7.2.0",
     "react-router": "^5.1.2",
-    "react-scripts": "^3.4.0",
+    "react-scripts": "^3.4.1",
     "react-toastify": "^5.5.0",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
@@ -43,15 +42,15 @@
     "typescript": "^3.8.3"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.22.0",
-    "@typescript-eslint/parser": "^2.22.0",
+    "@typescript-eslint/eslint-plugin": "^2.25.0",
+    "@typescript-eslint/parser": "^2.25.0",
     "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.10.0",
+    "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-prettier": "^3.1.2",
-    "eslint-plugin-react": "^7.18.3",
-    "eslint-plugin-react-hooks": "^2.5.0",
-    "prettier": "^1.19.1"
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^3.0.0",
+    "prettier": "^2.0.2"
   },
   "eslintConfig": {
     "extends": "react-app"
