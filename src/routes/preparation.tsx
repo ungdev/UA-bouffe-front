@@ -41,9 +41,14 @@ const Preparation = () => {
   });
 
   const editOrder = async (order: Order, confirmed = false) => {
+    // If ready to be confirmed
     if (order.status === Status.READY && !confirmed && !downgradeMode) {
       setConfirmOrder(order);
-    } else if (order.status !== Status.PENDING || !downgradeMode) {
+    }
+    // If ready to be cancelled
+    else if (order.status === Status.PENDING && !confirmed && downgradeMode) {
+      setConfirmOrder(order);
+    } else {
       if (!loading) {
         setLoading(order);
         try {
@@ -115,7 +120,11 @@ const Preparation = () => {
         </div>
       </div>
       <Modal className="preparation-modal" isOpen={!!confirmOrder}>
-        <p>La commande {confirmOrder && confirmOrder.place} a-t-elle bien été livrée ?</p>
+        {downgradeMode ? (
+          <p>Annuler la commande {confirmOrder && confirmOrder.place} ?</p>
+        ) : (
+          <p>La commande {confirmOrder && confirmOrder.place} a-t-elle bien été livrée ?</p>
+        )}
         <div className="actions">
           <div className="button cancel" onClick={() => setConfirmOrder(null)}>
             {loading ? <Loader /> : 'Annuler'}

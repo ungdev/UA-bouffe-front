@@ -8,7 +8,6 @@ import { State, Item as ItemType, Category as CategoryType } from '../types';
 import FontAwesome from 'react-fontawesome';
 import { formatPrice } from '../utils/format';
 import { toogleItemAvailable } from '../utils/items';
-import { soldItems, itemsAvailable } from '../utils/stats';
 
 const Item = ({ item }: { item: ItemType }) => {
   return (
@@ -44,18 +43,19 @@ const Category = ({ category }: { category: CategoryType }) => {
   );
 };
 
+export const itemsAvailable = (categories: Array<CategoryType>) =>
+  categories.reduce((acc, curr) => {
+    return acc + curr.items.filter((item) => item.available).length;
+  }, 0);
+
 const Items = () => {
   const categories = useSelector((state: State) => state.categories);
-  const orders = useSelector((state: State) => state.orders);
 
   return (
     <>
       <Navbar back="/" />
       <div id="items">
-        <div className="stats">
-          <span>Items vendus : {soldItems(orders)}</span>
-          <span>Items en vente : {itemsAvailable(categories)}</span>
-        </div>
+        <div className="stats">Items disponibles : {itemsAvailable(categories)}</div>
         <div className="categories">
           {categories.map((category, categoryIndex) => (
             <Category category={category} key={categoryIndex} />
