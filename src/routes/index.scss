@@ -20,6 +20,10 @@
     background-color: var(--primary);
     margin: 10px;
 
+    .fa {
+      margin-right: 15px;
+    }
+
     &:hover {
       filter: brightness(0.9);
     }

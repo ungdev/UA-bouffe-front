@@ -45,8 +45,7 @@ const Navbar = ({ back, onBack, children }: PropTypes) => {
         ''
       )}
       <span className="title" onClick={() => window.location.reload()}>
-        <FontAwesome name="sync-alt" className="reload-icon" />
-        TurboBouffe - {name} - {time}
+        <FontAwesome name="sync-alt" className="reload-icon" /> {time} - {name}
       </span>
 
       <div className="absolute-right">{children ? children : ''}</div>
