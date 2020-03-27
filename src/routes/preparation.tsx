@@ -31,6 +31,7 @@ const Preparation = () => {
   const [confirmOrder, setConfirmOrder] = useState<Order>(null);
   const [downgradeMode, setDowngradeMode] = useState(false);
 
+  // used only to refresh the component every minute to refresh the duration on the
   useEffect(() => {
     const interval = setInterval(() => {
       setTicTac(!tictac);

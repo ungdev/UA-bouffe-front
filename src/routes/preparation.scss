@@ -34,13 +34,7 @@
 
     // Removes the visuals clics for pending (because you can't downgrade a pending order)
     &.pending .orders .order .next.downgrade {
-      &:hover {
-        filter: unset;
-      }
-
-      .fa {
-        opacity: 0;
-      }
+      background-color: var(--danger-dark);
     }
   }
 

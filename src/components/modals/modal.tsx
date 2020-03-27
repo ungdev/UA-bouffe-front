@@ -13,7 +13,7 @@ ModalComponent.setAppElement('#root');
 
 const Modal = ({ isOpen, className, children }: ModalProps) => {
   return (
-    <ModalComponent isOpen={isOpen} className={`modal ${className ? className : ''}`}>
+    <ModalComponent isOpen={isOpen} className={`modal ${className ? className : ''}`} overlayClassName="overlay">
       {children ? children : ''}
     </ModalComponent>
   );
