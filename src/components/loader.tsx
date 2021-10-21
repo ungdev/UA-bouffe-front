@@ -19,4 +19,8 @@ const Loader = ({ className }: LoaderProps) => {
   );
 };
 
+Loader.defaultProps = {
+  className: '',
+};
+
 export default Loader;

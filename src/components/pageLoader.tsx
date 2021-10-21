@@ -15,4 +15,8 @@ const Loading = ({ children }: { children?: ReactNode }) => {
   );
 };
 
+Loading.defaultProps = {
+  children: null,
+};
+
 export default Loading;

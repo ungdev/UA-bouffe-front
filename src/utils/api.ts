@@ -4,7 +4,7 @@ import errorToString from './errorToString';
 
 let token: string | null = null;
 
-const requestAPI = <T>(method: Method, route: string, body?: object) => {
+const requestAPI = <T>(method: Method, route: string, body?: { [key: string]: unknown }) => {
   return new Promise<AxiosResponse<T>>((resolve, reject) => {
     axios
       .request<T>({
@@ -32,8 +32,8 @@ export const setAPIToken = (_token: string | null) => {
 
 export const API = {
   get: <T>(route: string) => requestAPI<T>('GET', route),
-  post: <T>(route: string, body: object) => requestAPI<T>('POST', route, body),
-  put: <T>(route: string, body: object) => requestAPI<T>('PUT', route, body),
-  patch: <T>(route: string, body: object) => requestAPI<T>('PATCH', route, body),
+  post: <T>(route: string, body: { [key: string]: unknown }) => requestAPI<T>('POST', route, body),
+  put: <T>(route: string, body: { [key: string]: unknown }) => requestAPI<T>('PUT', route, body),
+  patch: <T>(route: string, body: { [key: string]: unknown }) => requestAPI<T>('PATCH', route, body),
   delete: <T>(route: string) => requestAPI<T>('DELETE', route),
 };

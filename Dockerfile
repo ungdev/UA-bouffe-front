@@ -1,5 +1,4 @@
-# Use NodeJS 13 as sass won't install with node 16
-FROM node:13
+FROM node:16
 
 ENV NODE_ENV=production
 
