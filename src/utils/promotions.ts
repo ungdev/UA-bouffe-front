@@ -8,7 +8,6 @@ export const getPromotions = async () => {
   return promotions;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const arrayContainsArray = (superset: Array<any>, subset: Array<any>) => {
   const supersetBis = [...superset];
   if (subset.length === 0) {

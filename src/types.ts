@@ -7,11 +7,11 @@ export interface Price {
 }
 
 export interface Identifiable {
-  readonly id: number;
+  id: number;
 }
 
 export interface Item extends Price, Identifiable {
-  readonly id: number;
+  id: number;
   key: string;
   promoKey: string;
   name: string;
@@ -25,7 +25,7 @@ export interface ItemWithCategory extends Item {
 }
 
 export interface Category extends Identifiable {
-  readonly id: number;
+  id: number;
   name: string;
   key: string;
   items: Array<Item>;
@@ -83,7 +83,7 @@ export interface State {
 
 export interface Action {
   type: string;
-  payload?: any; // eslint-disable-line @typescript-eslint/no-explicit-any
+  payload?: any;
 }
 
 export type Dispatch = ThunkDispatch<State, void, Action>;

@@ -18,13 +18,12 @@
     }
   },
   "rules": {
-    "prettier/prettier": ["error"],
     "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "no-console": "error",
     "no-alert": "error",
-    "linebreak-style": ["warn", "windows"],
+    "linebreak-style": ["warn", "unix"],
     "react/require-default-props": "error",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",

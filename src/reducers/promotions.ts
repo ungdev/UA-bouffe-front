@@ -1,6 +1,6 @@
 import { Action, Promotion } from '../types';
 
-const initialState = [] as Array<Promotion>;
+const initialState: Array<Promotion> = [];
 
 const SET_PROMOTIONS = 'SET_PROMOTIONS';
 const CLEAR_PROMOTIONS = 'CLEAR_PROMOTIONS';
