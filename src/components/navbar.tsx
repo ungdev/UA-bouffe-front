@@ -53,4 +53,10 @@ const Navbar = ({ back, onBack, children }: PropTypes) => {
   );
 };
 
+Navbar.defaultProps = {
+  back: null,
+  onBack: null,
+  children: null,
+};
+
 export default Navbar;

@@ -102,7 +102,7 @@ export const autoLogin = () => async (dispatch: Dispatch) => {
   dispatch(Socket.connect());
   dispatch(setLoading(true));
   if (localStorage.hasOwnProperty(BOUFFE_TOKEN)) {
-    const oldToken = localStorage.getItem(BOUFFE_TOKEN) as string;
+    const oldToken: string = localStorage.getItem(BOUFFE_TOKEN);
 
     try {
       const res = await API.post<User>('/auth/refreshToken', { token: oldToken });

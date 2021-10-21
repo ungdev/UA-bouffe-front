@@ -1,6 +1,6 @@
 import { Category, Action } from '../types';
 
-const initialState = [] as Array<Category>;
+const initialState: Array<Category> = [];
 
 const SET_CATEGORIES = 'SET_CATEGORIES';
 const CLEAR_CATEGORIES = 'CLEAR_CATEGORIES';

@@ -1,6 +1,6 @@
 import { Order, Action } from '../types';
 
-const initialState = [] as Array<Order>;
+const initialState: Array<Order> = [];
 
 const SET_ORDERS = 'SET_ORDERS';
 const CLEAR_ORDERS = 'CLEAR_ORDERS';

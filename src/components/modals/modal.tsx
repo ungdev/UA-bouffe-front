@@ -19,4 +19,8 @@ const Modal = ({ isOpen, className, children }: ModalProps) => {
   );
 };
 
+Modal.defaultProps = {
+  className: '',
+};
+
 export default Modal;
