@@ -18,6 +18,7 @@
     .title {
       border-bottom: 1px solid var(--light);
       margin-bottom: 10px;
+      padding-bottom: 5px;
       font-size: 1.5em;
 
       &:hover {
@@ -26,7 +27,7 @@
 
       .icon {
         font-size: 0.9em;
-        margin-right: 10px;
+        margin-right: 15px;
         transition: transform 0.25s ease-in;
 
         &.open {
@@ -38,6 +39,7 @@
     .item {
       display: flex;
       justify-content: space-between;
+      align-items: center;
 
       &.supplement {
         padding-left: 40px;
@@ -49,6 +51,7 @@
 
       .left-side {
         display: flex;
+        align-items: center;
       }
 
       .switch {
