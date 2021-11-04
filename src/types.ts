@@ -6,18 +6,26 @@ export interface Price {
   orgaPrice: number;
 }
 
+export interface NamedItem extends Identifiable {
+  key: string;
+  name: string;
+}
+
+export interface IBuyable extends Price, NamedItem {
+  promoKey: string;
+  available: boolean;
+}
+
 export interface Identifiable {
   id: number;
 }
 
-export interface Item extends Price, Identifiable {
-  id: number;
-  key: string;
-  promoKey: string;
-  name: string;
-  price: number;
-  orgaPrice: number;
-  available: boolean;
+export interface Item extends IBuyable {
+  supplements: Supplement[];
+}
+
+export interface Supplement extends IBuyable {
+  applicableOn: Item[];
 }
 
 export interface ItemWithCategory extends Item {
@@ -25,14 +33,16 @@ export interface ItemWithCategory extends Item {
 }
 
 export interface Category extends Identifiable {
-  id: number;
   name: string;
   key: string;
   items: Array<Item>;
 }
 
 export interface OrderItem {
-  item: ItemWithCategory;
+  item: Omit<ItemWithCategory, 'supplements'>;
+  supplements: {
+    supplement: NamedItem;
+  }[];
 }
 
 export interface Order {

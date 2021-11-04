@@ -76,7 +76,12 @@ const Preparation = () => {
             </div>
             <ul className="items">
               {order.orderItems.map((orderItem, index) => (
-                <li key={index}>{orderItem.item.name}</li>
+                <li key={index}>
+                  {orderItem.item.name}
+                  <div className="options">
+                    {orderItem.supplements.map((orderSuppl) => orderSuppl.supplement.name).join(', ')}
+                  </div>
+                </li>
               ))}
             </ul>
             {loading && loading.id === order.id ? (

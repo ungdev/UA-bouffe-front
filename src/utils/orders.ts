@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 
-import { Order, Item, PaymentMethod } from '../types';
+import { Item, Order, PaymentMethod } from '../types';
 import { API } from './api';
 
 export const getOrders = async () => {
@@ -17,7 +17,10 @@ export const addOrder = async (
   orgaPrice: boolean,
   total: number,
 ) => {
-  const orders = items.map((item) => item.id);
+  const orders = items.map((item) => ({
+    item: item.id,
+    supplements: item.supplements.map((supplement) => supplement.id),
+  }));
 
   await API.post('/orders', {
     method,

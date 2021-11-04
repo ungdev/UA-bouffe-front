@@ -4,14 +4,16 @@ import './items.scss';
 import Navbar from '../components/navbar';
 import Switch from '../components/switch';
 import { useSelector } from 'react-redux';
-import { State, Item as ItemType, Category as CategoryType } from '../types';
+import { State, IBuyable, Category as CategoryType } from '../types';
 import FontAwesome from 'react-fontawesome';
 import { formatPrice } from '../utils/format';
-import { toogleItemAvailable } from '../utils/items';
+import { toggleAvailable } from '../utils/items';
 
-const Item = ({ item }: { item: ItemType }) => {
+const Item = ({ item }: { item: IBuyable }) => {
   return (
-    <div className="item" onClick={() => toogleItemAvailable(item.id)}>
+    <div
+      className={'supplements' in item ? 'item' : 'item supplement'}
+      onClick={() => toggleAvailable('supplements' in item ? item.id : `S${item.id}`)}>
       <div className="left-side">
         <Switch on={item.available} />
         <span>{item.name}</span>
@@ -34,9 +36,11 @@ const Category = ({ category }: { category: CategoryType }) => {
       </div>
       {isOpen && (
         <div className="items">
-          {category.items.map((item, itemIndex) => (
-            <Item item={item} key={itemIndex} />
-          ))}
+          {category.items.map((item, itemIndex) =>
+            [item, ...item.supplements].map((entry, entryIndex) => (
+              <Item item={entry} key={`${itemIndex}-${entryIndex}`} />
+            )),
+          )}
         </div>
       )}
     </div>

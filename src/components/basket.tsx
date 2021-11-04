@@ -16,6 +16,7 @@ interface GroupedItem {
   name: string;
   firstIndex: number;
   count: number;
+  supplements: string[];
 }
 
 interface BasketItemProps {
@@ -36,7 +37,7 @@ const BasketItem = ({ item }: BasketItemProps) => {
   return (
     <div className="basket-item">
       <span className="item-name">
-        {item.count} {item.name}
+        {item.count} {item.name} {item.supplements.length ? <>({item.supplements.join(', ')})</> : ''}
       </span>
       <FontAwesome name="minus" className="remove" onClick={() => removeBasketItem()} />
     </div>
@@ -72,7 +73,13 @@ const Basket = () => {
   };
 
   const groupedBasket = basket.reduce((acc: Array<GroupedItem>, curr, index) => {
-    const groupIndex = acc.findIndex((item) => item.name === curr.name);
+    const currentSupplements = curr.supplements.map((supplement) => supplement.name);
+    const groupIndex = acc.findIndex(
+      (groupedCategory) =>
+        groupedCategory.name === curr.name &&
+        !groupedCategory.supplements.some((catSupplement) => !currentSupplements.includes(catSupplement)) &&
+        !currentSupplements.some((currSupplement) => !groupedCategory.supplements.includes(currSupplement)),
+    );
 
     if (groupIndex !== -1) {
       acc[groupIndex].count += 1;
@@ -82,6 +89,7 @@ const Basket = () => {
         name: curr.name,
         firstIndex: index,
         count: 1,
+        supplements: currentSupplements,
       });
     }
 

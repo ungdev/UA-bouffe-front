@@ -10,11 +10,18 @@ import Separator from '../components/UI/separator';
 interface GroupedCategory {
   name: string;
   count: number;
+  supplements: string[];
 }
 
 const groupOrderItems = (items: Array<OrderItem>) => {
   return items.reduce((acc: Array<GroupedCategory>, curr) => {
-    const categoryIndex = acc.findIndex((groupedCategory) => groupedCategory.name === curr.item.category.name);
+    const currentSupplements = curr.supplements.map((orderSuppl) => orderSuppl.supplement.name);
+    const categoryIndex = acc.findIndex(
+      (groupedCategory) =>
+        groupedCategory.name === curr.item.category.name &&
+        !groupedCategory.supplements.some((catSupplement) => !currentSupplements.includes(catSupplement)) &&
+        !currentSupplements.some((currSupplement) => !groupedCategory.supplements.includes(currSupplement)),
+    );
 
     if (categoryIndex !== -1) {
       acc[categoryIndex].count += 1;
@@ -22,6 +29,7 @@ const groupOrderItems = (items: Array<OrderItem>) => {
       acc.push({
         name: curr.item.category.name,
         count: 1,
+        supplements: curr.supplements.map((orderSuppl) => orderSuppl.supplement.name),
       });
     }
 
@@ -42,10 +50,11 @@ const Order = ({ order }: { order: OrderType }) => {
     <div className="card">
       <span className="title">{order.place}</span>
       <ul className="items">
-        {groupedOrderItems.map((category, index) => {
+        {groupedOrderItems.map((item, index) => {
           return (
             <li key={index}>
-              {category.count} {formatName(category.name, category.count)}
+              {item.count} {formatName(item.name, item.count)}
+              {item.supplements.length ? <div className="options">Options: {item.supplements.join(', ')}</div> : ''}
             </li>
           );
         })}

@@ -56,3 +56,40 @@
     }
   }
 }
+
+.modal .supplement-list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  margin: 30px 0 20px;
+  gap: 20px;
+
+  & > .supplement {
+    flex: 1 0 auto;
+    display: block;
+    padding: 10px;
+    border-radius: 2px;
+    background-color: var(--primary);
+    max-width: 300px;
+    cursor: pointer;
+
+    &.selected {
+      outline: 5px solid var(--success);
+    }
+
+    &.unavailable {
+      cursor: not-allowed;
+      outline: 5px solid var(--danger);
+      opacity: 0.6;
+    }
+  }
+}
+
+.modal .supplement-list + .button {
+  background-color: var(--accent);
+  cursor: pointer;
+  padding: 10px;
+  max-width: 200px;
+  margin: auto;
+  border-radius: 2px;
+}

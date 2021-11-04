@@ -39,6 +39,10 @@
       display: flex;
       justify-content: space-between;
 
+      &.supplement {
+        padding-left: 40px;
+      }
+
       &:hover {
         filter: brightness(0.9);
       }
