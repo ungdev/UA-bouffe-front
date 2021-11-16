@@ -61,6 +61,10 @@
     .items {
       text-align: left;
       margin-right: auto;
+
+      .options {
+        font-style: italic;
+      }
     }
 
     .next {

@@ -153,9 +153,12 @@ const PaymentMethodModal = ({ isOpen, onPay, onClose, total }: ModalProps) => {
           <div className="button accent" onClick={() => onPayClick(PaymentMethod.Card)}>
             {formatMethod(PaymentMethod.Card)}
           </div>
-
           <div className="button success" onClick={() => onPayClick(PaymentMethod.Cash)}>
             {formatMethod(PaymentMethod.Cash)}
+          </div>
+
+          <div className="button extra" onClick={() => onPayClick(PaymentMethod.Ticket)}>
+            {formatMethod(PaymentMethod.Ticket)}
           </div>
         </div>
       </div>

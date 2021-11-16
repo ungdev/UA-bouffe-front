@@ -14,14 +14,14 @@ body {
 }
 
 :root {
-  --accent: #00adb5;
-  --accent-dark: #00565a;
   --light: #eeeeee;
   --primary-dark: #222831;
   --primary: #393e46;
   --primary-light: #4a505b;
 
-  --gradient: linear-gradient(135deg, #fb560c 15%, #e21562 85%);
+  --color-accent-dark: #006492;
+  --color-accent-light: #fbb464;
+  --color-accent-primary: #f1737f;
 
   --success: #28a745;
   --warning: #ffc107;

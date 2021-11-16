@@ -7,6 +7,7 @@ const formatPrice = (price: number): string => {
 const formatMethod = (method: PaymentMethod) => {
   if (method === PaymentMethod.Card) return 'Carte Bleue';
   else if (method === PaymentMethod.Cash) return 'Espèces';
+  else if (method === PaymentMethod.Ticket) return 'Ticket bouffe';
 
   return null;
 };

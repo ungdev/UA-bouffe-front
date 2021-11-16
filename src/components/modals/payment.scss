@@ -61,7 +61,7 @@
     }
 
     &.active {
-      background-color: var(--accent);
+      background-color: var(--color-accent-dark);
     }
 
     &.error {
@@ -83,13 +83,15 @@
     margin-top: 25px;
     display: flex;
     justify-content: space-between;
+    gap: 5px;
 
     .button {
       width: 100%;
     }
 
-    .button:first-child {
-      margin-right: 5px;
+    .button.extra {
+      background-color: var(--color-accent-light);
+      color: var(--primary-dark);
     }
   }
 }
