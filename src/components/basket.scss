@@ -28,20 +28,18 @@
   }
 
   .basket-item {
-    height: 50px;
     background-color: #333333;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding-left: 10px;
+    align-items: stretch;
     text-align: left;
 
     .item-name {
-      width: 75%;
+      flex: 1 1 75%;
+      padding: 10px;
     }
 
     .remove {
-      height: 100%;
       width: 25%;
       background-color: var(--danger);
       position: relative;

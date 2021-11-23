@@ -66,7 +66,14 @@ const ItemsGrid = ({ categories }: ItemsGridProps) => {
             // Supprime l'item tee shirt orga dans le cas où le prix orga n'est pas pris
             !(item.key === 'orga-tshirt' && !orgaPrice) && (
               <div className="item" onClick={() => select(item)}>
-                <span className="name">{item.name}</span>
+                <span
+                  className="name"
+                  data-details={item.name
+                    .match(/\(.*\)/g)
+                    ?.map((value) => value.substring(1, value.length - 1))
+                    ?.join(', ')}>
+                  {item.name.replaceAll(/\(.*\)/g, '')}
+                </span>
                 <span className="price">{displayPrice(item)}</span>
               </div>
             ),
@@ -95,7 +102,11 @@ const ItemsGrid = ({ categories }: ItemsGridProps) => {
                     setSupplements(updatedSupplements);
                   }
                 }}>
-                {supplement.name} ({formatPrice(orgaPrice ? supplement.orgaPrice : supplement.price)})
+                {supplement.name}
+                {(() => {
+                  const price = orgaPrice ? supplement.orgaPrice : supplement.price;
+                  if (price !== 0) return ` ${formatPrice(price)}`;
+                })()}
               </div>
             ))}
           </div>

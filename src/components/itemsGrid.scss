@@ -34,11 +34,13 @@
     flex-wrap: wrap;
     align-content: flex-start;
     overflow: auto;
+    gap: 10px;
+    padding: 10px;
+    box-sizing: border-box;
 
     .item {
       width: 130px;
       height: 130px;
-      margin: 10px;
       padding: 10px;
       background-color: var(--primary-light);
       display: flex;
@@ -51,7 +53,16 @@
 
       .name {
         font-size: 1.3em;
-        height: 50%;
+        min-height: 50%;
+      }
+
+      .name::after {
+        content: attr(data-details);
+        font-size: 0.7em;
+        margin-top: 5px;
+        text-transform: capitalize;
+        font-style: italic;
+        display: block;
       }
     }
   }
