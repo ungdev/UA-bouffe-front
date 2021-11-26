@@ -90,7 +90,10 @@ const computePromotions = (
     total:
       calculateTotal(listPromotions, orgaPrice) +
       calculateTotal(basket, orgaPrice) +
-      calculateTotal(basket.map((item) => item.supplements).flat(), orgaPrice),
+      calculateTotal(
+        basket.map((item) => item.supplements).reduce((prev, current) => prev.concat(current), []),
+        orgaPrice,
+      ),
   };
 };
 
