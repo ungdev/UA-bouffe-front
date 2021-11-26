@@ -72,7 +72,7 @@ const ItemsGrid = ({ categories }: ItemsGridProps) => {
                     .match(/\(.*\)/g)
                     ?.map((value) => value.substring(1, value.length - 1))
                     ?.join(', ')}>
-                  {item.name.replaceAll(/\(.*\)/g, '')}
+                  {item.name.replace(/\(.*\)/g, '')}
                 </span>
                 <span className="price">{displayPrice(item)}</span>
               </div>
