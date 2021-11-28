@@ -42,6 +42,7 @@ interface FindPromoReturn {
 }
 
 const findPromo = (basket: Array<Item>, promotions: Array<Promotion>): FindPromoReturn => {
+  promotions = promotions.sort((a, b) => b.price - a.price);
   for (const promotion of promotions) {
     const isPromo = arrayContainsArray(
       basket.map((item) => item.promoKey),
