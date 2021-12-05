@@ -2,12 +2,6 @@ FROM node:16
 
 ENV NODE_ENV=production
 
-ARG API_URI=http://localhost:3001
-ENV REACT_APP_API_URI $API_URI
-
-ARG API_TIMEOUT=5000
-ENV REACT_APP_API_TIMEOUT $API_TIMEOUT
-
 WORKDIR /srv/app
 
 RUN chown node:node .
