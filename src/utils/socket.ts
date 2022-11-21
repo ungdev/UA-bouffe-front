@@ -3,7 +3,7 @@ import { setOrders } from '../reducers/orders';
 import { toast } from 'react-toastify';
 import { Order, Category, Dispatch } from '../types';
 import { setCategories } from '../reducers/categories';
-import { setSocketDisconnected, setSocketConnected } from '../reducers/server';
+import { setSocketDisconnected, setSocketConnected, setServerOnline, setServerOffline } from '../reducers/server';
 
 let socket: ClientSocket | undefined = undefined;
 
@@ -20,6 +20,15 @@ export const Socket = {
 
       socket.on('categoryUpdate', (categories: Array<Category>) => {
         dispatch(setCategories(categories));
+      });
+
+      socket.on('networkStatus', ({ online }) => {
+        dispatch(online ? setServerOnline() : setServerOffline());
+        if (!online) {
+          toast.warning("Turbobouffe a été deconnecté d'internet. Passage en mode hors ligne", { autoClose: false });
+        } else {
+          toast.info('Turbobouff est de nouveau en ligne !', { autoClose: false });
+        }
       });
 
       socket.on('disconnect', (reason: string) => {

@@ -3,12 +3,13 @@ import { toast } from 'react-toastify';
 import { Socket } from '../utils/socket';
 import { clearOrders, setOrders } from './orders';
 import { clearBasket } from './basket';
-import { LoginState, User, Action, Dispatch } from '../types';
+import { LoginState, User, Action, Dispatch, ApiLoginResponse } from '../types';
 import { clearPromotions, setPromotions } from './promotions';
 import { getOrders } from '../utils/orders';
 import { getCategories } from '../utils/categories';
 import { setCategories } from './categories';
 import { getPromotions } from '../utils/promotions';
+import { setServerOffline, setServerOnline } from './server';
 
 const initialState: LoginState = {
   token: null,
@@ -105,10 +106,11 @@ export const autoLogin = () => async (dispatch: Dispatch) => {
     const oldToken: string = localStorage.getItem(BOUFFE_TOKEN);
 
     try {
-      const res = await API.post<User>('/auth/refreshToken', { token: oldToken });
-      const { token, name, key } = res.data;
+      const res = await API.post<ApiLoginResponse>('/auth/refreshToken', { token: oldToken });
+      const { token, name, key, isOnline } = res.data;
 
       dispatch(setUser({ token, name, key }));
+      dispatch(isOnline ? setServerOnline() : setServerOffline());
       dispatch(fetchData());
     } catch (err) {
       dispatch(logout());
@@ -120,10 +122,12 @@ export const autoLogin = () => async (dispatch: Dispatch) => {
 };
 
 export const tryLogin = (pin: string) => async (dispatch: Dispatch) => {
-  const res = await API.post<User>(`/auth/login`, { pin });
-  const { token, name, key } = res.data;
+  const res = await API.post<ApiLoginResponse>(`/auth/login`, { pin });
+  const { token, name, key, isOnline } = res.data;
   toast.success('Connexion validée');
   dispatch(setLoading(true));
   dispatch(setUser({ token, name, key }));
+  dispatch(isOnline ? setServerOnline() : setServerOffline());
   dispatch(fetchData());
 };
+

@@ -60,6 +60,10 @@ export interface User {
   key: string;
 }
 
+export interface ApiLoginResponse extends User {
+  isOnline: boolean;
+}
+
 export interface Promotion extends Price {
   name: string;
   key: string;
@@ -109,4 +113,5 @@ export interface LoginState extends User {
 
 export interface ServerState {
   socketConnected: boolean;
+  internetConnected: boolean;
 }

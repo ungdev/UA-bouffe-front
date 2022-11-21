@@ -16,6 +16,7 @@ interface PropTypes {
 const Navbar = ({ back, onBack, children }: PropTypes) => {
   const [time, setTime] = useState(moment().format('H[h]mm'));
   const name = useSelector((state: State) => state.login.name);
+  const serverOnline = useSelector((state: State) => state.server.internetConnected);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -37,13 +38,13 @@ const Navbar = ({ back, onBack, children }: PropTypes) => {
 
   return (
     <nav className="navbar">
-      {back ? (
-        <div className="back absolute-left" onClick={() => onBackClick()}>
-          <FontAwesome name="chevron-left" />
+      <div className="back absolute-left" onClick={() => (back ? onBackClick() : null)}>
+        {back ? <FontAwesome name="chevron-left" /> : ''}
+        <div className={serverOnline ? 'online' : 'offline'} onClick={() => onBackClick()}>
+          <FontAwesome name={serverOnline ? 'check-circle' : 'exclamation-circle'} />{' '}
+          {serverOnline ? 'En ligne' : 'Hors ligne'}
         </div>
-      ) : (
-        ''
-      )}
+      </div>
       <span className="title" onClick={() => window.location.reload()}>
         <FontAwesome name="sync-alt" className="reload-icon" /> {time} - {name}
       </span>
