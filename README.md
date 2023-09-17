@@ -8,30 +8,30 @@ Console de vente de l'UTT Arena
 ### Prérequis
 
 - NodeJS
-- Yarn
+- Pnpm
 
 ### Installation de l'application
 ```
 git clone https://github.com/ungdev/UA-bouffe
 cp .env.example .env
-yarn
+pnpm
 ```
 ## Développement
 
 ### Démarrer l'API en développement
 ```
-yarn dev
+pnpm dev
 ```
 ### Avant de commit
 Afin de garder une certaine cohérence dans le code, on utilise EsLint et Prettier. Il faut donc bien lint le code avant de commit
 ```
-yarn lint-fix
+pnpm lint-fix
 ```
 
 ### Démarrer l'API en production
 ```
-yarn build
-yarn start
+pnpm build
+pnpm start
 ```
 ### Licence
 Le code est sous licence MIT.
