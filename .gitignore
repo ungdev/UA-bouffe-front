@@ -25,3 +25,6 @@ src/*.d.ts
 
 TODO.txt
 bouffe-captures/
+
+# IDE
+.idea/
