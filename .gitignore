@@ -17,11 +17,14 @@
 
 # debug
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+pnpm-debug.log*
+pnpm-error.log*
 
 # CRA Typescript file generated
 src/*.d.ts
 
 TODO.txt
 bouffe-captures/
+
+# IDE
+.idea/
