@@ -8,14 +8,14 @@ import { useSelector } from 'react-redux';
 import { State, Order, Status } from '../types';
 import { upgradeOrder, downgradeOrder } from '../utils/orders';
 import { useLocation } from 'react-router';
-import { parse } from 'query-string';
+import queryString from 'query-string';
 import Modal from '../components/modals/modal';
 import Loader from '../components/loader';
 import Separator from '../components/UI/separator';
 
 const Preparation = () => {
   const location = useLocation();
-  const queryParams = parse(location.search);
+  const queryParams = queryString.parse(location.search);
   let orders = useSelector((state: State) => state.orders);
 
   // Renvoie les commandes contenant au moins un item dans la catégory du paramètre

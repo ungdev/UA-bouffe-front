@@ -1,7 +1,7 @@
 import './sell.scss';
 import React from 'react';
 import { useLocation } from 'react-router';
-import { parse } from 'query-string';
+import queryString from 'query-string';
 import ItemsGrid from '../components/itemsGrid';
 import Navbar from '../components/navbar';
 import PriceToogler from '../components/priceToogler';
@@ -20,7 +20,7 @@ const Sell = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   let categories = useSelector((state: State) => state.categories);
-  const queryParams = parse(location.search);
+  const queryParams = queryString.parse(location.search);
 
   if (queryParams.only) {
     categories = categories.filter((category) => category.key === queryParams.only);
