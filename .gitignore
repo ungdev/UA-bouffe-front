@@ -13,6 +13,9 @@
 
 # misc
 .DS_Store
+
+# local env files
+.env*.local
 .env
 
 # debug
@@ -23,8 +26,17 @@ pnpm-error.log*
 # CRA Typescript file generated
 src/*.d.ts
 
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
 TODO.txt
 bouffe-captures/
 
 # IDE
 .idea/
+
+# next.js
+/.next/
+/out/
+
