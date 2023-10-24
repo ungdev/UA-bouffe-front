@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import FontAwesome from 'react-fontawesome';
 import moment from 'moment';
 
@@ -9,11 +9,11 @@ import { useRouter } from 'next/navigation';
 
 interface PropTypes {
   back?: string;
-  onBack?: () => void;
   children?: React.ReactNode;
+  onBack?: () => void;
 }
 
-const Navbar = ({ back = null, onBack = null, children = null }: PropTypes) => {
+const Navbar: FC<PropTypes> = ({ back = null, children = null, onBack = null }) => {
   const [time, setTime] = useState(moment().format('H[h]mm'));
   const name = useSelector((state: State) => state.login.name);
   const serverOnline = useSelector((state: State) => state.server.internetConnected);

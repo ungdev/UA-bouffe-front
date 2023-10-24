@@ -65,7 +65,7 @@ const ItemsGrid = ({ categories }: ItemsGridProps) => {
           (item) =>
             // Supprime l'item tee shirt orga dans le cas où le prix orga n'est pas pris
             !(item.key === 'orga-tshirt' && !orgaPrice) && (
-              <div className="item" onClick={() => select(item)}>
+              <div key={"item.id"} className="item" onClick={() => select(item)}>
                 <span
                   className="name"
                   data-details={item.name
