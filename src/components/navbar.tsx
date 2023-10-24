@@ -3,7 +3,7 @@ import FontAwesome from 'react-fontawesome';
 import moment from 'moment';
 
 import './navbar.scss';
-import { State } from '../types';
+import { State } from "@/types";
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 

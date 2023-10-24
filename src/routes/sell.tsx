@@ -7,9 +7,9 @@ import Navbar from '../components/navbar';
 import PriceToogler from '../components/priceToogler';
 import Basket from '../components/basket';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearBasket } from '../reducers/basket';
-import { State } from '../types';
-import { setNormalPrice } from '../reducers/orgaPrice';
+import { clearBasket } from "@/reducers/basket";
+import { State } from "@/types";
+import { setNormalPrice } from "@/reducers/orgaPrice";
 /**
  * /sell
  *

@@ -1,4 +1,4 @@
-import { Category, Action } from '../types';
+import { Category, Action } from "@/types";
 
 const initialState: Array<Category> = [];
 

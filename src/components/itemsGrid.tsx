@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { addItem } from '../reducers/basket';
+import { addItem } from "@/reducers/basket";
 import './itemsGrid.scss';
 import { State, Item as ItemType, Category, Supplement } from '../types';
-import { formatPrice } from '../utils/format';
+import { formatPrice } from "@/utils/format";
 import Modal from './modals/modal';
 
 interface ItemsGridProps {

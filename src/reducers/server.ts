@@ -1,4 +1,4 @@
-import { Action, ServerState } from '../types';
+import { Action, ServerState } from "@/types";
 
 const initialState: ServerState = {
   socketConnected: false,

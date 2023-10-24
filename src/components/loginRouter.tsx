@@ -1,8 +1,8 @@
 import React, { ReactNode, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Login from '../routes/login';
-import { autoLogin } from '../reducers/login';
-import { State } from '../types';
+import { autoLogin } from "@/reducers/login";
+import { State } from "@/types";
 import Loader from './pageLoader';
 import { Action } from 'redux';
 

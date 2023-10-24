@@ -1,4 +1,4 @@
-import { Action, Promotion } from '../types';
+import { Action, Promotion } from "@/types";
 
 const initialState: Array<Promotion> = [];
 

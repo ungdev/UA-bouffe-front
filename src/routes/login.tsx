@@ -2,7 +2,7 @@ import React, { useState, ReactNode } from 'react';
 
 import './login.scss';
 import { useDispatch } from 'react-redux';
-import { tryLogin } from '../reducers/login';
+import { tryLogin } from "@/reducers/login";
 import FontAwesome from 'react-fontawesome';
 
 const Login = () => {
