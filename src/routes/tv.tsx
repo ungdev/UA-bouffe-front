@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, LegacyRef, useState } from 'react';
+import React, { LegacyRef, useEffect, useRef, useState } from 'react';
 
 import './tv.scss';
 import { useSelector } from 'react-redux';
 
-import { State, Order as OrderType, Status, OrderItem } from '../types';
+import { Order as OrderType, OrderItem, State, Status } from '../types';
 import Separator from '../components/UI/separator';
 import { useRouter } from 'next/navigation';
 

@@ -1,9 +1,10 @@
-import React, { useState, ReactNode } from 'react';
+import React, { ReactNode, useState } from 'react';
 
 import './login.scss';
 import { useDispatch } from 'react-redux';
-import { tryLogin } from "@/reducers/login";
+import { tryLogin } from '@/reducers/login';
 import FontAwesome from 'react-fontawesome';
+import { Action } from '@/types';
 
 const Login = () => {
   const digits = [
@@ -23,7 +24,7 @@ const Login = () => {
         break;
 
       case digits[3][2]:
-        dispatch(tryLogin(pin));
+        dispatch(tryLogin(pin) as unknown as Action);
         setPin('');
         break;
 

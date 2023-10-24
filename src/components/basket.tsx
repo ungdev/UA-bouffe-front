@@ -3,12 +3,12 @@ import FontAwesome from 'react-fontawesome';
 
 import './basket.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearBasket, removeItem } from "@/reducers/basket";
+import { clearBasket, removeItem } from '@/reducers/basket';
 import PaymentModal from './modals/payment';
-import { setNormalPrice } from "@/reducers/orgaPrice";
-import { State, PaymentMethod, Promotion } from "@/types";
-import { addOrder } from "@/utils/orders";
-import { formatPrice } from "@/utils/format";
+import { setNormalPrice } from '@/reducers/orgaPrice';
+import { PaymentMethod, Promotion, State } from '@/types';
+import { addOrder } from '@/utils/orders';
+import { formatPrice } from '@/utils/format';
 import computePromotions from '../utils/promotions';
 
 interface GroupedItem {

@@ -1,7 +1,7 @@
 import StoreProvider from '@/store';
 import React from 'react';
 import { Flip, ToastContainer } from 'react-toastify';
-import '/public/fontawesome/css/all.min.css';
+import '../../public/fontawesome/css/all.min.css';
 
 export const metadata = {
   charset: 'utf-8',

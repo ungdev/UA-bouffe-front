@@ -1,4 +1,4 @@
-import axios, { Method, AxiosResponse } from 'axios';
+import axios, { AxiosResponse, Method } from 'axios';
 import { toast } from 'react-toastify';
 import errorToString from './errorToString';
 

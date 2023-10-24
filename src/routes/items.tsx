@@ -4,10 +4,10 @@ import './items.scss';
 import Navbar from '../components/navbar';
 import Switch from '../components/switch';
 import { useSelector } from 'react-redux';
-import { State, IBuyable, Category as CategoryType } from '../types';
+import { Category as CategoryType, IBuyable, State } from '../types';
 import FontAwesome from 'react-fontawesome';
-import { formatPrice } from "@/utils/format";
-import { toggleAvailable } from "@/utils/items";
+import { formatPrice } from '@/utils/format';
+import { toggleAvailable } from '@/utils/items';
 
 const Item = ({ item }: { item: IBuyable }) => {
   return (

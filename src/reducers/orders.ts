@@ -1,4 +1,4 @@
-import { Order, Action } from "@/types";
+import { Action, Order } from '@/types';
 
 const initialState: Array<Order> = [];
 

@@ -1,14 +1,14 @@
-import { API, setAPIToken } from "@/utils/api";
+import { API, setAPIToken } from '@/utils/api';
 import { toast } from 'react-toastify';
-import { Socket } from "@/utils/socket";
+import { Socket } from '@/utils/socket';
 import { clearOrders, setOrders } from './orders';
 import { clearBasket } from './basket';
-import { LoginState, User, Action, Dispatch, ApiLoginResponse } from "@/types";
+import { Action, ApiLoginResponse, Dispatch, LoginState, User } from '@/types';
 import { clearPromotions, setPromotions } from './promotions';
-import { getOrders } from "@/utils/orders";
-import { getCategories } from "@/utils/categories";
+import { getOrders } from '@/utils/orders';
+import { getCategories } from '@/utils/categories';
 import { setCategories } from './categories';
-import { getPromotions } from "@/utils/promotions";
+import { getPromotions } from '@/utils/promotions';
 import { setServerOffline, setServerOnline } from './server';
 
 const initialState: LoginState = {

@@ -2,8 +2,9 @@
 import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
 import reducers from './reducers';
-import { configureStore, compose, applyMiddleware } from '@reduxjs/toolkit';
+import { applyMiddleware, compose, configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
+import React from 'react';
 
 const logger = createLogger({ collapsed: true });
 const middleware = [thunk, logger];

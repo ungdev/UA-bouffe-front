@@ -1,9 +1,9 @@
-import { Socket as ClientSocket, connect, io } from 'socket.io-client';
-import { setOrders } from "@/reducers/orders";
+import { io, Socket as ClientSocket } from 'socket.io-client';
+import { setOrders } from '@/reducers/orders';
 import { toast } from 'react-toastify';
-import { Order, Category, Dispatch } from "@/types";
-import { setCategories } from "@/reducers/categories";
-import { setSocketDisconnected, setSocketConnected, setServerOnline, setServerOffline } from "@/reducers/server";
+import { Category, Dispatch, Order } from '@/types';
+import { setCategories } from '@/reducers/categories';
+import { setServerOffline, setServerOnline, setSocketConnected, setSocketDisconnected } from '@/reducers/server';
 
 let socket: ClientSocket | undefined = undefined;
 

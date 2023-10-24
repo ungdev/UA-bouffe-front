@@ -1,10 +1,10 @@
-import React, { useState, ReactNode, useEffect } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import Modal from './modal';
-import { PaymentMethod, State } from "@/types";
+import { PaymentMethod, State } from '@/types';
 import FontAwesome from 'react-fontawesome';
 
 import './payment.scss';
-import { formatMethod } from "@/utils/format";
+import { formatMethod } from '@/utils/format';
 import { useSelector } from 'react-redux';
 import ConfirmModal from './confirmation';
 

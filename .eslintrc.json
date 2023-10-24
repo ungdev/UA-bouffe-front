@@ -9,7 +9,11 @@
     "plugin:import/typescript",
     "prettier"
   ],
-  "plugins": ["@typescript-eslint", "react-hooks", "prettier"],
+  "plugins": [
+    "@typescript-eslint",
+    "react-hooks",
+    "prettier"
+  ],
   "parserOptions": {
     "ecmaVersion": 2018,
     "sourceType": "module",
@@ -23,7 +27,10 @@
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "no-console": "error",
     "no-alert": "error",
-    "linebreak-style": ["warn", "unix"],
+    "linebreak-style": [
+      "warn",
+      "unix"
+    ],
     "react/require-default-props": "error",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",

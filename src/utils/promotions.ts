@@ -1,4 +1,4 @@
-import { Item, Promotion, Price } from "@/types";
+import { Item, Price, Promotion } from '@/types';
 import { API } from './api';
 
 export const getPromotions = async () => {
