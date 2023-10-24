@@ -1,20 +1,17 @@
 import React, { ReactNode, useEffect } from 'react';
-import { Router } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import Login from '../routes/login';
-import { createBrowserHistory } from 'history';
 import { autoLogin } from '../reducers/login';
 import { State } from '../types';
 import Loader from './pageLoader';
-
-export const history = createBrowserHistory();
+import { Action } from 'redux';
 
 const LoginRouter = ({ children }: { children: ReactNode }) => {
   const dispatch = useDispatch();
   const state = useSelector((state: State) => state);
 
   useEffect(() => {
-    dispatch(autoLogin());
+    dispatch(autoLogin() as unknown as Action);
   }, []); // eslint-disable-line
 
   if (!state.server.socketConnected) {
@@ -33,7 +30,7 @@ const LoginRouter = ({ children }: { children: ReactNode }) => {
 
   if (!state.login.token) return <Login />;
 
-  return <Router history={history}>{children}</Router>;
+  return {children};
 };
 
 export default LoginRouter;

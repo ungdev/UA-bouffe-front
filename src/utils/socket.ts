@@ -1,4 +1,4 @@
-import { Socket as ClientSocket, connect } from 'socket.io-client';
+import { Socket as ClientSocket, connect, io } from 'socket.io-client';
 import { setOrders } from '../reducers/orders';
 import { toast } from 'react-toastify';
 import { Order, Category, Dispatch } from '../types';
@@ -10,7 +10,7 @@ let socket: ClientSocket | undefined = undefined;
 export const Socket = {
   connect: () => async (dispatch: Dispatch) => {
     if (!socket) {
-      socket = connect(process.env.REACT_APP_API_URI);
+      socket = io(process.env.REACT_APP_API_URI);
 
       socket.on('connect', () => dispatch(setSocketConnected()));
 
