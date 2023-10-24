@@ -1,7 +1,7 @@
 import StoreProvider from '@/store';
 import React from 'react';
 import { Flip, ToastContainer } from 'react-toastify';
-import '/public/fontawesome/css/all.min.css'
+import '/public/fontawesome/css/all.min.css';
 
 export const metadata = {
   charset: 'utf-8',
@@ -9,14 +9,14 @@ export const metadata = {
   description: "Site de gestion de la bouffe de l'UA",
   icons: {
     icon: '/favicon.ico',
-    apple: '/logo192.png'
+    apple: '/logo192.png',
   },
   themeColor: '#fb560c',
   manifest: '/manifest.json',
   viewport: {
     width: 'device-width',
     initialScale: 1,
-  }
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

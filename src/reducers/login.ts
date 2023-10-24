@@ -130,4 +130,3 @@ export const tryLogin = (pin: string) => async (dispatch: Dispatch) => {
   dispatch(isOnline ? setServerOnline() : setServerOffline());
   dispatch(fetchData());
 };
-

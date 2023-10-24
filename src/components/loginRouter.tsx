@@ -30,7 +30,7 @@ const LoginRouter = ({ children }: { children: ReactNode }) => {
 
   if (!state.login.token) return <Login />;
 
-  return {children};
+  return { children };
 };
 
 export default LoginRouter;
