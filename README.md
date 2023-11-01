@@ -12,9 +12,11 @@ Console de vente de l'UTT Arena
 - Pnpm
 
 ### Installation de l'application
+Voir [UA-bouffe](https://github.com/ungdev/UA-bouffe)
 
+Anciennes instructions :
 ```
-git clone https://github.com/ungdev/UA-bouffe
+git clone https://github.com/ungdev/UA-bouffe-front
 cp .env.example .env
 pnpm
 ```
