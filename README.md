@@ -1,4 +1,4 @@
-# UA Bouffe API
+# UA Bouffe Front
 
 [![Build Status](https://travis-ci.org/ungdev/UA-bouffe.svg?branch=master)](https://travis-ci.org/ungdev/UA-bouffe)
 
