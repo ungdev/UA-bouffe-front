@@ -1,17 +1,16 @@
 import React, { ReactNode, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Page from '../app/login/page';
+import Page from '@/app/login/page';
 import { autoLogin } from '@/reducers/login';
 import { State } from '@/types';
 import Loader from './pageLoader';
-import { Action } from 'redux';
 
 const LoginRouter = ({ children }: { children: ReactNode }) => {
   const dispatch = useDispatch();
   const state = useSelector((state: State) => state);
 
   useEffect(() => {
-    dispatch(autoLogin() as unknown as Action);
+    dispatch(autoLogin());
   }, []); // eslint-disable-line
 
   if (!state.server.socketConnected) {

@@ -9,6 +9,9 @@ import Navbar from "@/components/navbar";
 import FontAwesome from "react-fontawesome";
 import { logout } from "@/reducers/login";
 import { Action } from "redux";
+import LoginRouter from "@/components/loginRouter";
+import Preparation from "./preparation/page";
+import { Route } from "react-router";
 
 moment.locale("fr");
 
@@ -21,6 +24,13 @@ const App = () => {
           <FontAwesome name="sign-out-alt" /> Déconnexion
         </div>
       </Navbar>
+      <LoginRouter>
+        <Route path="/preparation" component={Preparation} />
+        {/*<Route exact path="/" component={Index} />
+        <Route path="/sell" component={Sell} />
+        <Route path="/tv" component={Tv} />
+        <Route path="/items" component={Items} />*/}
+      </LoginRouter>
       {/* <div id="index">
         <div onClick={() => history.push('/sell?except=goodies')}>
           <FontAwesome name="hamburger" /> Vente de bouffe
