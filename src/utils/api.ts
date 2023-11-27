@@ -8,7 +8,7 @@ const requestAPI = <T>(method: Method, route: string, body?: { [key: string]: un
   return new Promise<AxiosResponse<T>>((resolve, reject) => {
     axios
       .request<T>({
-        baseURL: process.env.REACT_APP_API_URI,
+        baseURL: "http://localhost:3001", //TODO env
         method,
         headers: {
           Authorization: token ? `Bearer ${token}` : undefined,

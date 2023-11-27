@@ -2,6 +2,7 @@ import StoreProvider from "@/store";
 import React from "react";
 import { Flip, ToastContainer } from "react-toastify";
 import "../../public/fontawesome/css/all.min.css";
+import Wrapper from "@/components/Wrapper";
 
 export const metadata = {
   charset: "utf-8",
@@ -26,7 +27,9 @@ export default function RootLayout({ children }: {
     <html lang="fr">
     <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <StoreProvider>{children}</StoreProvider>
+    <StoreProvider>
+      <Wrapper>{children}</Wrapper>
+    </StoreProvider>
     <ToastContainer autoClose={3000} transition={Flip} hideProgressBar={true} pauseOnHover={true} />
     </body>
     </html>

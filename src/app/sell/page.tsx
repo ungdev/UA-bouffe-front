@@ -2,7 +2,6 @@
 import "../page.scss";
 import "./page.scss";
 import React from "react";
-//import queryString from "query-string";
 import ItemsGrid from "../../components/itemsGrid";
 import Navbar from "../../components/navbar";
 import PriceToogler from "../../components/priceToogler";
@@ -12,7 +11,6 @@ import { clearBasket } from "@/reducers/basket";
 import { State } from "@/types";
 import { setNormalPrice } from "@/reducers/orgaPrice";
 import { useSearchParams } from "next/navigation";
-//import Categories from "@/reducers/categories";
 
 /**
  * /sell

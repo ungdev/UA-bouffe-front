@@ -10,7 +10,7 @@ let socket: ClientSocket | undefined = undefined;
 export const Socket = {
   connect: () => async (dispatch: Dispatch) => {
     if (!socket) {
-      socket = io(process.env.REACT_APP_API_URI);
+      socket = io("http://localhost:3001"); //TODO env
 
       socket.on('connect', () => dispatch(setSocketConnected()));
 
