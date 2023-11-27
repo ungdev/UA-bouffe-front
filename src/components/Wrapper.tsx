@@ -1,12 +1,10 @@
 'use client';
-import { ReactNode, useEffect } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
 import { State } from '@/types';
 
 import { autoLogin } from '@/reducers/login';
-import Page from '@/app/login/page';
-
 import Loader from './pageLoader';
 import { type Action } from '@reduxjs/toolkit';
 
@@ -43,12 +41,9 @@ export default function Wrapper({
 
   if (state.login.loading) return <Loader />;
 
-  if (!state.login.token) router.push("/login");
-  else if (pathname.match("/login")) router.push("/")
-
+  if (!state.login.token) router.push('/login');
+  else if (pathname.match('/login')) router.push('/');
 
   // Render the layout with child components
-  return (
-    children
-  );
+  return children;
 }
