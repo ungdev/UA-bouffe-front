@@ -1,16 +1,16 @@
-'use client';
-import React from 'react';
-import 'react-toastify/dist/ReactToastify.css';
-import 'moment/locale/fr';
-import './page.scss';
-import moment from 'moment';
-import { useDispatch } from 'react-redux';
-import Navbar from '@/components/navbar';
-import FontAwesome from 'react-fontawesome';
-import { logout } from '@/reducers/login';
-import { Action } from 'redux';
+"use client";
+import React from "react";
+import "react-toastify/dist/ReactToastify.css";
+import "moment/locale/fr";
+import "./page.scss";
+import moment from "moment";
+import { useDispatch } from "react-redux";
+import Navbar from "@/components/navbar";
+import FontAwesome from "react-fontawesome";
+import { logout } from "@/reducers/login";
+import { Action } from "redux";
 
-moment.locale('fr');
+moment.locale("fr");
 
 const App = () => {
   const dispatch = useDispatch();

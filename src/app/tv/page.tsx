@@ -1,11 +1,12 @@
-import React, { LegacyRef, useEffect, useRef, useState } from 'react';
+"use client";
+import React, { LegacyRef, useEffect, useRef, useState } from "react";
+import "../page.scss";
+import "./page.scss";
+import { useSelector } from "react-redux";
 
-import './tv.scss';
-import { useSelector } from 'react-redux';
-
-import { Order as OrderType, OrderItem, State, Status } from '../types';
-import Separator from '../components/UI/separator';
-import { useRouter } from 'next/navigation';
+import { Order as OrderType, OrderItem, State, Status } from "../../types";
+import Separator from "../../components/UI/separator";
+import { useRouter } from "next/navigation";
 
 interface GroupedCategory {
   name: string;
@@ -21,7 +22,7 @@ const groupOrderItems = (items: Array<OrderItem>) => {
     } else {
       acc.push({
         name: curr.item.category.name,
-        count: 1,
+        count: 1
       });
     }
 
@@ -31,7 +32,7 @@ const groupOrderItems = (items: Array<OrderItem>) => {
 
 // Takes plural in account
 const formatName = (name: string, count: number) => {
-  if (name.endsWith('s') && count === 1) return name.slice(0, -1);
+  if (name.endsWith("s") && count === 1) return name.slice(0, -1);
 
   return name;
 };
@@ -66,7 +67,7 @@ const OrderGrid = ({ orders, passingRef }: { orders: Array<OrderType>; passingRe
   );
 };
 
-const Tv = () => {
+const Page = () => {
   const orders = useSelector((state: State) => state.orders);
 
   const pendingOrders = orders.filter((order) => order.status === Status.PENDING);
@@ -110,7 +111,7 @@ const Tv = () => {
   });
 
   return (
-    <div id="tv" onClick={() => router.push('/')}>
+    <div id="tv" onClick={() => router.push("/")}>
       <div className="orders">
         <div className="title">En attente</div>
         <OrderGrid orders={pendingOrders} passingRef={(el) => (refs.current[0] = el)} />
@@ -129,4 +130,4 @@ const Tv = () => {
   );
 };
 
-export default Tv;
+export default Page;

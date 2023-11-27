@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Login from '../routes/login';
+import Page from '../app/login/page';
 import { autoLogin } from '@/reducers/login';
 import { State } from '@/types';
 import Loader from './pageLoader';
@@ -28,7 +28,7 @@ const LoginRouter = ({ children }: { children: ReactNode }) => {
 
   if (state.login.loading) return <Loader />;
 
-  if (!state.login.token) return <Login />;
+  if (!state.login.token) return <Page />;
 
   return { children };
 };

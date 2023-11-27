@@ -1,27 +1,26 @@
-import React, { useEffect, useState } from 'react';
+"use client";
+import React, { useEffect, useState } from "react";
+import "../page.scss";
+import "./page.scss";
+import Navbar from "../../components/navbar";
+import moment from "moment";
+import FontAwesome from "react-fontawesome";
+import { useSelector } from "react-redux";
+import { Order, State, Status } from "@/types";
+import { downgradeOrder, upgradeOrder } from "@/utils/orders";
+import Modal from "../../components/modals/modal";
+import Loader from "../../components/loader";
+import Separator from "../../components/UI/separator";
+import { useSearchParams } from "next/navigation";
 
-import './preparation.scss';
-import Navbar from '../components/navbar';
-import moment from 'moment';
-import FontAwesome from 'react-fontawesome';
-import { useSelector } from 'react-redux';
-import { Order, State, Status } from '@/types';
-import { downgradeOrder, upgradeOrder } from '@/utils/orders';
-import { useLocation } from 'react-router';
-import queryString from 'query-string';
-import Modal from '../components/modals/modal';
-import Loader from '../components/loader';
-import Separator from '../components/UI/separator';
-
-const Preparation = () => {
-  const location = useLocation();
-  const queryParams = queryString.parse(location.search);
+const Page = () => {
+  const searchParams = useSearchParams();
   let orders = useSelector((state: State) => state.orders);
 
   // Renvoie les commandes contenant au moins un item dans la catégory du paramètre
-  if (queryParams.only) {
+  if (searchParams.has("only")) {
     orders = orders.filter((order) =>
-      order.orderItems.some((orderItem) => orderItem.item.category.key === queryParams.only),
+      order.orderItems.some((orderItem) => orderItem.item.category.key == searchParams.get("only"))
     );
   }
 
@@ -58,7 +57,8 @@ const Preparation = () => {
             setDowngradeMode(false);
             await downgradeOrder(order);
           }
-        } catch (e) {}
+        } catch (e) {
+        }
         setLoading(null);
         setConfirmOrder(null);
       }
@@ -79,7 +79,7 @@ const Preparation = () => {
                 <li key={index}>
                   {orderItem.item.name}
                   <div className="options">
-                    {orderItem.supplements.map((orderSuppl) => orderSuppl.supplement.name).join(', ')}
+                    {orderItem.supplements.map((orderSuppl) => orderSuppl.supplement.name).join(", ")}
                   </div>
                 </li>
               ))}
@@ -89,7 +89,7 @@ const Preparation = () => {
                 <Loader />
               </div>
             ) : (
-              <div className={`next ${downgradeMode ? 'downgrade' : ''}`} onClick={() => editOrder(order)}>
+              <div className={`next ${downgradeMode ? "downgrade" : ""}`} onClick={() => editOrder(order)}>
                 <FontAwesome name="arrow-right" />
               </div>
             )}
@@ -104,8 +104,8 @@ const Preparation = () => {
       <Navbar back="/">
         <div
           onClick={() => setDowngradeMode(!downgradeMode)}
-          className={`preparation-mode-button ${downgradeMode ? 'downgrade' : ''}`}>
-          {!downgradeMode ? 'Aller en arrière' : 'Aller en avant'}
+          className={`preparation-mode-button ${downgradeMode ? "downgrade" : ""}`}>
+          {!downgradeMode ? "Aller en arrière" : "Aller en avant"}
         </div>
       </Navbar>
       <div id="preparation">
@@ -132,7 +132,7 @@ const Preparation = () => {
         )}
         <div className="actions">
           <div className="button cancel" onClick={() => setConfirmOrder(null)}>
-            {loading ? <Loader /> : 'Annuler'}
+            {loading ? <Loader /> : "Annuler"}
           </div>
           <div
             className="button confirm"
@@ -140,7 +140,7 @@ const Preparation = () => {
               await editOrder(confirmOrder, true);
               setConfirmOrder(null);
             }}>
-            {loading ? <Loader /> : 'Confirmer'}
+            {loading ? <Loader /> : "Confirmer"}
           </div>
         </div>
       </Modal>
@@ -148,4 +148,4 @@ const Preparation = () => {
   );
 };
 
-export default Preparation;
+export default Page;
