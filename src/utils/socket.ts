@@ -10,7 +10,7 @@ let socket: ClientSocket | undefined = undefined;
 export const Socket = {
   connect: () => async (dispatch: Dispatch) => {
     if (!socket) {
-      socket = io(process.env.NEXT_PUBLIC_API_URI); //TODO env
+      socket = io(process.env.NEXT_PUBLIC_API_URI);
 
       socket.on('connect', () => dispatch(setSocketConnected()));
 

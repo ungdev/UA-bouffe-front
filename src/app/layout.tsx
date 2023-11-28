@@ -2,7 +2,7 @@ import StoreProvider from "@/store";
 import React from "react";
 import { Flip, ToastContainer } from "react-toastify";
 import "../../public/fontawesome/css/all.min.css";
-import Wrapper from "@/components/Wrapper";
+import Wrapper from "@/components/wrapper";
 import "./page.scss";
 import "react-toastify/dist/ReactToastify.css";
 
