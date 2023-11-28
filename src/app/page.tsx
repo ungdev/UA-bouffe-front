@@ -7,12 +7,13 @@ import Navbar from '@/components/navbar';
 import FontAwesome from 'react-fontawesome';
 import { logout } from '@/reducers/login';
 import { Action } from 'redux';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 moment.locale('fr');
 
 const App = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
   return (
     <>
       <Navbar>
@@ -21,35 +22,23 @@ const App = () => {
         </div>
       </Navbar>
       <div id="index">
-        <div>
-          <Link href="/sell?except=goodies">
-            <FontAwesome name="hamburger" /> Vente de bouffe
-          </Link>
+        <div onClick={() => router.push('/sell?except=goodies')}>
+          <FontAwesome name="hamburger" /> Vente de bouffe
         </div>
-        <div>
-          <Link href="/sell?only=goodies">
-            <FontAwesome name="tshirt" /> Vente de goodies
-          </Link>
+        <div onClick={() => router.push('/sell?only=goodies')}>
+          <FontAwesome name="tshirt" /> Vente de goodies
         </div>
-        <div>
-          <Link href="/preparation">
-            <FontAwesome name="check" /> Préparation générale
-          </Link>
+        <div onClick={() => router.push('/preparation')}>
+          <FontAwesome name="check" /> Préparation générale
         </div>
-        <div>
-          <Link href="/preparation?only=pizzas">
-            <FontAwesome name="pizza-slice" /> Préparation des pizzas
-          </Link>
+        <div onClick={() => router.push('/preparation?only=pizzas')}>
+          <FontAwesome name="pizza-slice" /> Préparation des pizzas
         </div>
-        <div>
-          <Link href="/tv">
-            <FontAwesome name="tv" /> TV
-          </Link>
+        <div onClick={() => router.push('/tv')}>
+          <FontAwesome name="tv" /> TV
         </div>
-        <div>
-          <Link href="/items">
-            <FontAwesome name="receipt" /> Gestion des items
-          </Link>
+        <div onClick={() => router.push('/items')}>
+          <FontAwesome name="receipt" /> Gestion des items
         </div>
       </div>
     </>

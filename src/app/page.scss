@@ -68,12 +68,7 @@ body {
   }
 }
 
-:visited {
-  background-color: var(--primary-dark);
+:visited, :link {
   color: var(--light);
-  text-align: center;
-  height: 100%;
-  margin: 0;
-  font-family: 'Roboto', Arial, Helvetica, sans-serif;
-  user-select: none;
+  text-decoration: none;
 }
