@@ -3,6 +3,9 @@ import React from "react";
 import { Flip, ToastContainer } from "react-toastify";
 import "../../public/fontawesome/css/all.min.css";
 import Wrapper from "@/components/Wrapper";
+import "./page.scss";
+import "react-toastify/dist/ReactToastify.css";
+
 
 export const metadata = {
   charset: "utf-8",
