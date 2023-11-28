@@ -23,7 +23,7 @@ const Page = () => {
   const dispatch = useDispatch();
   let categories = useSelector((state: State) => state.categories);
 
-  if (searchParams.has("only")) { //TODO check change
+  if (searchParams.has("only")) {
     categories = categories.filter((category) => category.key == searchParams.get("only"));
   } else if (searchParams.has("except")) {
     categories = categories.filter((category) => category.key !== searchParams.get("except"));

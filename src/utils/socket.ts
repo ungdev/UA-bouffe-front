@@ -31,7 +31,6 @@ export const Socket = {
         }
       });
 
-      //TODO Appelé à chaque changement de page...
       socket.on('disconnect', (reason: string) => {
         if (reason === 'transport close' || reason === 'ping timeout') {
           toast.error('Extinction du serveur...');
