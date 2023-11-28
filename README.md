@@ -18,7 +18,7 @@ Anciennes instructions :
 ```
 git clone https://github.com/ungdev/UA-bouffe-front
 cp .env.example .env
-pnpm
+pnpm i
 ```
 
 ## Développement
@@ -35,7 +35,7 @@ Afin de garder une certaine cohérence dans le code, on utilise EsLint et Pretti
 de commit
 
 ```
-pnpm lint-fix
+pnpm lint:fix
 ```
 
 ### Démarrer l'API en production
