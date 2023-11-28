@@ -5,7 +5,7 @@
   "author": "UNG",
   "license": "MIT",
   "scripts": {
-    "start": "node production.js",
+    "start": "next start -p 8081",
     "dev": "next dev",
     "build": "next build",
     "lint": "next lint",
