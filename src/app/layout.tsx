@@ -5,7 +5,12 @@ import "../../public/fontawesome/css/all.min.css";
 import Wrapper from "@/components/wrapper";
 import "./page.scss";
 import "react-toastify/dist/ReactToastify.css";
+import { Viewport } from "next";
 
+
+export const viewport: Viewport = {
+  themeColor: "#fb560c"
+}
 
 export const metadata = {
   charset: "utf-8",
@@ -15,12 +20,7 @@ export const metadata = {
     icon: "/favicon.ico",
     apple: "/logo192.png"
   },
-  themeColor: "#fb560c",
-  manifest: "/manifest.json",
-  viewport: {
-    width: "device-width",
-    initialScale: 1
-  }
+  manifest: "/manifest.json"
 };
 
 export default function RootLayout({ children }: {
