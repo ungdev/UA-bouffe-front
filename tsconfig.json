@@ -30,10 +30,7 @@
       "@/*": [
         "./src/*"
       ]
-    },
-    "types": [
-      "@types/testing-library__jest-dom"
-    ]
+    }
   },
   "include": [
     "next-env.d.ts",

@@ -48,7 +48,7 @@ const Category = ({ category }: { category: CategoryType }) => {
   );
 };
 
-export const itemsAvailable = (categories: Array<CategoryType>) =>
+const itemsAvailable = (categories: Array<CategoryType>) =>
   categories.reduce((acc, curr) => {
     return acc + curr.items.filter((item) => item.available).length;
   }, 0);
