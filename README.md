@@ -1,6 +1,5 @@
 # UA Bouffe Front
-
-[![Build Status](https://travis-ci.org/ungdev/UA-bouffe.svg?branch=master)](https://travis-ci.org/ungdev/UA-bouffe)
+[![Build status](https://github.com/ungdev/UA-bouffe-front/actions/workflows/ci.yml/badge.svg)](https://github.com/ungdev/UA-bouffe-front/actions/workflows/ci.yml)
 
 Console de vente de l'UTT Arena
 
