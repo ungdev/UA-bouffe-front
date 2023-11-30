@@ -1,22 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import FontAwesome from 'react-fontawesome';
 import moment from 'moment';
 
-import { history } from '../components/loginRouter';
 import './navbar.scss';
-import { State } from '../types';
+import { State } from '@/types';
 import { useSelector } from 'react-redux';
+import { useRouter } from 'next/navigation';
 
 interface PropTypes {
   back?: string;
-  onBack?: () => void;
   children?: React.ReactNode;
+  onBack?: () => void;
 }
 
-const Navbar = ({ back, onBack, children }: PropTypes) => {
+const Navbar: FC<PropTypes> = ({ back = null, children = null, onBack = null }) => {
   const [time, setTime] = useState(moment().format('H[h]mm'));
   const name = useSelector((state: State) => state.login.name);
   const serverOnline = useSelector((state: State) => state.server.internetConnected);
+  const router = useRouter();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -32,7 +33,7 @@ const Navbar = ({ back, onBack, children }: PropTypes) => {
     }
 
     if (back) {
-      history.push(back);
+      router.push(back);
     }
   };
 
@@ -52,12 +53,6 @@ const Navbar = ({ back, onBack, children }: PropTypes) => {
       <div className="absolute-right">{children ? children : ''}</div>
     </nav>
   );
-};
-
-Navbar.defaultProps = {
-  back: null,
-  onBack: null,
-  children: null,
 };
 
 export default Navbar;

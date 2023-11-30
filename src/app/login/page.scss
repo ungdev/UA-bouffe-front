@@ -1,0 +1,50 @@
+#login {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .title {
+    font-size: 3em;
+    padding-top: 30px;
+  }
+
+  .field {
+    width: 200px;
+    height: 50px;
+    line-height: 50px;
+    background-color: var(--primary-light);
+    border-radius: 20px;
+    margin: 20px auto;
+    font-size: 4em;
+  }
+
+  .digits {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    max-height: 500px;
+    width: 75%;
+    flex: 1;
+
+    .digits-row {
+      display: flex;
+      justify-content: center;
+      height: 100%;
+
+      .digit {
+        margin: 0 10px;
+        background-color: var(--primary-light);
+        display: flex;
+        font-size: 2em;
+        flex-direction: column;
+        justify-content: center;
+        flex: 1;
+        height: calc(100% - 20px);
+
+        &:hover {
+          filter: brightness(0.9);
+        }
+      }
+    }
+  }
+}

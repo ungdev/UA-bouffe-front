@@ -1,4 +1,4 @@
-import { ThunkDispatch } from 'redux-thunk';
+import { ThunkDispatch } from "redux-thunk";
 
 // General
 export interface Price {

@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 
 import './pageLoader.scss';
 
-const Loading = ({ children }: { children?: ReactNode }) => {
+const Loading = ({ children = null }: { children?: ReactNode }) => {
   return (
     <div className="loading">
       {children ? children : 'Chargement en cours...'}
@@ -13,10 +13,6 @@ const Loading = ({ children }: { children?: ReactNode }) => {
       </div>
     </div>
   );
-};
-
-Loading.defaultProps = {
-  children: null,
 };
 
 export default Loading;

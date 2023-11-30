@@ -1,4 +1,4 @@
-import { PaymentMethod } from '../types';
+import { PaymentMethod } from '@/types';
 
 const formatPrice = (price: number): string => {
   return `${(price / 100).toFixed(2)} €`;

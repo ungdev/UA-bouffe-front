@@ -6,7 +6,7 @@ import login from './login';
 import categories from './categories';
 import promotions from './promotions';
 import server from './server';
-import { State } from '../types';
+import { State } from '@/types';
 
 const app = combineReducers<State>({ basket, orgaPrice, orders, login, categories, promotions, server });
 

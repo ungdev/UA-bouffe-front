@@ -1,4 +1,4 @@
-import axios, { Method, AxiosResponse } from 'axios';
+import axios, { AxiosResponse, Method } from 'axios';
 import { toast } from 'react-toastify';
 import errorToString from './errorToString';
 
@@ -8,14 +8,14 @@ const requestAPI = <T>(method: Method, route: string, body?: { [key: string]: un
   return new Promise<AxiosResponse<T>>((resolve, reject) => {
     axios
       .request<T>({
-        baseURL: process.env.REACT_APP_API_URI,
+        baseURL: process.env.NEXT_PUBLIC_API_URI,
         method,
         headers: {
           Authorization: token ? `Bearer ${token}` : undefined,
         },
         url: route,
         data: body,
-        timeout: parseInt(process.env.REACT_APP_API_TIMEOUT) || 5000,
+        timeout: parseInt(process.env.NEXT_PUBLIC_API_TIMEOUT) || 5000,
       })
       .then((res) => resolve(res))
       .catch((err) => {

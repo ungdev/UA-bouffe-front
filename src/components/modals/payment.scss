@@ -16,10 +16,12 @@
     position: absolute;
     top: 0;
     right: 0;
+
     &:hover {
       filter: brightness(0.9);
     }
   }
+
   .keyboard {
     display: flex;
     justify-content: space-between;
@@ -48,6 +50,7 @@
     margin: var(--grid-inner-margin);
     background-color: var(--primary);
     color: var(--light);
+
     &:hover {
       filter: brightness(0.9);
     }

@@ -4,7 +4,7 @@ import Modal from './modal';
 import './confirmation.scss';
 import FontAwesome from 'react-fontawesome';
 import Loader from '../loader';
-import { formatPrice } from '../../utils/format';
+import { formatPrice } from '@/utils/format';
 
 interface ModalProps {
   isOpen: boolean;

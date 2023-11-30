@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 
-import { Item, Order, PaymentMethod } from '../types';
+import { Item, Order, PaymentMethod } from '@/types';
 import { API } from './api';
 
 export const getOrders = async () => {

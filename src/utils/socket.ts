@@ -1,16 +1,16 @@
-import { Socket as ClientSocket, connect } from 'socket.io-client';
-import { setOrders } from '../reducers/orders';
+import { io, Socket as ClientSocket } from 'socket.io-client';
+import { setOrders } from '@/reducers/orders';
 import { toast } from 'react-toastify';
-import { Order, Category, Dispatch } from '../types';
-import { setCategories } from '../reducers/categories';
-import { setSocketDisconnected, setSocketConnected, setServerOnline, setServerOffline } from '../reducers/server';
+import { Category, Dispatch, Order } from '@/types';
+import { setCategories } from '@/reducers/categories';
+import { setServerOffline, setServerOnline, setSocketConnected, setSocketDisconnected } from '@/reducers/server';
 
 let socket: ClientSocket | undefined = undefined;
 
 export const Socket = {
   connect: () => async (dispatch: Dispatch) => {
     if (!socket) {
-      socket = connect(process.env.REACT_APP_API_URI);
+      socket = io(process.env.NEXT_PUBLIC_API_URI);
 
       socket.on('connect', () => dispatch(setSocketConnected()));
 
