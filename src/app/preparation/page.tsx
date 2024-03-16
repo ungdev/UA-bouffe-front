@@ -65,10 +65,40 @@ const Page = () => {
     }
   };
 
+  const separate_by: string = searchParams.has('by') ? searchParams.get('by') : 'order';
+
   const displayOrders = (orders: Array<Order>) => {
+
+    type itemQuantity = {
+      id: number,
+      name: string,
+      quantity: number,
+    }
+  
+    const items: Array<itemQuantity> = [];
+  
+    if (separate_by === 'item') {
+      orders.forEach((order) => {
+        order.orderItems.forEach(orderItem => {
+          const itemId: number = orderItem.item.id;
+          const itemName: string = orderItem.item.name
+          if (items.some(item => item.id === itemId)) {
+            items.find(item => item.id === itemId).quantity ++;
+          } else {
+            const item: itemQuantity = {
+              id: itemId,
+              name: itemName,
+              quantity: 1
+            };
+            items.push(item);
+          }
+        })
+      });
+    }
+
     return (
       <div className="orders">
-        {orders.map((order) => (
+        {separate_by === 'order' && orders.map((order) => (
           <div className="order" key={order.id}>
             <div className="titles">
               <span className="place">{order.place}</span>
@@ -93,6 +123,21 @@ const Page = () => {
                 <FontAwesome name="arrow-right" />
               </div>
             )}
+          </div>
+        ))}
+        {separate_by === 'item' && items.map((item) => (
+          <div className="order" key={item.id}>
+            <div className="titles">
+              {/* <span className="place">x {item.quantity}</span> */}
+              <span className="quantity">x {item.quantity}</span>
+              {/* <span>{moment(order.createdAt).fromNow(true)}</span> */}
+            </div>
+            <ul className="items">
+                {/* <li key={item.name}>
+                  {item.name}
+                </li> */}
+                {item.name}
+            </ul>
           </div>
         ))}
       </div>

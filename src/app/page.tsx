@@ -25,23 +25,42 @@ const App = () => {
       </Navbar>
       <div id="index">
         { ['admin','preparator'].includes(login.key) &&
-          <div className='link_category'>
-            <p>Préparation par commande :</p>
-            <div className='links_btns'>
-              <div onClick={() => router.push('/preparation')}>
-                <FontAwesome name="check" /> Général
-              </div>
-              <div onClick={() => router.push('/preparation?only=pizzas')}>
-                <FontAwesome name="pizza-slice" /> Pizzas
-              </div>
-              <div onClick={() => router.push('/preparation?only=crepes')}>
-                <FontAwesome name="stroopwafel" /> Crêpes
-              </div>
-              <div onClick={() => router.push('/preparation?only=croques')}>
-                <FontAwesome name="bread-slice" /> Croques
+          <>
+            <div className='link_category'>
+              <p>Préparation par commande :</p>
+              <div className='links_btns'>
+                <div onClick={() => router.push('/preparation')}>
+                  <FontAwesome name="check" /> Général
+                </div>
+                <div onClick={() => router.push('/preparation?only=pizzas')}>
+                  <FontAwesome name="pizza-slice" /> Pizzas
+                </div>
+                <div onClick={() => router.push('/preparation?only=crepes')}>
+                  <FontAwesome name="stroopwafel" /> Crêpes
+                </div>
+                <div onClick={() => router.push('/preparation?only=croques')}>
+                  <FontAwesome name="bread-slice" /> Croques
+                </div>
               </div>
             </div>
-          </div>
+            <div className='link_category'>
+              <p>Préparation par item :</p>
+              <div className='links_btns'>
+                <div onClick={() => router.push('/preparation?by=item')}>
+                  <FontAwesome name="check" /> Général
+                </div>
+                <div onClick={() => router.push('/preparation?only=pizzas&by=item')}>
+                  <FontAwesome name="pizza-slice" /> Pizzas
+                </div>
+                <div onClick={() => router.push('/preparation?only=crepes&by=item')}>
+                  <FontAwesome name="stroopwafel" /> Crêpes
+                </div>
+                <div onClick={() => router.push('/preparation?only=croques&by=item')}>
+                  <FontAwesome name="bread-slice" /> Croques
+                </div>
+              </div>
+            </div>
+          </>
         }
         { ['admin','tv','seller'].includes(login.key) &&
           <div className='link_category'>
