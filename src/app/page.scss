@@ -42,28 +42,52 @@ body {
 
 #index {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex-wrap: wrap;
-  align-items: stretch;
+  flex-direction: column;
+  justify-content: felx-start;
+  flex-wrap: nowrap;
+  align-items: flex-start;
   height: calc(100% - 50px);
   font-size: 3em;
 
-  div {
-    height: calc(33% - 20px - 4px);
-    width: calc(50% - 20px - 4px - 20px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--primary);
-    margin: 10px;
+  div.link_category {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 1.2em auto;
+    row-gap: 10px;
+    height: calc(33% - 20px);
+    width: calc(100% - 20px);
+    padding: 10px;
 
-    .fa {
-      margin-right: 15px;
+    p {
+      font-size: 1em;
+      margin: 0px;
+      width: max-content;
     }
 
-    &:hover {
-      filter: brightness(0.9);
+    div.links_btns {
+      height: calc(100%);
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+
+      div {
+        height: 100%;
+        width: calc(25% - 20px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        row-gap: 5vh;
+        background-color: var(--primary);
+        margin: 0px 10px;
+        border-radius: .2em;
+    
+        &:hover {
+          filter: brightness(0.9);
+        }
+      }
     }
   }
+
+  
 }
