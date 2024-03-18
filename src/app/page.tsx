@@ -16,6 +16,7 @@ const App = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const login = useSelector((state: State) => state.login);
+  console.log(login)
   return (
     <>
       <Navbar>
@@ -62,26 +63,35 @@ const App = () => {
             </div>
           </>
         }
-        { ['admin','tv','seller'].includes(login.key) &&
-          <div className='link_category'>
-            <p>Administration / Affichage :</p>
-            <div className='links_btns'>
-              { ['admin','seller'].includes(login.key) &&
-                <div onClick={() => router.push('/sell')}>
-                  <FontAwesome name="hamburger" /> Vente
-                </div>
-              }
-              { login.key === 'admin' &&
-                <div onClick={() => router.push('/items')}>
-                  <FontAwesome name="receipt" /> Gestion
-                </div>
-              }
-              <div onClick={() => router.push('/tv')}>
-                <FontAwesome name="tv" /> TV
+        <div className='link_category'>
+          { ['admin','seller','preparator','tv'].includes(login.key) &&
+            <>
+              <p>Autres controles :</p>
+              <div className='links_btns'>
+                { ['admin','seller'].includes(login.key) &&
+                  <div onClick={() => router.push('/sell')}>
+                    <FontAwesome name="money-bill" /> Vente
+                  </div>
+                }
+                { login.key === 'admin' &&
+                  <div onClick={() => router.push('/items')}>
+                    <FontAwesome name="receipt" /> Gestion
+                  </div>
+                }
+                { ['admin','preparator'].includes(login.key) &&
+                  <div onClick={() => router.push('/service')}>
+                    <FontAwesome name="hamburger" /> Service
+                  </div>
+                }
+                { ['admin','tv'].includes(login.key) &&
+                  <div onClick={() => router.push('/tv')}>
+                    <FontAwesome name="tv" /> TV
+                  </div>
+                }
               </div>
-            </div>
-          </div>
-        }
+            </>
+          }
+        </div>
       </div>
     </>
   );

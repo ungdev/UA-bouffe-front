@@ -65,43 +65,14 @@ const Page = () => {
     }
   };
 
-  const separate_by: string = searchParams.has('by') ? searchParams.get('by') : 'order';
-
   const displayOrders = (orders: Array<Order>) => {
 
-    const tenMinutesAgo: moment.Moment = moment().subtract(1, 'minutes');
+    const tenMinutesAgo: moment.Moment = moment().subtract(10, 'minutes');
     const twentyMinutesAgo: moment.Moment = moment().subtract(20, 'minutes');
 
-    type itemQuantity = {
-      id: number,
-      name: string,
-      quantity: number,
-    }
-  
-    const items: Array<itemQuantity> = [];
-  
-    if (separate_by === 'item') {
-      orders.forEach((order) => {
-        order.orderItems.forEach(orderItem => {
-          const itemId: number = orderItem.item.id;
-          const itemName: string = orderItem.item.name
-          if (items.some(item => item.id === itemId)) {
-            items.find(item => item.id === itemId).quantity ++;
-          } else {
-            const item: itemQuantity = {
-              id: itemId,
-              name: itemName,
-              quantity: 1
-            };
-            items.push(item);
-          }
-        })
-      });
-    }
-
     return (
-      <div className="orders">
-        {separate_by === 'order' && orders.map((order) => (
+      <div className="orders service">
+        {orders.map((order) => (
           <div className={`order ${moment(order.createdAt).isAfter(twentyMinutesAgo) ? (moment(order.createdAt).isAfter(tenMinutesAgo) ? "" : "timewarning orange") : "timewarning red"}`} key={order.id}>
             <div className="titles">
               <span className="place">{order.place}</span>
@@ -122,20 +93,10 @@ const Page = () => {
                 <Loader />
               </div>
             ) : (
-              <div className={`next ${downgradeMode ? "downgrade" : (order.status === Status.READY ? "disabled" : "")}`} onClick={() => editOrder(order)}>
+              <div className={`next ${downgradeMode ? "downgrade" : ""}`} onClick={() => editOrder(order)}>
                 <FontAwesome name="arrow-right" />
               </div>
             )}
-          </div>
-        ))}
-        {separate_by === 'item' && items.map((item) => (
-          <div className="order" key={item.id}>
-            <div className="titles">
-              <span className="quantity">x {item.quantity}</span>
-            </div>
-            <ul className="items">
-                {item.name}
-            </ul>
           </div>
         ))}
       </div>
@@ -148,22 +109,12 @@ const Page = () => {
         <div
           onClick={() => setDowngradeMode(!downgradeMode)}
           className={`preparation-mode-button ${downgradeMode ? "downgrade" : ""}`}>
-          {!downgradeMode ? "Aller en arrière" : "Aller en avant"}
+          {!downgradeMode ? "Retour cuisine" : "Servir"}
         </div>
       </Navbar>
       <div id="preparation">
-        <div className="status pending">
-          <span className="title">En attente</span>
-          {displayOrders(orders.filter((order) => order.status === Status.PENDING))}
-        </div>
-        <Separator />
-        <div className="status preparing">
-          <span className="title">Préparation</span>
-          {displayOrders(orders.filter((order) => order.status === Status.PREPARING))}
-        </div>
-        <Separator />
-        <div className="status ready">
-          <span className="title">Prêt</span>
+        <div className="status service ready">
+          <span className="title">A servir</span>
           {displayOrders(orders.filter((order) => order.status === Status.READY))}
         </div>
       </div>
