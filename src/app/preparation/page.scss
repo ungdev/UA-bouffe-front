@@ -19,12 +19,12 @@
   .status {
     margin: auto;
     width: 100%;
-    height: 100%;
+    height: calc(100% - 20px);
     padding: 10px 14px 0;
-
-    &::-webkit-scrollbar {
-      width: 0 !important;
-    }
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-color: var(--primary-light) transparent;
+    scrollbar-width: auto;
 
     .title {
       font-size: 1.5em;
@@ -40,6 +40,7 @@
   .status .orders .order {
     background: var(--primary-light);
     padding-left: 10px;
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -68,6 +69,23 @@
       .options {
         font-style: italic;
       }
+    }
+
+    &.timewarning:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 10px;
+      height: 100%;
+    }
+
+    &.orange:before {
+      background-color: var(--toastify-color-warning);
+    }
+
+    &.red:before {
+      background-color: var(--toastify-color-error);
     }
 
     .next {

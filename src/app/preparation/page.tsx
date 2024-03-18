@@ -69,6 +69,9 @@ const Page = () => {
 
   const displayOrders = (orders: Array<Order>) => {
 
+    const tenMinutesAgo: moment.Moment = moment().subtract(10, 'minutes');
+    const twentyMinutesAgo: moment.Moment = moment().subtract(20, 'minutes');
+
     type itemQuantity = {
       id: number,
       name: string,
@@ -99,7 +102,7 @@ const Page = () => {
     return (
       <div className="orders">
         {separate_by === 'order' && orders.map((order) => (
-          <div className="order" key={order.id}>
+          <div className={`order ${moment(order.createdAt).isAfter(twentyMinutesAgo) ? (moment(order.createdAt).isAfter(tenMinutesAgo) ? "" : "timewarning orange") : "timewarning red"}`} key={order.id}>
             <div className="titles">
               <span className="place">{order.place}</span>
               <span>{moment(order.createdAt).fromNow(true)}</span>
