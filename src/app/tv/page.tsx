@@ -70,9 +70,11 @@ const OrderGrid = ({ orders, passingRef }: { orders: Array<OrderType>; passingRe
 const Page = () => {
   const orders = useSelector((state: State) => state.orders);
 
-  const pendingOrders = orders.filter((order) => order.status === Status.PENDING);
-  const preparingOrders = orders.filter((order) => order.status === Status.PREPARING);
-  const readyOrders = orders.filter((order) => order.status === Status.READY);
+  const tvOrders = orders.filter(order => order.orderItems.some(item => item.item.category.needsPreparation) === true)
+
+  const pendingOrders = tvOrders.filter((order) => order.status === Status.PENDING);
+  const preparingOrders = tvOrders.filter((order) => order.status === Status.PREPARING);
+  const readyOrders = tvOrders.filter((order) => order.status === Status.READY);
 
   const refs = useRef<HTMLDivElement[]>([null, null, null]);
   const router = useRouter();

@@ -16,7 +16,7 @@
   justify-content: space-between;
   background-color: var(--primary);
 
-  .status {
+  .status.service {
     margin: auto;
     width: 100%;
     height: calc(100% - 20px);
@@ -35,6 +35,13 @@
     &.pending .orders .order .next.downgrade {
       background-color: var(--danger-dark);
     }
+  }
+
+  .status .orders.service {
+    width: calc(100% - 10px);
+    display: grid;
+    grid-template-columns: 50% 50%;
+    column-gap: 10px;
   }
 
   .status .orders .order {
@@ -101,11 +108,6 @@
 
       .fa {
         transition: transform 0.5s ease-in, opacity 0.5s ease-in;
-      }
-
-      &.disabled {
-        visibility: hidden;
-        background-color: var(--warning-dark);
       }
 
       &.downgrade {
