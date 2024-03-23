@@ -10,7 +10,6 @@ import { Order, State, Status } from "@/types";
 import { downgradeOrder, upgradeOrder } from "@/utils/orders";
 import Modal from "../../components/modals/modal";
 import Loader from "../../components/loader";
-import Separator from "../../components/UI/separator";
 import { useSearchParams } from "next/navigation";
 
 const Page = () => {

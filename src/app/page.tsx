@@ -16,7 +16,6 @@ const App = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const login = useSelector((state: State) => state.login);
-  console.log(login)
   return (
     <>
       <Navbar>
