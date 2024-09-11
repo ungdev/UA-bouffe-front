@@ -36,6 +36,7 @@ export interface Category extends Identifiable {
   name: string;
   key: string;
   items: Array<Item>;
+  needsPreparation: boolean;
 }
 
 export interface OrderItem {
