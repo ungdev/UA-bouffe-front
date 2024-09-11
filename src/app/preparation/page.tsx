@@ -19,9 +19,15 @@ const Page = () => {
 
   // Renvoie les commandes contenant au moins un item dans la catégory du paramètre
   if (searchParams.has("only")) {
+    const categoriesToDisplay = searchParams.get("only").split(",");
     orders = orders.filter((order) =>
-      order.orderItems.some((orderItem) => orderItem.item.category.key == searchParams.get("only"))
+      order.orderItems.some((orderItem) => categoriesToDisplay.includes(orderItem.item.category.key))
     );
+    if (searchParams.has("by") && searchParams.get("by") == "item") {
+      orders.forEach((order) => {
+        order.orderItems = order.orderItems.filter((orderItem) => categoriesToDisplay.includes(orderItem.item.category.key));
+      });
+    }
   }
 
   // used only to refresh the component every minute
@@ -65,7 +71,7 @@ const Page = () => {
     }
   };
 
-  const separate_by: string = searchParams.has('by') ? searchParams.get('by') : 'order';
+  const separate_by: string = searchParams.get('by') ?? 'order';
 
   const displayOrders = (orders: Array<Order>) => {
 

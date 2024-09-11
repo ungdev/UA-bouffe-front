@@ -2,7 +2,7 @@
 import React from 'react';
 import 'moment/locale/fr';
 import moment from 'moment';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 import Navbar from '@/components/navbar';
 import FontAwesome from 'react-fontawesome';
 import { logout } from '@/reducers/login';
@@ -35,7 +35,7 @@ const App = () => {
                 <div onClick={() => router.push('/preparation?only=pizzas')}>
                   <FontAwesome name="pizza-slice" /> Pizzas
                 </div>
-                <div onClick={() => router.push('/preparation?only=crepes')}>
+                <div onClick={() => router.push('/preparation?only=crepes,galettes')}>
                   <FontAwesome name="stroopwafel" /> Crêpes
                 </div>
                 <div onClick={() => router.push('/preparation?only=croques')}>
@@ -52,7 +52,7 @@ const App = () => {
                 <div onClick={() => router.push('/preparation?only=pizzas&by=item')}>
                   <FontAwesome name="pizza-slice" /> Pizzas
                 </div>
-                <div onClick={() => router.push('/preparation?only=crepes&by=item')}>
+                <div onClick={() => router.push('/preparation?only=crepes,galettes&by=item')}>
                   <FontAwesome name="stroopwafel" /> Crêpes
                 </div>
                 <div onClick={() => router.push('/preparation?only=croques&by=item')}>
