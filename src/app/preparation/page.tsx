@@ -75,7 +75,7 @@ const Page = () => {
 
   const displayOrders = (orders: Array<Order>) => {
 
-    const tenMinutesAgo: moment.Moment = moment().subtract(1, 'minutes');
+    const tenMinutesAgo: moment.Moment = moment().subtract(10, 'minutes');
     const twentyMinutesAgo: moment.Moment = moment().subtract(20, 'minutes');
 
     type itemQuantity = {
