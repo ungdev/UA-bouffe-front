@@ -79,7 +79,7 @@
     }
 
     &.timewarning:before {
-      content: "";
+      content: '';
       position: absolute;
       left: 0;
       top: 0;
@@ -107,7 +107,9 @@
       transition: background-color 0.5s ease-in;
 
       .fa {
-        transition: transform 0.5s ease-in, opacity 0.5s ease-in;
+        transition:
+          transform 0.5s ease-in,
+          opacity 0.5s ease-in;
       }
 
       &.downgrade {
@@ -153,9 +155,14 @@
         background: var(--success);
       }
 
+      &.callOrder {
+        background: var(--primary);
+      }
+
       &:hover {
         filter: brightness(0.9);
       }
     }
   }
 }
+
