@@ -23,9 +23,9 @@ const Page = () => {
     );
   }
 
-  const nonInstantOrders = orders.filter(
-    (order) => order.orderItems.some((item) => item.item.category.needsPreparation) === true,
-  );
+  // const nonInstantOrders = orders.filter(
+  //  (order) => order.orderItems.some((item) => item.item.category.needsPreparation) === true,
+  //);
 
   //const newOrdersId = nonInstantOrders.filter((order) => !document.cookie:contain); ca marche po
   // TODO: creer une variable avec la liste des nouveslles commandes en comparant celles du cookie et celle de noninstantorder
