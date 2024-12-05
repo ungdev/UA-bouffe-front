@@ -11,7 +11,6 @@ import { downgradeOrder, upgradeOrder } from '@/utils/orders';
 import Modal from '../../components/modals/modal';
 import Loader from '../../components/loader';
 import { useSearchParams } from 'next/navigation';
-import { toast } from 'react-toastify';
 //import Cookies from 'js-cookie';
 
 const Page = () => {
