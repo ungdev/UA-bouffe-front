@@ -2,7 +2,7 @@ FROM node:20
 
 ENV NODE_ENV=production
 
-ARG API_URI=http://localhost:3001
+ARG API_URI=http://api:3001
 ENV NEXT_PUBLIC_API_URI $API_URI
 
 ARG API_TIMEOUT=5000
